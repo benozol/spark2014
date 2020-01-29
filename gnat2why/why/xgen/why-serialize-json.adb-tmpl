@@ -1,0 +1,3 @@
+package body Why_Serialize_JSON is
+_@Declare_Serialize_JSON@_
+end Why_Serialize_JSON;
