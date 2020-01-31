@@ -255,68 +255,49 @@ package body Xtree_Why_AST is
       Relative_Indent (O, -2);
    end Print_OCaml_Why_Node_Type;
 
-   procedure Print_Ada_Why_Node_Id_To_Json (O : in out Output_Record) is
+   procedure Print_Ada_To_Json_Why_Node (O : in out Output_Record) is
       use Xtree_Tables.Node_Lists;
    begin
-      PL (O, "function Why_Node_Id_To_Json (N : Why_Node_Id) return JSON_Value is");
+      PL (O, "function To_Json (Node : Why_Node) return JSON_Value is");
       begin
          Relative_Indent (O, 3);
-         PL (O, "N_Kind : constant Why_Node_Kind := Get_Kind (N);");
-         PL (O, "Res : constant JSON_Value := Empty_Array;");
+         PL (O, "Res : constant JSON_Value := Create (Empty_Array);");
          Relative_Indent (O, -3);
       end;
       PL (O, "begin");
       begin
          Relative_Indent (O, 3);
-         PL (O, "Append (Res, Why_Node_Kind'Image (N_Kind));");
-         PL (O, "case N_Kind is");
+         PL (O, "Append (Res, Create (Why_Node_Kind'Image (Node.Kind)));");
+         PL (O, "case Node.Kind is");
          begin
             Relative_Indent (O, 3);
             for Kind in Why_Tree_Info'Range loop
                PL (O, "when " & Mixed_Case_Name (Kind) & " =>");
+               Relative_Indent (O, 3);
                if Is_Empty (Why_Tree_Info (Kind).Fields) then
                   PL (O, "null;");
                else
-                  Relative_Indent (O, 3);
-                  PL (O, "declare");
-                  begin
-                     Relative_Indent (O, 3);
-                     PL (O, "N1 : " & Mixed_Case_Name (Kind) & "_Id := +N;");
-                     Relative_Indent (O, -3);
-                  end;
-                  PL (O, "begin");
-                  begin
-                     Relative_Indent (O, 3);
-                     for FI of Why_Tree_Info (Kind).Fields loop
-                        PL (O, "Append (Res, " &
-                              Type_Name (FI, Opaque) & "_To_Json " &
-                              "(Get_Node (+N1)." & Type_Name (FI, Opaque)  & ")" &
-                              ");");
-                     end loop;
-                     --                    declare
-                     --                       First : Boolean := True;
-                     --                    begin
-                     --                       P (O, "(* common: *) ");
-                     --                       for FI of Common_Fields.Fields loop
-                     --                          P (O, (if First then "" else " * ") &
-                     --                               OCaml_Type_Identifier (To_String (Type_Name (FI, Opaque))));
-                     --                          First := False;
-                     --                       end loop;
-                     --                    end;
-                     Relative_Indent (O, -3);
-                  end;
-                  PL (O, "end;");
-                  Relative_Indent (O, -3);
+                  for FI of Why_Tree_Info (Kind).Fields loop
+                     PL (O, "Append (Res, " &
+                           Type_Name (FI, Opaque) & "_To_Json (Node." & Field_Name (FI) & ")" &
+                           ");");
+                  end loop;
                end if;
+               Relative_Indent (O, -3);
             end loop;
             Relative_Indent (O, -3);
          end;
          PL (O, "end case;");
+         for FI of Common_Fields.Fields loop
+            PL (O, "Append (Res, " &
+                  Type_Name (FI, Opaque) & "_To_Json (Node." & Field_Name (FI) & ")" &
+                  ");");
+         end loop;
          PL (O, "return Res;");
          Relative_Indent (O, -3);
       end;
-      PL (O, "end Why_Node_Id_To_Json;");
-   end Print_Ada_Why_Node_Id_To_Json;
+      PL (O, "end To_Json;");
+   end Print_Ada_To_Json_Why_Node;
 
    procedure Print_OCaml_Why_Node_From_Json (O : in out Output_Record) is
    begin

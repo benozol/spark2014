@@ -1,13 +1,21 @@
+with Common_Containers; use Common_Containers;
+with Why.Sinfo; use Why.Sinfo;
+with Why.Ids; use Why.Ids;
+with Why.Conversions; use Why.Conversions;
+
 package body Why.Serialize_Json is
 
-   function Why_Node_List_To_Json (L : Why_Node_Lists.List) return JSON_Value is
-      Res : Json_Array := Empty_Array;
+   function To_Json (L : Why_Node_Lists.List) return JSON_Value is
+      use Why_Node_Lists;
+      Res : constant JSON_Value := Create (Empty_Array);
+      C : Why_Node_Lists.Cursor := First (L);
    begin
-      for I in L'Range loop
-         Append (Res, L (I));
+      while Has_Element (C) loop
+         Append (Res, To_Json (Get_Node (Element (C))));
+         Next (C);
       end loop;
       return Res;
-   end Why_Node_List_To_Json;
+   end To_Json;
 
-   _@Declare_Ada_Why_Node_Id_To_Json@_
+   _@Declare_Ada_To_Json_Why_Node@_
 end Why.Serialize_Json;
