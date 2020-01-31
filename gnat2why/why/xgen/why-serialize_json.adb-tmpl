@@ -1,0 +1,13 @@
+package body Why.Serialize_Json is
+
+   function Why_Node_List_To_Json (L : Why_Node_Lists.List) return JSON_Value is
+      Res : Json_Array := Empty_Array;
+   begin
+      for I in L'Range loop
+         Append (Res, L (I));
+      end loop;
+      return Res;
+   end Why_Node_List_To_Json;
+
+   _@Declare_Ada_Why_Node_Id_To_Json@_
+end Why.Serialize_Json;
