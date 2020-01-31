@@ -3,7 +3,7 @@ with Why.Sinfo; use Why.Sinfo;
 with Why.Ids; use Why.Ids;
 with Why.Conversions; use Why.Conversions;
 
-package body Why.Serialize_Json is
+package body Why.Atree.To_Json is
 
    function To_Json (L : Why_Node_Lists.List) return JSON_Value is
       use Why_Node_Lists;
@@ -18,4 +18,4 @@ package body Why.Serialize_Json is
    end To_Json;
 
    _@Declare_Ada_To_Json_Why_Node@_
-end Why.Serialize_Json;
+end Why.Atree.To_Json;

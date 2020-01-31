@@ -90,7 +90,7 @@ with Tempdir;                         use Tempdir;
 with VC_Kinds;
 with Why;                             use Why;
 with Why.Atree.Modules;               use Why.Atree.Modules;
-with Why.Serialize_Json;              use Why.Serialize_Json;
+with Why.Atree.To_Json;               use Why.Atree.To_Json;
 with Why.Atree.Tables;                use Why.Atree.Tables;
 with Why.Gen.Binders;                 use Why.Gen.Binders;
 with Why.Gen.Names;

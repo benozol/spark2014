@@ -126,5 +126,5 @@ begin
    Process ("gnat_AST.ml");
 
    Add ("Declare_Ada_To_Json_Why_Node", Print_Ada_To_Json_Why_Node'Access);
-   Process ("why-serialize_json.adb");
+   Process ("why-atree-to_json.adb");
 end Xtree;

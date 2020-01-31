@@ -28,7 +28,7 @@ GENERATED_FILES= \
  why-kind_validity.ads        \
  why-opaque_ids.ads           \
  why-unchecked_ids.ads        \
- why-serialize_json.adb
+ why-atree-to_json.adb
 
 all:
 	gprbuild -j0 -p -Phelpers xtree

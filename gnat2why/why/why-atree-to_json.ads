@@ -5,7 +5,7 @@ with Gnat2Why.Util;    use Gnat2Why.Util;
 
 with Why.Atree;    use Why.Atree;
 
-package Why.Serialize_Json is
+package Why.Atree.To_Json is
    function To_Json (Node : Why_Node) return JSON_Value;
    function To_Json (L : Why_Node_Lists.List) return JSON_Value;
-end Why.Serialize_Json;
+end Why.Atree.To_Json;
