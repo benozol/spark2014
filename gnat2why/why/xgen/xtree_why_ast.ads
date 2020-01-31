@@ -27,14 +27,16 @@ with Outputs;      use Outputs;
 with Xkind_Tables; use Xkind_Tables;
 with Why.Sinfo;    use Why.Sinfo;
 
-package Xtree_OCaml_AST is
+package Xtree_Why_AST is
 
-   procedure Print_OCaml_Node_Types (O : in out Output_Record);
+   procedure Print_OCaml_Why_Sinfo_Types (O : in out Output_Record);
 
-   procedure Print_OCaml_AST (O : in out Output_Record);
+   procedure Print_OCaml_Why_Node_Type (O : in out Output_Record);
 
-   procedure Print_Serialize_JSON_Ada (O : in out Output_Record);
+   procedure Print_OCaml_Why_Node_From_Json (O : in out Output_Record);
 
-   procedure Print_Deserialize_JSON_OCaml (O : in out Output_Record);
+   procedure Print_OCaml_Opaque_ids (O : in out Output_Record);
 
-end Xtree_OCaml_AST;
+   procedure Print_Ada_Why_Node_Id_To_Json (O : in out Output_Record);
+
+end Xtree_Why_AST;
