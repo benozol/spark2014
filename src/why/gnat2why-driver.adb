@@ -894,7 +894,7 @@ package body Gnat2Why.Driver is
       declare
          Modules : constant Why_Node_Lists.List := Build_Printing_Plan;
       begin
-         P (Current_File, Write (To_Json (Modules)));
+         P (Current_File, Write (Why_Node_Lists_List_To_Json (Modules)));
       end;
       Close_Current_File;
    end Print_Why_File;

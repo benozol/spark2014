@@ -19,7 +19,8 @@ xgen/why-sinfo.adt
 xgen/why-unchecked_ids.ads
 xgen/why-atree.ads
 xgen/why-classes.ads
-xgen/why-serialize-json.adb
+xgen/why-atree-to_json.adb
+xgen/gnat_AST.ml
 why-atree-accessors.ads
 why-atree-builders.adb
 why-atree-builders.ads
@@ -39,8 +40,7 @@ why-classes.ads
 why-unchecked_ids.ads
 why-atree-traversal_stub.adb
 why-atree-traversal_stub.ads
-why-serialize-json.ads
-xgen/gnat_AST.ml
+why-atree-to_json.adb
 xgen/xtree
 default.gpr
 obj/
