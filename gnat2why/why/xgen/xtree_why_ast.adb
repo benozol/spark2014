@@ -434,10 +434,10 @@ package body Xtree_Why_AST is
    procedure Print_Ada_Why_Node_To_Json (O : in out Output_Record) is
       use Xtree_Tables.Node_Lists;
    begin
-      PL (O, "function Why_Node_To_Json (Node : Why_Node)");
+      PL (O, "function Why_Node_To_Json (Node : Why_Node) " &
+            "return JSON_Value is");
       begin
          Relative_Indent (O, 3);
-         PL (O, "return JSON_Value is");
          PL (O, "Res : constant JSON_Value := Create (Empty_Array);");
          Relative_Indent (O, -3);
       end;
@@ -451,8 +451,7 @@ package body Xtree_Why_AST is
                  (Clean_Identifier
                     (To_String (Type_Name (FI, Opaque))));
             begin
-               PL (O, "Append (Res,");
-               PL (O, "                      " &
+               PL (O, "Append (Res, " &
                      Typ_Name & "_To_Json (Node." & Field_Name (FI) &
                      "));");
             end;
@@ -472,9 +471,8 @@ package body Xtree_Why_AST is
                           (Clean_Identifier
                              (To_String (Type_Name (FI, Opaque))));
                      begin
-                        PL (O, "Append (Res, " &
-                              Field_Type & "_To_Json (Node." & Field_Name (FI)
-                              & "));");
+                        PL (O, "Append (Res, " & Field_Type & "_To_Json");
+                        PL (O, "   (Node." & Field_Name (FI) & "));");
                      end;
                   end loop;
                end if;
@@ -540,13 +538,21 @@ package body Xtree_Why_AST is
                  ("Why_Node", Derived, Multiplicity);
             begin
                PL (O, "function " & Name & "_To_Json");
-               PL (O, "   (Arg : " & Name & ")");
-               PL (O, "   return JSON_Value;");
+               begin
+                  Relative_Indent (O, 3);
+                  PL (O, "(Arg : " & Name & ")");
+                  PL (O, "return JSON_Value;");
+                  Relative_Indent (O, -3);
+               end;
                NL (O);
                PL (O, "function " & Name & "_To_Json");
-               PL (O, "   (Arg : " & Name & ")");
-               PL (O, "   return JSON_Value");
-               PL (O, "   is (" & Why_Node_Name & "_To_Json (Arg));");
+               begin
+                  Relative_Indent (O, 3);
+                  PL (O, "(Arg : " & Name & ")");
+                  PL (O, "return JSON_Value");
+                  PL (O, "is (" & Why_Node_Name & "_To_Json (Arg));");
+                  Relative_Indent (O, -3);
+               end;
                NL (O);
             end;
          end loop;
@@ -563,11 +569,6 @@ package body Xtree_Why_AST is
       Print_Ada_Opaque_Ids_To_Json (O);
       Print_Ada_Why_Node_To_Json (O);
    end Print_Ada_To_Json;
-
-   procedure Print_OCaml_Why_Node_From_Json (O : in out Output_Record) is
-   begin
-      PL (O, "let why_node_from_json () = ...");
-   end Print_OCaml_Why_Node_From_Json;
 
    procedure Print_OCaml_Why_Node_Field_Types (O : in out Output_Record) is
       use Node_Lists;
@@ -600,5 +601,10 @@ package body Xtree_Why_AST is
          end;
       end loop;
    end Print_OCaml_Why_Node_Field_Types;
+
+   procedure Print_OCaml_Why_Node_From_Json (O : in out Output_Record) is
+   begin
+      PL (O, "let rec why_node_from_json () = ...");
+   end Print_OCaml_Why_Node_From_Json;
 
 end Xtree_Why_AST;
