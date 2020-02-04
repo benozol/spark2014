@@ -3,13 +3,10 @@
 type uint = int
 type ureal = float
 
+(* GNAT *)
+
 type source_ptr = unit
-
-(* Ada Node_Id *)
-
 type node_id = unit
-
-(* GNATCOLL.Symbols *)
 
 type symbol = string
 type symbol_set = string list
@@ -30,5 +27,25 @@ and why_node_set = why_node list
 _@Declare_OCaml_Opaque_Ids@_
 
 _@Declare_OCaml_Why_Node_Type@_
+
+type 'a mode =
+  | Expr : expr mode
+  | Term : term mode
+  | Patt : pattern mode
+
+let rec why_node_to_ptree ~mode why_node = match why_node with
+  | W_conditional (_, _, _, _, condition, then_part, else_if_parts, else_part, _) ->
+    let rec aux = function
+      | [] ->
+        (match else_part, mode with
+         | Some x, _ -> why_node_to_ptree ~mode x
+         | None, Ew_prog -> E.tuple []
+         | None, _ -> true_)
+      |
+    conditional ~mode
+      (why_node_to_ptree ~mode condition)
+      (why_node_to_ptree ~mode then_part)
+      (List.fold_left
+         (why_node_to_ptree ~mode else_part))
 
 (* keep this comment *)

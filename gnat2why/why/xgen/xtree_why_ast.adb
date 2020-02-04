@@ -87,15 +87,14 @@ package body Xtree_Why_AST is
       PL (O, "begin");
       begin
          Relative_Indent (O, 3);
-         PL (O, "return Create (Integer (case Arg is");
+         PL (O, "return Create (case Arg is");
          begin
             Relative_Indent (O, 3);
             for I in Vars'Range loop
                declare
-                  V : Wide_String := To_Wide_String (To_String (Vars (I)));
+                  V1 : Wide_String := To_Wide_String (To_String (Vars (I)));
                begin
-                  P (O, "when " & V & " => " &
-                       To_Wide_String (Integer'Image (I)));
+                  P (O, "when " & V1 & " => """ & V1 & """");
                   if I /= Vars'Last then
                      P (O, ",");
                   end if;
@@ -104,7 +103,7 @@ package body Xtree_Why_AST is
             end loop;
             Relative_Indent (O, -3);
          end;
-         PL (O, "));");
+         PL (O, ");");
          Relative_Indent (O, -3);
       end;
       PL (O, "end " & Name & "_To_Json;");
