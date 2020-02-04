@@ -90,6 +90,7 @@ with Tempdir;                         use Tempdir;
 with VC_Kinds;
 with Why;                             use Why;
 with Why.Atree.Modules;               use Why.Atree.Modules;
+with Why.Atree.Sprint;                use Why.Atree.Sprint;
 with Why.Atree.To_Json;               use Why.Atree.To_Json;
 with Why.Atree.Tables;                use Why.Atree.Tables;
 with Why.Gen.Binders;                 use Why.Gen.Binders;
@@ -890,13 +891,28 @@ package body Gnat2Why.Driver is
 
    procedure Print_Why_File (Filename : String) is
    begin
-      Open_Current_File (Filename);
       declare
          Modules : constant Why_Node_Lists.List := Build_Printing_Plan;
       begin
-         P (Current_File, Write (Why_Node_Lists_List_To_Json (Modules)));
+         Open_Current_File (Filename);
+         if Modules.Is_Empty then
+
+            --  Fall back to previous printing
+
+            for WF in W_Section_Id loop
+               Print_Section (Why_Sections (WF), Current_File);
+            end loop;
+
+         else
+            Print_Modules_List (Modules, Current_File);
+         end if;
+         Close_Current_File;
+
+         Open_Current_File (Filename & ".json");
+         P (Current_File, Write (Why_Node_Lists_List_To_Json (Modules),
+                                 Compact => False));
+         Close_Current_File;
       end;
-      Close_Current_File;
    end Print_Why_File;
 
    ------------------
