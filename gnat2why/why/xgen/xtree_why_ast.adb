@@ -453,7 +453,7 @@ package body Xtree_Why_AST is
       Relative_Indent (O, -2);
    end Print_OCaml_Why_Sinfo_Types;
 
-   procedure Print_OCaml_Opaque_ids (O : in out Output_Record) is
+   procedure Print_OCaml_Opaque_Ids (O : in out Output_Record) is
       use String_Lists;
       use Class_Lists;
 
@@ -465,7 +465,6 @@ package body Xtree_Why_AST is
          CI : constant Class_Info := Class_Lists.Element (Position);
       begin
          Print_Subtypes (Class_Name (CI));
-
          if Position /= Classes.Last then
             NL (O);
          end if;
@@ -475,7 +474,6 @@ package body Xtree_Why_AST is
          S : constant Wide_String_Access := String_Lists.Element (Position);
       begin
          Print_Subtypes (S.all);
-
          if Position /= Kinds.Last then
             NL (O);
          end if;
@@ -488,7 +486,7 @@ package body Xtree_Why_AST is
                Name : Wide_String := OCaml_Type_Identifier
                  (To_String (Id_Subtype (Prefix, Opaque, Multiplicity)));
                Alias : Wide_String := OCaml_Type_Identifier
-                 (To_String (Base_Id_Subtype (Prefix, Opaque, Multiplicity)));
+                 (To_String (Id_Subtype ("Why_Node", Derived, Multiplicity)));
             begin
                PL (O, "and " & Name & " = " & Alias);
             end;
@@ -499,7 +497,7 @@ package body Xtree_Why_AST is
       Kinds.Iterate (Process_One_Node_Kind'Access);
       NL (O);
       Classes.Iterate (Process_One_Class_Kind'Access);
-   end Print_OCaml_Opaque_ids;
+   end Print_OCaml_Opaque_Ids;
 
    procedure Print_OCaml_Why_Node_Type (O : in out Output_Record) is
       use Xtree_Tables.Node_Lists;

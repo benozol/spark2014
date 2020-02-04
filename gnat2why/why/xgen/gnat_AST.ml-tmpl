@@ -13,19 +13,21 @@ type node_id = unit
 
 type symbol = string
 type symbol_set = string list
+type string_sets_set = string list
 
 _@Declare_OCaml_Why_Sinfo_Types@_
 
 (* Why.Types *)
 
 type why_node_id = why_node
-and why_node_set = why_node list
+and why_node_oid = why_node option
 and why_node_list = why_node list
-and string_sets_set = string list
+and why_node_olist = why_node list option
+and why_node_set = why_node list
 
 (* Why.Opaque_ids *)
 
-_@Declare_OCaml_Opaque_ids@_
+_@Declare_OCaml_Opaque_Ids@_
 
 _@Declare_OCaml_Why_Node_Type@_
 
