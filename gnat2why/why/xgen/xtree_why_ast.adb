@@ -31,6 +31,7 @@ with Xtree_Tables;               use Xtree_Tables;
 with Why.Sinfo;                  use Why.Sinfo;
 with Xkind_Tables;
 with Xtree_Tables;
+with Utils;
 
 package body Xtree_Why_AST is
 
@@ -342,11 +343,11 @@ package body Xtree_Why_AST is
    --  OCaml auxiliaries  --
    -------------------------
 
-   function OCaml_Type_Identifier (Str : String) return Wide_String;
+   function OCaml_Lower_Identifier (Str : String) return Wide_String;
 
    function OCaml_Variant_Identifier (Str : String) return Wide_String;
 
-   function OCaml_Type_Identifier (Str : String) return Wide_String is
+   function OCaml_Lower_Identifier (Str : String) return Wide_String is
       Str1 : String := Clean_Identifier (Str);
    begin
       To_Lower (Str1);
@@ -354,12 +355,16 @@ package body Xtree_Why_AST is
          Str2 : String :=
            (if Str1 = "boolean" then
                "bool"
-            else
-               Str1);
+           elsif Str1 = "module" then
+              "module_"
+           elsif Str1 = "to" then
+              "to_"
+           else
+              Str1);
       begin
          return To_Wide_String (Str2);
       end;
-   end OCaml_Type_Identifier;
+   end OCaml_Lower_Identifier;
 
    function OCaml_Variant_Identifier (Str : String) return Wide_String is
       Str1 : String := Clean_Identifier (Str);
@@ -482,9 +487,9 @@ package body Xtree_Why_AST is
       begin
          for Multiplicity in Id_Multiplicity'Range loop
             declare
-               Name : Wide_String := OCaml_Type_Identifier
+               Name : Wide_String := OCaml_Lower_Identifier
                  (To_String (Id_Subtype (Prefix, Opaque, Multiplicity)));
-               Alias : Wide_String := OCaml_Type_Identifier
+               Alias : Wide_String := OCaml_Lower_Identifier
                  (To_String (Id_Subtype ("Why_Node", Derived, Multiplicity)));
             begin
                PL (O, "and " & Name & " = " & Alias);
@@ -503,30 +508,62 @@ package body Xtree_Why_AST is
    begin
       PL (O, "(* Why_Node *)");
       NL (O);
-      PL (O, "and why_node =");
+      PL (O, "and why_node = { info : why_node_info ; desc: why_node_desc }");
+      NL (O);
+      P (O, "and why_node_info = {");
+      declare
+         First : Boolean := True;
+      begin
+         for FI of Common_Fields.Fields loop
+            declare
+               Field : Wide_String := OCaml_Lower_Identifier
+                 (To_String (Utils.Strip_Prefix (Field_Name (FI))));
+               Typ : Wide_String := OCaml_Lower_Identifier
+                 (To_String (Type_Name (FI, Opaque)));
+            begin
+               if not First then
+                  P (O, "; ");
+               end if;
+               P (O, Field & ": " & Typ);
+               First := False;
+            end;
+         end loop;
+      end;
+      PL (O, "}");
+      NL (O);
+      PL (O, "and why_node_desc =");
       Relative_Indent (O, 2);
       for Kind in Why_Tree_Info'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (Why_Node_Kind'Image (Kind)));
+         P (O, "| " & OCaml_Variant_Identifier
+              (To_String
+                 (Utils.Strip_Prefix
+                    (To_Wide_String
+                       (Why_Node_Kind'Image (Kind))))));
          declare
             First : Boolean := True;
+            Has_Fields : Boolean := not Is_Empty (Why_Tree_Info (Kind).Fields);
          begin
             Relative_Indent (O, 4);
-            for FI of Common_Fields.Fields loop
-               declare
-                  Name : Wide_String := OCaml_Type_Identifier
-                    (To_String (Type_Name (FI, Opaque)));
-               begin
-                  P (O, (if First then " of " else " * "));
-                  P (O, Name);
-                  First := False;
-               end;
-            end loop;
-            for FI of Why_Tree_Info (Kind).Fields loop
-               P (O, (if First then " of " else " * "));
-               P (O, OCaml_Type_Identifier
-                    (To_String (Type_Name (FI, Opaque))));
-               First := False;
-            end loop;
+            if Has_Fields then
+               P (O, " of {");
+               Relative_Indent (O, 2);
+               for FI of Why_Tree_Info (Kind).Fields loop
+                  declare
+                     Field : Wide_String := OCaml_Lower_Identifier
+                       (To_String (Utils.Strip_Prefix (Field_Name (FI))));
+                     Typ : Wide_String := OCaml_Lower_Identifier
+                       (To_String (Type_Name (FI, Opaque)));
+                  begin
+                     if not First then
+                        P (O, "; ");
+                     end if;
+                     P (O, Field & ": " & Typ);
+                     First := False;
+                  end;
+               end loop;
+               Relative_Indent (O, -2);
+               P (O, "}");
+            end if;
             NL (O);
             Relative_Indent (O, -4);
          end;

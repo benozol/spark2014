@@ -35,7 +35,7 @@ package Xtree_Why_AST is
 
    procedure Print_OCaml_Why_Node_From_Json (O : in out Output_Record);
 
-   procedure Print_OCaml_Opaque_ids (O : in out Output_Record);
+   procedure Print_OCaml_Opaque_Ids (O : in out Output_Record);
 
    procedure Print_Ada_To_Json (O : in out Output_Record);
 
