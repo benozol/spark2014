@@ -120,8 +120,13 @@ begin
 
    Add ("Declare_OCaml_Why_Sinfo_Types", Print_OCaml_Why_Sinfo_Types'Access);
    Add ("Declare_OCaml_Why_Node_Type",  Print_OCaml_Why_Node_Type'Access);
-   Add ("Declare_OCaml_Why_Node_From_Json", Print_OCaml_Why_Node_From_Json'Access);
    Add ("Declare_OCaml_Opaque_Ids", Print_OCaml_Opaque_Ids'Access);
+   Add ("Declare_OCaml_Why_Node_From_Json",
+        Print_OCaml_Why_Node_From_Json'Access);
+   Add ("Declare_OCaml_Why_Sinfo_Types_From_Json",
+        Print_OCaml_Why_Sinfo_Types_From_Json'Access);
+   Add ("Declare_OCaml_Opaque_Ids_From_Json",
+        Print_OCaml_Opaque_Ids_From_Json'Access);
 
    Process ("gnat_AST.ml");
 

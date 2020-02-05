@@ -55,11 +55,20 @@ package body Xtree_Why_AST is
    --  Variants of enumerate types from package Why.Sinfo
    type Variants is array (Integer range <>) of Unbounded_String;
 
+   function To_Wide_String (S : Unbounded_String) return Wide_String;
+   function To_Unbounded_String (S : Wide_String) return Unbounded_String;
+
+   function To_Wide_String (S : Unbounded_String) return Wide_String is
+      (To_Wide_String (To_String (S)));
+
+   function To_Unbounded_String (S : Wide_String) return Unbounded_String is
+      (To_Unbounded_String (To_String (S)));
+
    -------------------------------------
    --  Print Ada conversions to Json  --
    -------------------------------------
 
-   procedure Print_Ada_To_Json_Enum
+   procedure Print_Ada_Enum_To_Json
      (O : in out Output_Record; Name : Wide_String; Vars : Variants);
 
    procedure Print_Ada_Why_Sinfo_Types_To_Json (O : in out Output_Record);
@@ -75,7 +84,7 @@ package body Xtree_Why_AST is
       Print_Ada_Why_Node_To_Json (O);
    end Print_Ada_To_Json;
 
-   procedure Print_Ada_To_Json_Enum
+   procedure Print_Ada_Enum_To_Json
      (O : in out Output_Record;
       Name : Wide_String;
       Vars : Variants) is
@@ -88,28 +97,26 @@ package body Xtree_Why_AST is
       PL (O, "begin");
       begin
          Relative_Indent (O, 3);
-         PL (O, "return Create (case Arg is");
+         PL (O, "return Create (Integer (case Arg is");
          begin
             Relative_Indent (O, 3);
             for I in Vars'Range loop
-               declare
-                  V1 : Wide_String := To_Wide_String (To_String (Vars (I)));
-               begin
-                  P (O, "when " & V1 & " => """ & V1 & """");
-                  if I /= Vars'Last then
-                     P (O, ",");
-                  end if;
-                  NL (O);
-               end;
+               P (O, "when " & To_Wide_String (Vars (I)) & " => ");
+               --  P (O, """" & To_Wide_String (Vars (I)) & """");
+               P (O, To_Wide_String (Integer'Image (I)));
+               if I /= Vars'Last then
+                  P (O, ",");
+               end if;
+               NL (O);
             end loop;
             Relative_Indent (O, -3);
          end;
-         PL (O, ");");
+         PL (O, "));");
          Relative_Indent (O, -3);
       end;
       PL (O, "end " & Name & "_To_Json;");
       NL (O);
-   end Print_Ada_To_Json_Enum;
+   end Print_Ada_Enum_To_Json;
 
    procedure Print_Ada_Why_Sinfo_Types_To_Json (O : in out Output_Record) is
       function To_Unbounded_Mixed_Case (S : String) return Unbounded_String;
@@ -134,7 +141,7 @@ package body Xtree_Why_AST is
               To_Unbounded_Mixed_Case
               (EW_Domain'Image (EW_Domain'Val (I)));
          end loop;
-         Print_Ada_To_Json_Enum (O, "EW_Domain", EW_Domain_Variants);
+         Print_Ada_Enum_To_Json (O, "EW_Domain", EW_Domain_Variants);
       end;
 
       declare
@@ -147,7 +154,7 @@ package body Xtree_Why_AST is
               To_Unbounded_Mixed_Case
               (EW_Type'Image (EW_Type'Val (I)));
          end loop;
-         Print_Ada_To_Json_Enum (O, "EW_Type", EW_Type_Variants);
+         Print_Ada_Enum_To_Json (O, "EW_Type", EW_Type_Variants);
       end;
 
       declare
@@ -160,7 +167,7 @@ package body Xtree_Why_AST is
               To_Unbounded_Mixed_Case
               (EW_Literal'Image (EW_Literal'Val (I)));
          end loop;
-         Print_Ada_To_Json_Enum (O, "EW_Literal", EW_Literal_Variants);
+         Print_Ada_Enum_To_Json (O, "EW_Literal", EW_Literal_Variants);
       end;
 
       declare
@@ -173,7 +180,7 @@ package body Xtree_Why_AST is
               To_Unbounded_Mixed_Case
               (EW_Theory_Type'Image (EW_Theory_Type'Val (I)));
          end loop;
-         Print_Ada_To_Json_Enum (O, "EW_Theory_Type", EW_Theory_Type_Variants);
+         Print_Ada_Enum_To_Json (O, "EW_Theory_Type", EW_Theory_Type_Variants);
       end;
 
       declare
@@ -186,7 +193,7 @@ package body Xtree_Why_AST is
               To_Unbounded_Mixed_Case
               (EW_Clone_Type'Image (EW_Clone_Type'Val (I)));
          end loop;
-         Print_Ada_To_Json_Enum (O, "EW_Clone_Type", EW_Clone_Type_Variants);
+         Print_Ada_Enum_To_Json (O, "EW_Clone_Type", EW_Clone_Type_Variants);
       end;
 
       declare
@@ -199,7 +206,7 @@ package body Xtree_Why_AST is
               To_Unbounded_Mixed_Case
               (EW_Subst_Type'Image (EW_Subst_Type'Val (I)));
          end loop;
-         Print_Ada_To_Json_Enum (O, "EW_Subst_Type", EW_Subst_Type_Variants);
+         Print_Ada_Enum_To_Json (O, "EW_Subst_Type", EW_Subst_Type_Variants);
       end;
 
       declare
@@ -212,7 +219,7 @@ package body Xtree_Why_AST is
               To_Unbounded_Mixed_Case
               (EW_Connector'Image (EW_Connector'Val (I)));
          end loop;
-         Print_Ada_To_Json_Enum (O, "EW_Connector", EW_Connector_Variants);
+         Print_Ada_Enum_To_Json (O, "EW_Connector", EW_Connector_Variants);
       end;
 
       declare
@@ -225,7 +232,7 @@ package body Xtree_Why_AST is
               To_Unbounded_Mixed_Case
               (EW_Assert_Kind'Image (EW_Assert_Kind'Val (I)));
          end loop;
-         Print_Ada_To_Json_Enum (O, "EW_Assert_Kind", EW_Assert_Kind_Variants);
+         Print_Ada_Enum_To_Json (O, "EW_Assert_Kind", EW_Assert_Kind_Variants);
       end;
    end Print_Ada_Why_Sinfo_Types_To_Json;
 
@@ -575,9 +582,303 @@ package body Xtree_Why_AST is
    --  Print OCaml conversion from Json  --
    ----------------------------------------
 
-   procedure Print_OCaml_Why_Node_From_Json (O : in out Output_Record) is
+   function OCaml_Field_Names (Fields : Node_Lists.List) return Variants;
+   function OCaml_Field_Types (Fields : Node_Lists.List) return Variants;
+
+   function OCaml_Field_Names (Fields : Node_Lists.List) return Variants is
+      use Node_Lists;
+      Res : Variants (1 .. Integer (Length (Fields)));
+      C : Cursor := First (Fields);
+      I : Integer := 1;
    begin
-      PL (O, "let rec why_node_from_json () = ...");
+      for I in Res'Range loop
+         declare
+            Field : Unbounded_String := To_Unbounded_String
+              (To_String
+                 (OCaml_Lower_Identifier
+                    (To_String
+                       (Utils.Strip_Prefix (Field_Name (Element (C)))))));
+         begin
+            Res (I) := Field;
+            Next (C);
+         end;
+      end loop;
+      return Res;
+   end OCaml_Field_Names;
+
+   function OCaml_Field_Types (Fields : Node_Lists.List) return Variants is
+      use Node_Lists;
+      Res : Variants (1 .. Integer (Length (Fields)));
+      C : Cursor := First (Fields);
+      I : Integer := 1;
+   begin
+      for I in Res'Range loop
+         declare
+            Typ : Unbounded_String := To_Unbounded_String
+              (To_String
+                 (OCaml_Lower_Identifier
+                    (To_String (Type_Name (Element (C), Opaque)))));
+         begin
+            Res (I) := Typ;
+            Next (C);
+         end;
+      end loop;
+      return Res;
+   end OCaml_Field_Types;
+
+   procedure Print_OCaml_Why_Node_From_Json (O : in out Output_Record) is
+      Common_Field_Names : Variants :=
+        OCaml_Field_Names (Common_Fields.Fields);
+      Common_Field_Types : Variants :=
+        OCaml_Field_Types (Common_Fields.Fields);
+   begin
+      PL (O, "and why_node_from_json : why_node from_json = function");
+      begin
+         Relative_Indent (O, 2);
+         for Kind in Why_Tree_Info'Range loop
+            declare
+               Kind_Str : String := Why_Node_Kind'Image (Kind);
+               Info : Why_Node_Info := Why_Tree_Info (Kind);
+               Variant_Name : Wide_String :=
+                 OCaml_Variant_Identifier
+                 (To_String
+                    (Utils.Strip_Prefix
+                       (To_Wide_String
+                          (Why_Node_Kind'Image (Kind)))));
+               Variant_Field_Names : Variants :=
+                 OCaml_Field_Names (Info.Fields);
+               Variant_Field_Types : Variants :=
+                 OCaml_Field_Types (Info.Fields);
+            begin
+               P (O, "| `List [");
+               P (O, "`String """ & To_Wide_String (Kind_Str) & """");
+               for I in Common_Field_Names'Range loop
+                  P (O, "; " & To_Wide_String ((Common_Field_Names (I))));
+               end loop;
+               for I in Variant_Field_Names'Range loop
+                  P (O, "; " & To_Wide_String (Variant_Field_Names (I)));
+               end loop;
+               PL (O, "] ->");
+               begin
+                  Relative_Indent (O, 2);
+                  PL (O, "let info = {");
+                  begin
+                     Relative_Indent (O, 2);
+                     for I in Common_Field_Names'Range loop
+                        P (O, To_Wide_String (Common_Field_Names (I)));
+                        P (O, " = ");
+                        P (O, To_Wide_String (Common_Field_Types (I))
+                             & "_from_json ");
+                        P (O, To_Wide_String (Common_Field_Names (I)));
+                        PL (O, ";");
+                     end loop;
+                     Relative_Indent (O, -2);
+                  end;
+                  PL (O, "} in");
+                  P (O, "let desc = " & Variant_Name);
+                  if Variant_Field_Names'Length > 0 then
+                     PL (O, " {");
+                     begin
+                        Relative_Indent (O, 2);
+                        for I in Variant_Field_Names'Range loop
+                           P (O, To_Wide_String (Variant_Field_Names (I)));
+                           P (O, " = ");
+                           P (O, To_Wide_String (Variant_Field_Types (I))
+                                & "_from_json ");
+                           P (O, To_Wide_String (Variant_Field_Names (I)));
+                           PL (O, ";");
+                        end loop;
+                        Relative_Indent (O, -2);
+                     end;
+                     P (O, "}");
+                  end if;
+                  PL (O, " in");
+                  PL (O, "{info; desc}");
+                  Relative_Indent (O, -2);
+               end;
+            end;
+         end loop;
+         PL (O, "| json ->");
+         PL (O, "  unexpected_json ""why_node"" json");
+         Relative_Indent (O, -2);
+      end;
    end Print_OCaml_Why_Node_From_Json;
+
+   procedure Print_OCaml_Opaque_Ids_From_Json
+     (O : in out Output_Record) is
+      use String_Lists;
+      use Class_Lists;
+
+      procedure Process_One_Node_Kind (Position : String_Lists.Cursor);
+      procedure Process_One_Class_Kind (Position : Class_Lists.Cursor);
+      procedure Print_Subtypes (Prefix : Wide_String);
+
+      procedure Process_One_Class_Kind (Position : Class_Lists.Cursor) is
+         CI : constant Class_Info := Class_Lists.Element (Position);
+      begin
+         Print_Subtypes (Class_Name (CI));
+         if Position /= Classes.Last then
+            NL (O);
+         end if;
+      end Process_One_Class_Kind;
+
+      procedure Process_One_Node_Kind (Position : String_Lists.Cursor) is
+         S : constant Wide_String_Access := String_Lists.Element (Position);
+      begin
+         Print_Subtypes (S.all);
+         if Position /= Kinds.Last then
+            NL (O);
+         end if;
+      end Process_One_Node_Kind;
+
+      procedure Print_Subtypes (Prefix : Wide_String) is
+      begin
+         for Multiplicity in Id_Multiplicity'Range loop
+            declare
+               Name : Wide_String := OCaml_Lower_Identifier
+                 (To_String (Id_Subtype (Prefix, Opaque, Multiplicity)));
+               Alias : Wide_String := OCaml_Lower_Identifier
+                 (To_String (Id_Subtype ("Why_Node", Derived, Multiplicity)));
+            begin
+               PL (O, "and " & Name & "_from_json json =");
+               PL (O, "  " & Alias & "_from_json json");
+            end;
+         end loop;
+      end Print_Subtypes;
+
+   begin
+      Kinds.Iterate (Process_One_Node_Kind'Access);
+      NL (O);
+      Classes.Iterate (Process_One_Class_Kind'Access);
+   end Print_OCaml_Opaque_Ids_From_Json;
+
+   procedure Print_OCaml_Enum_From_Json
+     (O : in out Output_Record;
+      Name : String;
+      Vars : Variants);
+
+   procedure Print_OCaml_Enum_From_Json
+     (O : in out Output_Record;
+      Name : String;
+      Vars : Variants) is
+      Type_Name : Wide_String := OCaml_Lower_Identifier (Name);
+   begin
+      PL (O, "let " & Type_Name & "_from_json : "
+            & Type_Name & " from_json = function");
+      begin
+         Relative_Indent (O, 2);
+         for I in Vars'Range loop
+            P (O, "| `Int" & To_Wide_String (Integer'Image (I)));
+            PL (O, " -> " & OCaml_Variant_Identifier (To_String (Vars (I))));
+         end loop;
+         PL (O, "| json -> unexpected_json "
+               & """" & Type_Name & """ json");
+         Relative_Indent (O, -2);
+      end;
+      NL (O);
+   end Print_OCaml_Enum_From_Json;
+
+   procedure Print_OCaml_Why_Sinfo_Types_From_Json
+     (O : in out Output_Record) is
+   begin
+      PL (O, "(* Why.Sinfo *)");
+      NL (O);
+      declare
+         EW_Domain_Variants : Variants
+           (EW_Domain'Pos (EW_Domain'First) ..
+              EW_Domain'Pos (EW_Domain'Last));
+      begin
+         for I in EW_Domain_Variants'Range loop
+            EW_Domain_Variants (I) := To_Unbounded_String
+              (EW_Domain'Image (EW_Domain'Val (I)));
+         end loop;
+         Print_OCaml_Enum_From_Json (O, "EW_Domain", EW_Domain_Variants);
+      end;
+
+      declare
+         EW_Type_Variants : Variants
+           (EW_Type'Pos (EW_Type'First) ..
+              EW_Type'Pos (EW_Type'Last));
+      begin
+         for I in EW_Type_Variants'Range loop
+            EW_Type_Variants (I) := To_Unbounded_String
+              (EW_Type'Image (EW_Type'Val (I)));
+         end loop;
+         Print_OCaml_Enum_From_Json (O, "EW_Type", EW_Type_Variants);
+      end;
+
+      declare
+         EW_Literal_Variants : Variants
+           (EW_Literal'Pos (EW_Literal'First) ..
+              EW_Literal'Pos (EW_Literal'Last));
+      begin
+         for I in EW_Literal_Variants'Range loop
+            EW_Literal_Variants (I) := To_Unbounded_String
+              (EW_Literal'Image (EW_Literal'Val (I)));
+         end loop;
+         Print_OCaml_Enum_From_Json (O, "EW_Literal", EW_Literal_Variants);
+      end;
+
+      declare
+         EW_Theory_Type_Variants : Variants
+           (EW_Theory_Type'Pos (EW_Theory_Type'First) ..
+              EW_Theory_Type'Pos (EW_Theory_Type'Last));
+      begin
+         for I in EW_Theory_Type_Variants'Range loop
+            EW_Theory_Type_Variants (I) := To_Unbounded_String
+              (EW_Theory_Type'Image (EW_Theory_Type'Val (I)));
+         end loop;
+         Print_OCaml_Enum_From_Json
+           (O, "EW_Theory_Type", EW_Theory_Type_Variants);
+      end;
+
+      declare
+         EW_Clone_Type_Variants : Variants
+           (EW_Clone_Type'Pos (EW_Clone_Type'First) ..
+              EW_Clone_Type'Pos (EW_Clone_Type'Last));
+      begin
+         for I in EW_Clone_Type_Variants'Range loop
+            EW_Clone_Type_Variants (I) := To_Unbounded_String
+              (EW_Clone_Type'Image (EW_Clone_Type'Val (I)));
+         end loop;
+         Print_OCaml_Enum_From_Json (O, "EW_Clone_Type", EW_Clone_Type_Variants);
+      end;
+
+      declare
+         EW_Subst_Type_Variants : Variants
+           (EW_Subst_Type'Pos (EW_Subst_Type'First) ..
+              EW_Subst_Type'Pos (EW_Subst_Type'Last));
+      begin
+         for I in EW_Subst_Type_Variants'Range loop
+            EW_Subst_Type_Variants (I) := To_Unbounded_String
+              (EW_Subst_Type'Image (EW_Subst_Type'Val (I)));
+         end loop;
+         Print_OCaml_Enum_From_Json (O, "EW_Subst_Type", EW_Subst_Type_Variants);
+      end;
+
+      declare
+         EW_Connector_Variants : Variants
+           (EW_Connector'Pos (EW_Connector'First) ..
+              EW_Connector'Pos (EW_Connector'Last));
+      begin
+         for I in EW_Connector_Variants'Range loop
+            EW_Connector_Variants (I) := To_Unbounded_String
+              (EW_Connector'Image (EW_Connector'Val (I)));
+         end loop;
+         Print_OCaml_Enum_From_Json (O, "EW_Connector", EW_Connector_Variants);
+      end;
+
+      declare
+         EW_Assert_Kind_Variants : Variants
+           (EW_Assert_Kind'Pos (EW_Assert_Kind'First) ..
+              EW_Assert_Kind'Pos (EW_Assert_Kind'Last));
+      begin
+         for I in EW_Assert_Kind_Variants'Range loop
+            EW_Assert_Kind_Variants (I) := To_Unbounded_String
+              (EW_Assert_Kind'Image (EW_Assert_Kind'Val (I)));
+         end loop;
+         Print_OCaml_Enum_From_Json (O, "EW_Assert_Kind", EW_Assert_Kind_Variants);
+      end;
+   end Print_OCaml_Why_Sinfo_Types_From_Json;
 
 end Xtree_Why_AST;
