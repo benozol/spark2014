@@ -2,7 +2,7 @@
 --                                                                          --
 --                            GNAT2WHY COMPONENTS                           --
 --                                                                          --
---                          X T R E E _ D E C L S                           --
+--                        X T R E E _ W H Y _ A S T                         --
 --                                                                          --
 --                                 B o d y                                  --
 --                                                                          --
@@ -39,7 +39,17 @@ package body Xtree_Why_AST is
    --  Common auxiliaries  --
    --------------------------
 
+   function To_Wide_String (S : Unbounded_String) return Wide_String;
+   function To_Unbounded_String (S : Wide_String) return Unbounded_String;
+
    function Clean_Identifier (Str : String) return String;
+
+   --  Variants of enumerate types from package Why.Sinfo
+   type Variants is array (Integer range <>) of Unbounded_String;
+
+   ------------------------
+   --  Clean_Identifier  --
+   ------------------------
 
    function Clean_Identifier (Str : String) return String is
       Res : String := Str;
@@ -52,14 +62,16 @@ package body Xtree_Why_AST is
       return Res;
    end Clean_Identifier;
 
-   --  Variants of enumerate types from package Why.Sinfo
-   type Variants is array (Integer range <>) of Unbounded_String;
-
-   function To_Wide_String (S : Unbounded_String) return Wide_String;
-   function To_Unbounded_String (S : Wide_String) return Unbounded_String;
+   ---------------------------------------
+   --  To_Wide_String (Unbound_String)  --
+   ---------------------------------------
 
    function To_Wide_String (S : Unbounded_String) return Wide_String is
       (To_Wide_String (To_String (S)));
+
+      -----------------------------------------
+      --  To_Unbounded_String (Wide_String)  --
+      -----------------------------------------
 
    function To_Unbounded_String (S : Wide_String) return Unbounded_String is
       (To_Unbounded_String (To_String (S)));
@@ -83,6 +95,10 @@ package body Xtree_Why_AST is
       Print_Ada_Opaque_Ids_To_Json (O);
       Print_Ada_Why_Node_To_Json (O);
    end Print_Ada_To_Json;
+
+   ------------------------------
+   --  Print_Ada_Enum_To_Json  --
+------------------------------
 
    procedure Print_Ada_Enum_To_Json
      (O : in out Output_Record;
@@ -117,6 +133,10 @@ package body Xtree_Why_AST is
       PL (O, "end " & Name & "_To_Json;");
       NL (O);
    end Print_Ada_Enum_To_Json;
+
+   ------------------------------------------
+   --  Print_Ada_Why_Sinfo_Types_To_Json   --
+------------------------------------------
 
    procedure Print_Ada_Why_Sinfo_Types_To_Json (O : in out Output_Record) is
       function To_Unbounded_Mixed_Case (S : String) return Unbounded_String;
@@ -236,6 +256,10 @@ package body Xtree_Why_AST is
       end;
    end Print_Ada_Why_Sinfo_Types_To_Json;
 
+   ----------------------------------
+   --  Print_Ada_Why_Node_To_Json  --
+   ----------------------------------
+
    procedure Print_Ada_Why_Node_To_Json (O : in out Output_Record) is
       use Xtree_Tables.Node_Lists;
    begin
@@ -291,6 +315,10 @@ package body Xtree_Why_AST is
       end;
       PL (O, "end Why_Node_To_Json;");
    end Print_Ada_Why_Node_To_Json;
+
+   ------------------------------------
+   --  Print_Ada_Opaque_Ids_To_Json  --
+   ------------------------------------
 
    procedure Print_Ada_Opaque_Ids_To_Json (O : in out Output_Record) is
       use String_Lists;
@@ -354,6 +382,10 @@ package body Xtree_Why_AST is
 
    function OCaml_Variant_Identifier (Str : String) return Wide_String;
 
+   ------------------------------
+   --  OCaml_Lower_Identifier  --
+   ------------------------------
+
    function OCaml_Lower_Identifier (Str : String) return Wide_String is
       Str1 : String := Clean_Identifier (Str);
    begin
@@ -373,6 +405,10 @@ package body Xtree_Why_AST is
       end;
    end OCaml_Lower_Identifier;
 
+   --------------------------------
+   --  OCaml_Variant_Identifier  --
+   --------------------------------
+
    function OCaml_Variant_Identifier (Str : String) return Wide_String is
       Str1 : String := Clean_Identifier (Str);
    begin
@@ -386,6 +422,10 @@ package body Xtree_Why_AST is
    -------------------------------------
    --  Print OCaml type declarations  --
    -------------------------------------
+
+   -----------------------------------
+   --  Print_OCaml_Why_Sinfo_Types  --
+   -----------------------------------
 
    procedure Print_OCaml_Why_Sinfo_Types (O : in out Output_Record) is
    begin
@@ -464,6 +504,10 @@ package body Xtree_Why_AST is
       Relative_Indent (O, -2);
    end Print_OCaml_Why_Sinfo_Types;
 
+   ------------------------------
+   --  Print_OCaml_Opaque_Ids  --
+   ------------------------------
+
    procedure Print_OCaml_Opaque_Ids (O : in out Output_Record) is
       use String_Lists;
       use Class_Lists;
@@ -509,6 +553,10 @@ package body Xtree_Why_AST is
       NL (O);
       Classes.Iterate (Process_One_Class_Kind'Access);
    end Print_OCaml_Opaque_Ids;
+
+   ---------------------------------
+   --  Print_OCaml_Why_Node_Type  --
+   ---------------------------------
 
    procedure Print_OCaml_Why_Node_Type (O : in out Output_Record) is
       use Xtree_Tables.Node_Lists;
@@ -585,6 +633,10 @@ package body Xtree_Why_AST is
    function OCaml_Field_Names (Fields : Node_Lists.List) return Variants;
    function OCaml_Field_Types (Fields : Node_Lists.List) return Variants;
 
+   -------------------------
+   --  OCaml_Field_Names  --
+   -------------------------
+
    function OCaml_Field_Names (Fields : Node_Lists.List) return Variants is
       use Node_Lists;
       Res : Variants (1 .. Integer (Length (Fields)));
@@ -606,6 +658,10 @@ package body Xtree_Why_AST is
       return Res;
    end OCaml_Field_Names;
 
+   -------------------------
+   --  OCaml_Field_Types  --
+   -------------------------
+
    function OCaml_Field_Types (Fields : Node_Lists.List) return Variants is
       use Node_Lists;
       Res : Variants (1 .. Integer (Length (Fields)));
@@ -625,6 +681,10 @@ package body Xtree_Why_AST is
       end loop;
       return Res;
    end OCaml_Field_Types;
+
+   --------------------------------------
+   --  Print_OCaml_Why_Node_From_Json  --
+   --------------------------------------
 
    procedure Print_OCaml_Why_Node_From_Json (O : in out Output_Record) is
       Common_Field_Names : Variants :=
@@ -704,6 +764,10 @@ package body Xtree_Why_AST is
       end;
    end Print_OCaml_Why_Node_From_Json;
 
+   ----------------------------------------
+   --  Print_OCaml_Opaque_Ids_From_Json  --
+   ----------------------------------------
+
    procedure Print_OCaml_Opaque_Ids_From_Json
      (O : in out Output_Record) is
       use String_Lists;
@@ -757,6 +821,10 @@ package body Xtree_Why_AST is
       Name : String;
       Vars : Variants);
 
+   ----------------------------------
+   --  Print_OCaml_Enum_From_Json  --
+   ----------------------------------
+
    procedure Print_OCaml_Enum_From_Json
      (O : in out Output_Record;
       Name : String;
@@ -777,6 +845,10 @@ package body Xtree_Why_AST is
       end;
       NL (O);
    end Print_OCaml_Enum_From_Json;
+
+   ---------------------------------------------
+   --  Print_OCaml_Why_Sinfo_Types_From_Json  --
+   ---------------------------------------------
 
    procedure Print_OCaml_Why_Sinfo_Types_From_Json
      (O : in out Output_Record) is
@@ -841,7 +913,8 @@ package body Xtree_Why_AST is
             EW_Clone_Type_Variants (I) := To_Unbounded_String
               (EW_Clone_Type'Image (EW_Clone_Type'Val (I)));
          end loop;
-         Print_OCaml_Enum_From_Json (O, "EW_Clone_Type", EW_Clone_Type_Variants);
+         Print_OCaml_Enum_From_Json
+           (O, "EW_Clone_Type", EW_Clone_Type_Variants);
       end;
 
       declare
@@ -853,7 +926,8 @@ package body Xtree_Why_AST is
             EW_Subst_Type_Variants (I) := To_Unbounded_String
               (EW_Subst_Type'Image (EW_Subst_Type'Val (I)));
          end loop;
-         Print_OCaml_Enum_From_Json (O, "EW_Subst_Type", EW_Subst_Type_Variants);
+         Print_OCaml_Enum_From_Json
+           (O, "EW_Subst_Type", EW_Subst_Type_Variants);
       end;
 
       declare
@@ -865,7 +939,8 @@ package body Xtree_Why_AST is
             EW_Connector_Variants (I) := To_Unbounded_String
               (EW_Connector'Image (EW_Connector'Val (I)));
          end loop;
-         Print_OCaml_Enum_From_Json (O, "EW_Connector", EW_Connector_Variants);
+         Print_OCaml_Enum_From_Json
+           (O, "EW_Connector", EW_Connector_Variants);
       end;
 
       declare
@@ -877,7 +952,8 @@ package body Xtree_Why_AST is
             EW_Assert_Kind_Variants (I) := To_Unbounded_String
               (EW_Assert_Kind'Image (EW_Assert_Kind'Val (I)));
          end loop;
-         Print_OCaml_Enum_From_Json (O, "EW_Assert_Kind", EW_Assert_Kind_Variants);
+         Print_OCaml_Enum_From_Json
+           (O, "EW_Assert_Kind", EW_Assert_Kind_Variants);
       end;
    end Print_OCaml_Why_Sinfo_Types_From_Json;
 
