@@ -128,7 +128,7 @@ begin
    Add ("Declare_OCaml_Opaque_Ids_From_Json",
         Print_OCaml_Opaque_Ids_From_Json'Access);
 
-   Process ("gnat_AST.ml");
+   Process ("gnat_ast.ml");
 
    Add ("Declare_Ada_To_Json", Print_Ada_To_Json'Access);
    Process ("why-atree-to_json.adb");

@@ -29,7 +29,7 @@ _@Declare_OCaml_Opaque_Ids@_
 
 _@Declare_OCaml_Why_Node_Type@_
 
-module From_Json = struct
+module From_json = struct
 
   module Json = Yojson.Safe
 
