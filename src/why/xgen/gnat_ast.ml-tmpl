@@ -17,11 +17,12 @@ _@Declare_OCaml_Why_Sinfo_Types@_
 
 (* Why.Types *)
 
+type why_node_set = unit
+
 type why_node_id = why_node
 and why_node_oid = why_node option
 and why_node_list = why_node list
 and why_node_olist = why_node list option
-and why_node_set = why_node list
 
 (* Why.Opaque_ids *)
 
@@ -96,7 +97,7 @@ module From_json = struct
     | json -> Some (why_node_list_from_json json)
 
   and why_node_set_from_json : why_node_set from_json = function
-    | `List l -> List.map why_node_from_json l
+    | `String "<Why_Node_Set>" -> ()
     | json -> unexpected_json "why_node_set" json
 
   _@Declare_OCaml_Why_Node_From_Json@_

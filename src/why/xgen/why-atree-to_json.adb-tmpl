@@ -113,7 +113,7 @@ package body Why.Atree.To_Json is
    end Why_Node_Lists_List_To_Json;
 
    function Why_Node_Set_To_Json (S : Why_Node_Set) return JSON_Value is
-      (Create ("<Node_Set>")); --  TODO
+      (Create ("<Why_Node_Set>")); --  TODO
 
    _@Declare_Ada_To_Json@_
 end Why.Atree.To_Json;
