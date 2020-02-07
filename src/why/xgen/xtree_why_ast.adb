@@ -41,7 +41,8 @@ package body Xtree_Why_AST is
 
    function To_Wide_String (S : Unbounded_String) return Wide_String;
    function To_Unbounded_String (S : Wide_String) return Unbounded_String;
-
+   function Strip_Prefix (Str : String) return String;
+   function Strip_Prefix (Str : Wide_String) return Wide_String;
    function Clean_Identifier (Str : String) return String;
 
    --  Variants of enumerate types from package Why.Sinfo
@@ -75,6 +76,31 @@ package body Xtree_Why_AST is
 
    function To_Unbounded_String (S : Wide_String) return Unbounded_String is
       (To_Unbounded_String (To_String (S)));
+
+   --------------------
+   --  Strip_Prefix  --
+   --------------------
+
+   function Strip_Prefix (Str : String) return String is
+      Start : Integer := Str'First;
+      Str1 : String := Str;
+   begin
+      To_Lower (Str1);
+      if Str1 = "source_ptr" or Str1 = "symbol_set" or Str1 = "string_sets.set" or Str1 = "node_id" or Str1 = "why_node_set" then
+         return Str;
+      else
+         for J in Str'Range loop
+            if Str (J) = '_' then
+               Start := J + 1;
+               exit;
+            end if;
+         end loop;
+         return Str (Start .. Str'Last);
+      end if;
+   end Strip_Prefix;
+
+   function Strip_Prefix (Str : Wide_String) return Wide_String is
+      (To_Wide_String (Strip_Prefix (To_String (Str))));
 
    -------------------------------------
    --  Print Ada conversions to Json  --
@@ -380,7 +406,9 @@ package body Xtree_Why_AST is
 
    function OCaml_Lower_Identifier (Str : String) return Wide_String;
 
-   function OCaml_Variant_Identifier (Str : String) return Wide_String;
+   function OCaml_Upper_Identifier (Str : String) return Wide_String;
+
+   function Kind_To_String (Kind : Why_Node_Kind) return String;
 
    ------------------------------
    --  OCaml_Lower_Identifier  --
@@ -394,8 +422,12 @@ package body Xtree_Why_AST is
          Str2 : String :=
            (if Str1 = "boolean" then
                "bool"
+           elsif Str1 = "type" then
+              "type_"
            elsif Str1 = "module" then
               "module_"
+           elsif Str1 = "assert" then
+              "assert_"
            elsif Str1 = "to" then
               "to_"
            else
@@ -406,10 +438,10 @@ package body Xtree_Why_AST is
    end OCaml_Lower_Identifier;
 
    --------------------------------
-   --  OCaml_Variant_Identifier  --
+   --  OCaml_Upper_Identifier  --
    --------------------------------
 
-   function OCaml_Variant_Identifier (Str : String) return Wide_String is
+   function OCaml_Upper_Identifier (Str : String) return Wide_String is
       Str1 : String := Clean_Identifier (Str);
    begin
       To_Lower (Str1);
@@ -417,7 +449,14 @@ package body Xtree_Why_AST is
          Str1 (Str1'First) := To_Upper (Str1 (Str1'First));
       end if;
       return To_Wide_String (Str1);
-   end OCaml_Variant_Identifier;
+   end OCaml_Upper_Identifier;
+
+   ----------------------
+   --  Kind_To_String  --
+   ----------------------
+
+   function Kind_To_String (Kind : Why_Node_Kind) return String is
+      (Strip_Prefix (Why_Node_Kind'Image (Kind)));
 
    -------------------------------------
    --  Print OCaml type declarations  --
@@ -432,74 +471,83 @@ package body Xtree_Why_AST is
       PL (O, "(* Why.Sinfo *)");
       NL (O);
 
-      PL (O, "type ew_odomain =");
+      PL (O, "type odomain =");
       Relative_Indent (O, 2);
       for X in EW_ODomain'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (EW_ODomain'Image (X)));
+         PL (O, "| " & OCaml_Upper_Identifier
+               (Strip_Prefix (EW_ODomain'Image (X))));
       end loop;
       Relative_Indent (O, -2);
       NL (O);
 
-      PL (O, "type ew_domain =");
+      PL (O, "type domain =");
       Relative_Indent (O, 2);
       for X in EW_Domain'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (EW_Domain'Image (X)));
+         PL (O, "| " & OCaml_Upper_Identifier
+               (Strip_Prefix (EW_Domain'Image (X))));
       end loop;
       Relative_Indent (O, -2);
       NL (O);
 
-      PL (O, "type ew_type =");
+      PL (O, "type type_ =");
       Relative_Indent (O, 2);
       for X in EW_Type'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (EW_Type'Image (X)));
+         PL (O, "| " & OCaml_Upper_Identifier
+               (Strip_Prefix (EW_Type'Image (X))));
       end loop;
       Relative_Indent (O, -2);
       NL (O);
 
-      PL (O, "type ew_literal =");
+      PL (O, "type literal =");
       Relative_Indent (O, 2);
       for X in EW_Literal'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (EW_Literal'Image (X)));
+         PL (O, "| " & OCaml_Upper_Identifier
+               (Strip_Prefix (EW_Literal'Image (X))));
       end loop;
       Relative_Indent (O, -2);
       NL (O);
 
-      PL (O, "type ew_theory_type =");
+      PL (O, "type theory_type =");
       Relative_Indent (O, 2);
       for X in EW_Theory_Type'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (EW_Theory_Type'Image (X)));
+         PL (O, "| " & OCaml_Upper_Identifier
+               (Strip_Prefix (EW_Theory_Type'Image (X))));
       end loop;
       Relative_Indent (O, -2);
       NL (O);
 
-      PL (O, "type ew_clone_type =");
+      PL (O, "type clone_type =");
       Relative_Indent (O, 2);
       for X in EW_Clone_Type'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (EW_Clone_Type'Image (X)));
+         PL (O, "| " & OCaml_Upper_Identifier
+               (Strip_Prefix (EW_Clone_Type'Image (X))));
       end loop;
       Relative_Indent (O, -2);
       NL (O);
 
-      PL (O, "type ew_subst_type =");
+      PL (O, "type subst_type =");
       Relative_Indent (O, 2);
       for X in EW_Subst_Type'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (EW_Subst_Type'Image (X)));
+         PL (O, "| " & OCaml_Upper_Identifier
+               (Strip_Prefix (EW_Subst_Type'Image (X))));
       end loop;
       Relative_Indent (O, -2);
       NL (O);
 
-      PL (O, "type ew_connector =");
+      PL (O, "type connector =");
       Relative_Indent (O, 2);
       for X in EW_Connector'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (EW_Connector'Image (X)));
+         PL (O, "| " & OCaml_Upper_Identifier
+               (Strip_Prefix (EW_Connector'Image (X))));
       end loop;
       Relative_Indent (O, -2);
       NL (O);
 
-      PL (O, "type ew_assert_kind =");
+      PL (O, "type assert_kind =");
       Relative_Indent (O, 2);
       for X in EW_Assert_Kind'Range loop
-         PL (O, "| " & OCaml_Variant_Identifier (EW_Assert_Kind'Image (X)));
+         PL (O, "| " & OCaml_Upper_Identifier
+               (Strip_Prefix (EW_Assert_Kind'Image (X))));
       end loop;
       Relative_Indent (O, -2);
    end Print_OCaml_Why_Sinfo_Types;
@@ -512,46 +560,92 @@ package body Xtree_Why_AST is
       use String_Lists;
       use Class_Lists;
 
-      procedure Process_One_Node_Kind (Position : String_Lists.Cursor);
-      procedure Process_One_Class_Kind (Position : Class_Lists.Cursor);
+      procedure Print_Kind_Subtypes (Position : String_Lists.Cursor);
+      procedure Print_Class_Subtypes (Position : Class_Lists.Cursor);
       procedure Print_Subtypes (Prefix : Wide_String);
 
-      procedure Process_One_Class_Kind (Position : Class_Lists.Cursor) is
-         CI : constant Class_Info := Class_Lists.Element (Position);
-      begin
-         Print_Subtypes (Class_Name (CI));
-         if Position /= Classes.Last then
-            NL (O);
-         end if;
-      end Process_One_Class_Kind;
+      procedure Print_Kind_Tag_Type (Position : String_Lists.Cursor);
+      procedure Print_Class_Tag_Type (Position : Class_Lists.Cursor);
 
-      procedure Process_One_Node_Kind (Position : String_Lists.Cursor) is
+      procedure Print_Kind_Subtypes (Position : String_Lists.Cursor) is
          S : constant Wide_String_Access := String_Lists.Element (Position);
       begin
          Print_Subtypes (S.all);
          if Position /= Kinds.Last then
             NL (O);
          end if;
-      end Process_One_Node_Kind;
+      end Print_Kind_Subtypes;
+
+      procedure Print_Class_Subtypes (Position : Class_Lists.Cursor) is
+         CI : constant Class_Info := Class_Lists.Element (Position);
+      begin
+         Print_Subtypes (Class_Name (CI));
+         if Position /= Classes.Last then
+            NL (O);
+         end if;
+      end Print_Class_Subtypes;
 
       procedure Print_Subtypes (Prefix : Wide_String) is
       begin
          for Multiplicity in Id_Multiplicity'Range loop
             declare
                Name : Wide_String := OCaml_Lower_Identifier
-                 (To_String (Id_Subtype (Prefix, Opaque, Multiplicity)));
-               Alias : Wide_String := OCaml_Lower_Identifier
-                 (To_String (Id_Subtype ("Why_Node", Derived, Multiplicity)));
+                  (To_String (Strip_Prefix (Id_Subtype (Prefix, Derived, Multiplicity))));
+               Multiplicity_Str : String :=
+                 (case Multiplicity is
+                    when Id_One => "",
+                    when Id_Lone => " option",
+                    when Id_Some => " nonempty",
+                    when Id_Set => " list");
+               Type_Tag_Str : Wide_String := OCaml_Lower_Identifier
+                 (Strip_Prefix (To_String (Prefix)) & "_tag");
             begin
-               PL (O, "and " & Name & " = " & Alias);
+               PL (O, "and " & Name & " = " &
+                     Type_Tag_Str & " why_node" &
+                     To_Wide_String (Multiplicity_Str));
             end;
          end loop;
       end Print_Subtypes;
 
+      procedure Print_Kind_Tag_Type (Position : String_Lists.Cursor) is
+         S : Wide_String_Access := String_Lists.Element (Position);
+         Name : String := To_String (Strip_Prefix (S.all));
+         Type_Tag_Name : Wide_String := OCaml_Lower_Identifier (Name & "_tag");
+         Variant_Name : Wide_String := OCaml_Upper_Identifier (Name);
+      begin
+         PL (O, "type " & Type_Tag_Name & " = [`" & Variant_Name & "]");
+      end Print_Kind_Tag_Type;
+
+      procedure Print_Class_Tag_Type (Position : Class_Lists.Cursor) is
+         Class : constant Class_Info := Class_Lists.Element (Position);
+         Type_Tag_Name : Wide_String :=
+           OCaml_Lower_Identifier
+           (To_String (Strip_Prefix (Class.Name.all) & "_tag"));
+      begin
+         PL (O, "type " & Type_Tag_Name & " = [");
+         for Kind in Class_First (Class) .. Class_Last (Class) loop
+            P (O, " | ");
+            PL (O, "`" & OCaml_Upper_Identifier (Kind_To_String (Kind)));
+         end loop;
+         PL (O, "]");
+      end Print_Class_Tag_Type;
+
    begin
-      Kinds.Iterate (Process_One_Node_Kind'Access);
+      PL (O, "(* Kind tags *)");
       NL (O);
-      Classes.Iterate (Process_One_Class_Kind'Access);
+      Kinds.Iterate (Print_Kind_Tag_Type'Access);
+      NL (O);
+      PL (O, "(* Class tags *)");
+      NL (O);
+      Classes.Iterate (Print_Class_Tag_Type'Access);
+      NL (O);
+      PL (O, "(* Kind nodes *)");
+      NL (O);
+      Kinds.Iterate (Print_Kind_Subtypes'Access);
+      NL (O);
+      PL (O, "(* Class nodes *)");
+      NL (O);
+      Classes.Iterate (Print_Class_Subtypes'Access);
    end Print_OCaml_Opaque_Ids;
 
    ---------------------------------
@@ -563,7 +657,8 @@ package body Xtree_Why_AST is
    begin
       PL (O, "(* Why_Node *)");
       NL (O);
-      PL (O, "and why_node = { info : why_node_info ; desc: why_node_desc }");
+      PL (O, "and 'a why_node = " &
+            "{ info : why_node_info ; desc: 'a why_node_desc }");
       NL (O);
       P (O, "and why_node_info = {");
       declare
@@ -572,9 +667,9 @@ package body Xtree_Why_AST is
          for FI of Common_Fields.Fields loop
             declare
                Field : Wide_String := OCaml_Lower_Identifier
-                 (To_String (Utils.Strip_Prefix (Field_Name (FI))));
+                 (To_String (Strip_Prefix (Field_Name (FI))));
                Typ : Wide_String := OCaml_Lower_Identifier
-                 (To_String (Type_Name (FI, Opaque)));
+                 (To_String (Strip_Prefix (Type_Name (FI, Opaque))));
             begin
                if not First then
                   P (O, "; ");
@@ -586,28 +681,25 @@ package body Xtree_Why_AST is
       end;
       PL (O, "}");
       NL (O);
-      PL (O, "and why_node_desc =");
+      PL (O, "and 'a why_node_desc =");
       Relative_Indent (O, 2);
       for Kind in Why_Tree_Info'Range loop
-         P (O, "| " & OCaml_Variant_Identifier
-              (To_String
-                 (Utils.Strip_Prefix
-                    (To_Wide_String
-                       (Why_Node_Kind'Image (Kind))))));
+         P (O, "| " & OCaml_Upper_Identifier (Kind_To_String (Kind)) & " : ");
          declare
             First : Boolean := True;
-            Has_Fields : Boolean := not Is_Empty (Why_Tree_Info (Kind).Fields);
+            Has_Fields : Boolean :=
+              not Is_Empty (Why_Tree_Info (Kind).Fields);
          begin
             Relative_Indent (O, 4);
             if Has_Fields then
-               P (O, " of {");
+               P (O, "{");
                Relative_Indent (O, 2);
                for FI of Why_Tree_Info (Kind).Fields loop
                   declare
                      Field : Wide_String := OCaml_Lower_Identifier
-                       (To_String (Utils.Strip_Prefix (Field_Name (FI))));
+                       (To_String (Strip_Prefix (Field_Name (FI))));
                      Typ : Wide_String := OCaml_Lower_Identifier
-                       (To_String (Type_Name (FI, Opaque)));
+                       (To_String (Strip_Prefix (Type_Name (FI, Derived))));
                   begin
                      if not First then
                         P (O, "; ");
@@ -617,8 +709,11 @@ package body Xtree_Why_AST is
                   end;
                end loop;
                Relative_Indent (O, -2);
-               P (O, "}");
+               P (O, "} -> ");
             end if;
+            P (O, "[> " &
+                 OCaml_Lower_Identifier (Kind_To_String (Kind) & "_tag") &
+                 "] why_node_desc");
             NL (O);
             Relative_Indent (O, -4);
          end;
@@ -649,7 +744,7 @@ package body Xtree_Why_AST is
               (To_String
                  (OCaml_Lower_Identifier
                     (To_String
-                       (Utils.Strip_Prefix (Field_Name (Element (C)))))));
+                       (Strip_Prefix (Field_Name (Element (C)))))));
          begin
             Res (I) := Field;
             Next (C);
@@ -700,9 +795,9 @@ package body Xtree_Why_AST is
                Kind_Str : String := Why_Node_Kind'Image (Kind);
                Info : Why_Node_Info := Why_Tree_Info (Kind);
                Variant_Name : Wide_String :=
-                 OCaml_Variant_Identifier
+                 OCaml_Upper_Identifier
                  (To_String
-                    (Utils.Strip_Prefix
+                    (Strip_Prefix
                        (To_Wide_String
                           (Why_Node_Kind'Image (Kind)))));
                Variant_Field_Names : Variants :=
@@ -837,7 +932,7 @@ package body Xtree_Why_AST is
          Relative_Indent (O, 2);
          for I in Vars'Range loop
             P (O, "| `Int" & To_Wide_String (Integer'Image (I)));
-            PL (O, " -> " & OCaml_Variant_Identifier (To_String (Vars (I))));
+            PL (O, " -> " & OCaml_Upper_Identifier (To_String (Vars (I))));
          end loop;
          PL (O, "| json -> unexpected_json "
                & """" & Type_Name & """ json");

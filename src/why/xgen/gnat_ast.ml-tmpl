@@ -13,94 +13,91 @@ type symbol = string
 type symbol_set = string list
 type string_sets_set = string list
 
-_@Declare_OCaml_Why_Sinfo_Types@_
-
-(* Why.Types *)
-
 type why_node_set = unit
 
-type why_node_id = why_node
-and why_node_oid = why_node option
-and why_node_list = why_node list
-and why_node_olist = why_node list option
+_@Declare_OCaml_Why_Sinfo_Types@_
 
 (* Why.Opaque_ids *)
+
+type 'a nonempty = { elt0: 'a; elts1: 'a list }
+
+let list_of_nonempty n = n.elt0 :: n.elts1
 
 _@Declare_OCaml_Opaque_Ids@_
 
 _@Declare_OCaml_Why_Node_Type@_
 
-module From_json = struct
-
-  module Json = Yojson.Safe
-
-  type 'a from_json = Json.json -> 'a
-
-  exception Unexpected_Json of string * Json.json
-
-  let unexpected_json type_str json =
-    raise (Unexpected_Json (type_str, json))
-
-  let bool_from_json : bool from_json = function
-    | `Bool b -> b
-    | json -> unexpected_json "bool" json
-
-  let uint_from_json : uint from_json = function
-    | `String s -> Uint s
-    | json -> unexpected_json "uint" json
-
-  let ureal_from_json : ureal from_json = function
-    | `List [numerator; denominator; base] ->
-      Ureal {
-        numerator = uint_from_json numerator;
-        denominator = uint_from_json denominator;
-        base = uint_from_json base
-      }
-    | json ->
-      unexpected_json "ureal" json
-
-  let source_ptr_from_json : source_ptr from_json = function
-    | `String "<Source_Ptr>" -> ()
-    | json -> unexpected_json "source_ptr" json
-
-  let node_id_from_json : node_id from_json = function
-    | `String "<Node_Id>" -> ()
-    | json -> unexpected_json "node_id" json
-
-  let symbol_from_json : symbol from_json = function
-    | `String s -> s
-    | json -> unexpected_json "symbol" json
-
-  let symbol_set_from_json : symbol_set from_json = function
-    | `List l -> List.map symbol_from_json l
-    | json -> unexpected_json "symbol_set" json
-
-  let string_sets_set_from_json : string_sets_set from_json = function
-    | `List l -> List.map symbol_from_json l
-    | json -> unexpected_json "string_sets_set" json
-
-  _@Declare_OCaml_Why_Sinfo_Types_From_Json@_
-
-  let rec why_node_id_from_json : why_node_id from_json =
-    fun json -> why_node_from_json json
-
-  and why_node_oid_from_json : why_node_oid from_json = function
-    | `Null -> None
-    | json -> Some (why_node_id_from_json json)
-
-  and why_node_list_from_json : why_node_list from_json = function
-    | `List l -> List.map (why_node_from_json) l
-    | json -> unexpected_json "why_node_list" json
-
-  and why_node_olist_from_json : why_node_olist from_json = function
-    | `Null -> None
-    | json -> Some (why_node_list_from_json json)
-
-  and why_node_set_from_json : why_node_set from_json = function
-    | `String "<Why_Node_Set>" -> ()
-    | json -> unexpected_json "why_node_set" json
-
-  _@Declare_OCaml_Why_Node_From_Json@_
-
-  _@Declare_OCaml_Opaque_Ids_From_Json@_
-end
+(* module From_json = struct
+ *
+ *   module Json = Yojson.Safe
+ *
+ *   type 'a from_json = Json.json -> 'a
+ *
+ *   exception Unexpected_Json of string * Json.json
+ *
+ *   let unexpected_json type_str json =
+ *     raise (Unexpected_Json (type_str, json))
+ *
+ *   let bool_from_json : bool from_json = function
+ *     | `Bool b -> b
+ *     | json -> unexpected_json "bool" json
+ *
+ *   let uint_from_json : uint from_json = function
+ *     | `String s -> Uint s
+ *     | json -> unexpected_json "uint" json
+ *
+ *   let ureal_from_json : ureal from_json = function
+ *     | `List [numerator; denominator; base] ->
+ *       Ureal {
+ *         numerator = uint_from_json numerator;
+ *         denominator = uint_from_json denominator;
+ *         base = uint_from_json base
+ *       }
+ *     | json ->
+ *       unexpected_json "ureal" json
+ *
+ *   let source_ptr_from_json : source_ptr from_json = function
+ *     | `String "<Source_Ptr>" -> ()
+ *     | json -> unexpected_json "source_ptr" json
+ *
+ *   let node_id_from_json : node_id from_json = function
+ *     | `String "<Node_Id>" -> ()
+ *     | json -> unexpected_json "node_id" json
+ *
+ *   let symbol_from_json : symbol from_json = function
+ *     | `String s -> s
+ *     | json -> unexpected_json "symbol" json
+ *
+ *   let symbol_set_from_json : symbol_set from_json = function
+ *     | `List l -> List.map symbol_from_json l
+ *     | json -> unexpected_json "symbol_set" json
+ *
+ *   let string_sets_set_from_json : string_sets_set from_json = function
+ *     | `List l -> List.map symbol_from_json l
+ *     | json -> unexpected_json "string_sets_set" json
+ *
+ *   _@Declare_OCaml_Why_Sinfo_Types_From_Json@_
+ *
+ *   let rec why_node_id_from_json : why_node_id from_json =
+ *     fun json -> why_node_from_json json
+ *
+ *   and why_node_oid_from_json : why_node_oid from_json = function
+ *     | `Null -> None
+ *     | json -> Some (why_node_id_from_json json)
+ *
+ *   and why_node_list_from_json : why_node_list from_json = function
+ *     | `List l -> List.map (why_node_from_json) l
+ *     | json -> unexpected_json "why_node_list" json
+ *
+ *   and why_node_olist_from_json : why_node_olist from_json = function
+ *     | `Null -> None
+ *     | json -> Some (why_node_list_from_json json)
+ *
+ *   and why_node_set_from_json : why_node_set from_json = function
+ *     | `String "<Why_Node_Set>" -> ()
+ *     | json -> unexpected_json "why_node_set" json
+ *
+ *   _@Declare_OCaml_Why_Node_From_Json@_
+ *
+ *   _@Declare_OCaml_Opaque_Ids_From_Json@_
+ * end *)
