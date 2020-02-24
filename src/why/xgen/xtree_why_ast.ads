@@ -23,7 +23,8 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
---  This package provides procedures that generate code
+--  This package provides procedures that generate the following code to interface Gnat
+--  with Why3:
 --
 --    1. Ada functions to convert the Xtree Gnat AST to a Json value
 --       (procedures Print_Ada_To_Json)
@@ -60,10 +61,14 @@ package Xtree_Why_AST is
 
    procedure Print_OCaml_Opaque_Ids (O : in out Output_Record);
 
+   procedure Print_OCaml_Tags (O : in out Output_Record);
+
    procedure Print_OCaml_Why_Node_From_Json (O : in out Output_Record);
 
    procedure Print_OCaml_Why_Sinfo_Types_From_Json (O : in out Output_Record);
 
    procedure Print_OCaml_Opaque_Ids_From_Json (O : in out Output_Record);
+
+   procedure Print_OCaml_Coercions (O : in out Output_Record);
 
 end Xtree_Why_AST;
