@@ -9,10 +9,13 @@ package body Why.Atree.To_Json is
    --  General types  --
    ---------------------
 
-   function Boolean_To_Json (B : Boolean) return JSON_Value renames Create;
+   function Boolean_To_Json (B : Boolean) return JSON_Value;
    function Uint_To_Json (I : Uint) return JSON_Value;
    function Ureal_To_Json (I : Ureal) return JSON_Value;
    function String_Sets_Set_To_Json (S : String_Sets.Set) return JSON_Value;
+
+   function Boolean_To_Json (B : Boolean) return JSON_Value is
+     (Create (B));
 
    function Uint_To_Json (I : Uint) return JSON_Value
       is (Create (Nat'Image (UI_To_Int (I))));
