@@ -5,7 +5,7 @@
 
 (* TODO Use appropriate OCaml integer type *)
 type uint = Uint of string
-type ureal = Ureal of { numerator : uint ; denominator : uint; base : uint }
+type ureal = Ureal of { numerator : uint ; denominator : uint; base : int; negative : bool }
 
 (* GNAT *)
 
@@ -66,16 +66,21 @@ module From_json = struct
     | `Bool b -> b
     | json -> unexpected_json "bool" json
 
+  let int_from_json : int from_json = function
+    | `Int i -> i
+    | json -> unexpected_json "int" json
+
   let uint_from_json : uint from_json = function
     | `String s -> Uint s
     | json -> unexpected_json "uint" json
 
   let ureal_from_json : ureal from_json = function
-    | `List [numerator; denominator; base] ->
+    | `List [numerator; denominator; base; negative] ->
       Ureal {
         numerator = uint_from_json numerator;
         denominator = uint_from_json denominator;
-        base = uint_from_json base
+        base = int_from_json base;
+        negative = boolean_from_json negative;
       }
     | json ->
       unexpected_json "ureal" json

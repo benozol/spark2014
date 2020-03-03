@@ -18,14 +18,15 @@ package body Why.Atree.To_Json is
      (Create (B));
 
    function Uint_To_Json (I : Uint) return JSON_Value
-      is (Create (Nat'Image (UI_To_Int (I))));
+      is (Create (UI_Image (I, Decimal)));
 
    function Ureal_To_Json (I : Ureal) return JSON_Value is
       Res : constant JSON_Value := Create (Empty_Array);
    begin
       Append (Res, Uint_To_Json (Numerator (I)));
       Append (Res, Uint_To_Json (Denominator (I)));
-      Append (Res, Create (Nat'Image (Rbase (I))));
+      Append (Res, Create (Integer (Rbase (I))));
+      Append (Res, Create (UR_Is_Negative (I)));
       return Res;
    end Ureal_To_Json;
 
