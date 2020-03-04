@@ -1,5 +1,7 @@
 with GNATCOLL.Symbols; use GNATCOLL;
 with GNATCOLL.Utils;
+with SPARK_Util;
+with Sinput;           use Sinput;
 with Common_Containers; use Common_Containers;
 with Why.Sinfo; use Why.Sinfo;
 
@@ -55,7 +57,15 @@ package body Why.Atree.To_Json is
       (Create ("<Node_Id>")); --  TODO
 
    function Source_Ptr_To_Json (P : Source_Ptr) return JSON_Value is
-      (Create ("<Source_Ptr>")); --  TODO
+      Res : constant JSON_Value := Create (Empty_Array);
+      File : constant String := SPARK_Util.File_Name (P);
+      Line : constant Physical_Line_Number :=
+        Get_Physical_Line_Number (P);
+   begin
+      Append (Res, Create (File));
+      Append (Res, Create (Integer (Line)));
+      return Res;
+   end Source_Ptr_To_Json;
 
    function Symbol_To_Json (S : Symbols.Symbol) return JSON_Value is
       P : constant GNATCOLL.Utils.Cst_String_Access := Symbols.Get (S);
