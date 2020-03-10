@@ -62,9 +62,13 @@ package body Why.Atree.To_Json is
       Line : constant Physical_Line_Number :=
         Get_Physical_Line_Number (P);
    begin
-      Append (Res, Create (File));
-      Append (Res, Create (Integer (Line)));
-      return Res;
+      if P = No_Location then
+         return Create;
+      else
+         Append (Res, Create (File));
+         Append (Res, Create (Integer (Line)));
+         return Res;
+      end if;
    end Source_Ptr_To_Json;
 
    function Symbol_To_Json (S : Symbols.Symbol) return JSON_Value is

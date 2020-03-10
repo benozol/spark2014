@@ -9,7 +9,9 @@ type ureal = Ureal of { numerator : uint ; denominator : uint; base : int; negat
 
 (* GNAT *)
 
-type source_ptr = Source_ptr of { filename: string; line: int } (* TODO mark : string option *)
+type source_ptr =
+  | No_location
+  | Source_ptr of { filename: string; line: int }
 type node_id = Node_id
 
 (* GNATCOLL.Symbols *)
@@ -86,6 +88,7 @@ module From_json = struct
       unexpected_json "ureal" json
 
   let source_ptr_from_json : source_ptr from_json = function
+    | `Null -> No_location
     | `List [`String filename; `Int line] ->
       Source_ptr {filename; line}
     | json -> unexpected_json "source_ptr" json
