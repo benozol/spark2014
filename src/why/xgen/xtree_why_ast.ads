@@ -23,8 +23,8 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
---  This package provides procedures that generate the following code to interface Gnat
---  with Why3:
+--  This package provides procedures that generate the following code to
+--  interface Gnat with Why3:
 --
 --    1. Ada functions to convert the Xtree Gnat AST to a Json value
 --       (procedures Print_Ada_To_Json)
