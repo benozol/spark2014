@@ -896,8 +896,17 @@ package body Gnat2Why.Driver is
    procedure Print_Gnat_Json_File (Filename : String) is
    begin
       declare
-         Modules : constant Why_Node_Lists.List := Build_Printing_Plan;
+         Modules : Why_Node_Lists.List := Build_Printing_Plan;
+         C : Why_Node_Lists.Cursor;
       begin
+         if Modules.Is_Empty then
+            for WF in W_Section_Id loop
+               C := Why_Node_Lists.First (Why_Sections (WF).Theories);
+               while Why_Node_Lists.Has_Element (C) loop
+                  Modules.Append (Why_Node_Lists.Element (C));
+               end loop;
+            end loop;
+         end if;
          Open_Current_File (Filename);
          P (Current_File, Write (Why_Node_Lists_List_To_Json (Modules),
                                  Compact => False));
