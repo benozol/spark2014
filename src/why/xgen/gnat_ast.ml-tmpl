@@ -15,11 +15,9 @@ type source_ptr =
 type node_id = Node_id
 
 (* GNATCOLL.Symbols *)
-type symbol = Symbol of string
+type symbol = No_symbol | Symbol of string
 type symbol_set = symbol list
 type string_sets_set = symbol list
-
-let is_empty_symbol = (=) (Symbol "")
 
 type why_node_set = unit
 
@@ -102,6 +100,7 @@ module From_json = struct
     | json -> unexpected_json "why_node_set" json
 
   let symbol_from_json : symbol from_json = function
+    | `String "" -> No_symbol
     | `String s -> Symbol s
     | json -> unexpected_json "symbol" json
 
