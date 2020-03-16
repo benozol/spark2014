@@ -285,6 +285,8 @@ package body Xtree_Why_AST is
    procedure Print_Ada_Why_Node_To_Json (O : in out Output_Record) is
       use Xtree_Tables.Node_Lists;
    begin
+      PL (O, "Why_Node_Counter : Integer := 0;");
+      NL (O);
       PL (O, "function Why_Node_To_Json (Node : Why_Node) " &
             "return JSON_Value is");
       begin
@@ -295,7 +297,9 @@ package body Xtree_Why_AST is
       PL (O, "begin");
       begin
          Relative_Indent (O, 3);
+         PL (O, "Why_Node_Counter := Why_Node_Counter + 1;");
          PL (O, "Append (Res, Create (Why_Node_Kind'Image (Node.Kind)));");
+         PL (O, "Append (Res, Create (Why_Node_Counter));");
          for FI of Common_Fields.Fields loop
             declare
                Typ_Name : Wide_String := To_Wide_String
@@ -665,6 +669,7 @@ package body Xtree_Why_AST is
       declare
          First : Boolean := True;
       begin
+         P (O, "id: int; ");
          for FI of Common_Fields.Fields loop
             declare
                Field : Wide_String := OCaml_Lower_Identifier
@@ -817,6 +822,7 @@ package body Xtree_Why_AST is
                   --  Pattern matching
                   P (O, "| `List [");
                   P (O, "`String """ & To_Wide_String (Kind_Str) & """");
+                  P (O, "; id");
                   for I in Common_Field_Names'Range loop
                      P (O, "; " & To_Wide_String ((Common_Field_Names (I))));
                   end loop;
@@ -830,6 +836,7 @@ package body Xtree_Why_AST is
                      PL (O, "let info = {");
                      begin
                         Relative_Indent (O, 2);
+                        PL (O, "id = int_from_json id;");
                         for I in Common_Field_Names'Range loop
                            P (O, To_Wide_String (Common_Field_Names (I)));
                            P (O, " = ");
