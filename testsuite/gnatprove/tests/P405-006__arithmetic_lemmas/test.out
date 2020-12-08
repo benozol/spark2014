@@ -130,7 +130,9 @@ test_arith.adb:271:14: info: range check proved (CodePeer)
 test_arith.adb:271:17: info: range check proved (CodePeer)
 test_arith.adb:275:04: info: precondition proved (CVC4: 1 VC)
 test_arith.adb:275:21: info: range check proved (CodePeer)
-test_arith.adb:275:24: info: range check proved (CodePeer)
+test_arith.adb:275:24: info: range check proved (CodePeer)test.gpr:1:06: imported project file "spark_lemmas" not found
+gprbuild: "test.gpr" processing failed
+
 test_arith.adb:279:04: info: precondition proved (CVC4: 1 VC)
 test_arith.adb:279:18: info: range check proved (CodePeer)
 test_arith.adb:279:21: info: range check proved (CodePeer)
@@ -142,3 +144,13 @@ test_arith.adb:289:04: info: precondition proved (CVC4: 1 VC)
 test_arith.adb:289:24: info: range check proved (CodePeer)
 test_arith.adb:289:27: info: range check proved (CodePeer)
 test_arith.adb:289:30: info: range check proved (CodePeer)
+Traceback (most recent call last):
+  File "test.py", line 8, in <module>
+    call(["./test_arith"])
+  File "/home/bb/local/e3/lib/python3.8/subprocess.py", line 340, in call
+    with Popen(*popenargs, **kwargs) as p:
+  File "/home/bb/local/e3/lib/python3.8/subprocess.py", line 854, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/home/bb/local/e3/lib/python3.8/subprocess.py", line 1702, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: './test_arith'

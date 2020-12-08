@@ -1,8 +1,18 @@
 challenge.adb:1:11: warning: subprogram "Challenge" has no effect
-challenge.adb:6:25: info: assertion proved (colibri: 1 VC)
-challenge.adb:6:27: info: float overflow check proved (colibri: 1 VC)
-challenge.adb:6:36: info: float overflow check proved (colibri: 1 VC)
+challenge.adb:6:25: medium: assertion might fail, cannot prove X * Z <= Y * Z (e.g. when X = 0.0 and Y = 0.0 and Z = 0.0) [possible fix: subprogram at line 1 should mention X and Y and Z in a precondition]
+challenge.adb:6:27: medium: float overflow check might fail [reason for check: result of floating-point multiplication must be bounded] [possible fix: subprogram at line 1 should mention X and Z in a precondition]
+challenge.adb:6:36: medium: float overflow check might fail [reason for check: result of floating-point multiplication must be bounded] [possible fix: subprogram at line 1 should mention Y and Z in a precondition]
 challenge2.adb:1:11: warning: subprogram "Challenge2" has no effect
-challenge2.adb:6:25: info: assertion proved (colibri: 1 VC)
-challenge2.adb:6:27: info: float overflow check proved (colibri: 1 VC)
-challenge2.adb:6:36: info: float overflow check proved (colibri: 1 VC)
+challenge2.adb:6:25: medium: assertion might fail, cannot prove X * Z <= Y * Z (e.g. when X = 0.0 and Y = 0.0 and Z = 0.0) [possible fix: subprogram at line 1 should mention X and Y and Z in a precondition]
+challenge2.adb:6:27: medium: float overflow check might fail [reason for check: result of floating-point multiplication must be bounded] [possible fix: subprogram at line 1 should mention X and Z in a precondition]
+challenge2.adb:6:36: medium: float overflow check might fail [reason for check: result of floating-point multiplication must be bounded] [possible fix: subprogram at line 1 should mention Y and Z in a precondition]
+
+
+
+
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)

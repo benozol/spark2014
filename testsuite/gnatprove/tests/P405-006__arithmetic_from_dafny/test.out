@@ -125,7 +125,9 @@ mul_lemmas.adb:159:14: info: postcondition proved (CVC4: 1 VC)
 mul_lemmas.adb:165:58: info: initialization of "Res1" proved
 mul_lemmas.adb:165:64: info: initialization of "Res2" proved
 mul_lemmas.adb:166:14: info: postcondition proved (CVC4: 1 VC)
-mul_lemmas.adb:173:04: info: initialization of "X" proved
+mul_lemmas.adb:173:04: info: initialization of "X" provedtest.gpr:1:06: imported project file "spark_lemmas" not found
+gprbuild: "test.gpr" processing failed
+
 mul_lemmas.adb:173:07: info: initialization of "Y" proved
 mul_lemmas.adb:173:10: info: initialization of "Z" proved
 mul_lemmas.adb:178:27: info: range check proved (CVC4: 1 VC)
@@ -193,3 +195,13 @@ mul_lemmas.adb:258:27: info: range check proved (CVC4: 1 VC)
 mul_lemmas.adb:258:30: info: range check proved (CVC4: 1 VC)
 spark-arithmetic_lemmas.ads:116:51: info: division check proved (CVC4: 1 VC), in instantiation at spark-integer_arithmetic_lemmas.ads:36
 spark-arithmetic_lemmas.ads:127:56: info: division check proved (CVC4: 1 VC), in instantiation at spark-integer_arithmetic_lemmas.ads:36
+Traceback (most recent call last):
+  File "test.py", line 8, in <module>
+    call(["./test_arith"])
+  File "/home/bb/local/e3/lib/python3.8/subprocess.py", line 340, in call
+    with Popen(*popenargs, **kwargs) as p:
+  File "/home/bb/local/e3/lib/python3.8/subprocess.py", line 854, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/home/bb/local/e3/lib/python3.8/subprocess.py", line 1702, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: './test_arith'

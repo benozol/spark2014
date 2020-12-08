@@ -57,3 +57,28 @@ test_convert.adb:9:44: warning: statement has no effect
 test_convert.adb:10:09: warning: unused assignment
 test_convert.adb:12:35: info: range check proved (Z3: 1 VC)
 test_convert.adb:13:06: warning: unused assignment
+
+
+
+
+
+
+
+
+
+
+
+
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
+colibri: exec of 'colibri' failed (No such file or directory)
