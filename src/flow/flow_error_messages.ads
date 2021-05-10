@@ -168,6 +168,7 @@ package Flow_Error_Messages is
       Is_Proved   : Boolean;
       Tag         : VC_Kind;
       Cntexmp     : JSON_Value;
+      Verdict     : Cntexmp_Verdict;
       Check_Tree  : JSON_Value;
       VC_File     : String;
       VC_Loc      : Node_Id;

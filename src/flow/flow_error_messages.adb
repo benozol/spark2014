@@ -631,6 +631,7 @@ package body Flow_Error_Messages is
       Is_Proved   : Boolean;
       Tag         : VC_Kind;
       Cntexmp     : JSON_Value;
+      Verdict     : Cntexmp_Verdict;
       Check_Tree  : JSON_Value;
       VC_File     : String;
       VC_Loc      : Node_Id;
@@ -829,8 +830,11 @@ package body Flow_Error_Messages is
 
                      if One_Liner /= "" then
                         Ignore_Id := Print_Regular_Msg
-                          (SGR_Note & "e.g. when " & SGR_Reset
-                           & One_Liner,
+                          (SGR_Note & "e.g. when " & SGR_Reset & One_Liner &
+                           (if Verdict.Verdict_Category = Not_Checked then ""
+                            else
+                               ASCII.LF & SGR_Reset &
+                               "(" & To_String (Verdict) & ")"),
                            Span, Severity, Continuation => True);
                      end if;
 
