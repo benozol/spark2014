@@ -30,7 +30,6 @@ package body VC_Kinds is
    function To_JSON (C : Cntexample_Elt)            return JSON_Value;
    function To_JSON (L : Cntexample_Elt_Lists.List) return JSON_Value;
    function To_JSON (K : CEE_Kind)                  return JSON_Value;
-   function To_JSON (V : Cntexmp_Value_Ptr)         return JSON_Value;
 
    function From_JSON (V : JSON_Value) return Cntexample_Lines;
    function From_JSON (V : JSON_Value) return Cntexample_Elt;
@@ -1151,7 +1150,7 @@ package body VC_Kinds is
       return Obj;
    end To_JSON;
 
-   function To_JSON (V : Cntexmp_Value_Ptr) return JSON_Value is
+   function To_JSON (V : Cntexmp_Value) return JSON_Value is
 
       function Create_Float (F : Float_Value_Ptr) return JSON_Value;
 
@@ -1166,11 +1165,14 @@ package body VC_Kinds is
       ------------------
 
       function Create_Float (F : Float_Value_Ptr) return JSON_Value is
-         Res : constant JSON_Value := Create;
+         Res : constant JSON_Value := Create_Object;
       begin
-         Set_Field (Res, "sign", To_String (F.F_Sign));
-         Set_Field (Res, "exponend", To_String (F.F_Exponent));
-         Set_Field (Res, "significand", To_String (F.F_Significand));
+         Set_Field (Res, "type", Float_Type'Image (F.F_Type));
+         if F.F_Type = Float_Val then
+            Set_Field (Res, "sign", To_String (F.F_Sign));
+            Set_Field (Res, "exponend", To_String (F.F_Exponent));
+            Set_Field (Res, "significand", To_String (F.F_Significand));
+         end if;
          return Res;
       end Create_Float;
 
@@ -1179,11 +1181,11 @@ package body VC_Kinds is
       -------------------
 
       function Create_Record (A : Cntexmp_Value_Array.Map) return JSON_Value is
-         Res : constant JSON_Value := Create;
+         Res : constant JSON_Value := Create_Object;
          use Cntexmp_Value_Array;
       begin
          for C in A.Iterate loop
-            Set_Field (Res, Key (C), To_JSON (A (C)));
+            Set_Field (Res, Key (C), To_JSON (A (C).all));
          end loop;
          return Res;
       end Create_Record;
@@ -1197,10 +1199,10 @@ package body VC_Kinds is
          Other   : Cntexmp_Value_Ptr)
          return JSON_Value
       is
-         Res : constant JSON_Value := Create;
+         Res : constant JSON_Value := Create_Object;
       begin
          Set_Field (Res, "indices", Create_Record (Indices));
-         Set_Field (Res, "others", To_JSON (Other));
+         Set_Field (Res, "others", To_JSON (Other.all));
          return Res;
       end Create_Array;
 
@@ -1230,7 +1232,7 @@ package body VC_Kinds is
       Set_Field (Obj, "kind",  To_JSON (C.Kind));
       if C.Value /= null then
          Set_Field (Obj, "type", Cntexmp_Type'Image (C.Value.T));
-         Set_Field (Obj, "full_value", To_JSON (C.Value));
+         Set_Field (Obj, "full_value", To_JSON (C.Value.all));
       end if;
       return Obj;
    end To_JSON;
@@ -1245,6 +1247,26 @@ package body VC_Kinds is
       end loop;
       return Create (Result);
    end To_JSON;
+
+   ---------------
+   -- To_String --
+   ---------------
+
+   function To_String (Verdict : Cntexmp_Verdict) return String is
+     (case Verdict.Verdict_Category is
+         when Non_Conformity                          =>
+            "the code does not conform to the check",
+         when Subcontract_Weakness                    =>
+            "some loop invariant or post condition is too weak",
+         when Non_Conformity_Or_Subcontract_Weakness  =>
+            "the code does not conform to the check, or " &
+            "some loop invariant or post condition is too weak",
+         when Incomplete                              =>
+            "the example could not be checked",
+         when Bad_Counterexample                      =>
+            "that's really a BAD example!",
+         when Not_Checked                             =>
+            "the example has not been checked");
 
    ---------------
    -- To_String --

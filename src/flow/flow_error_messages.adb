@@ -25,7 +25,7 @@
 with Ada.Characters.Handling;   use Ada.Characters.Handling;
 with Ada.Containers.Indefinite_Vectors;
 with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
-with Ada.Text_IO;
+with Ada.Text_IO;               use Ada.Text_IO;
 with Aspects;                   use Aspects;
 with Assumption_Types;          use Assumption_Types;
 with Atree;                     use Atree;
@@ -633,6 +633,7 @@ package body Flow_Error_Messages is
       Is_Proved   : Boolean;
       Tag         : VC_Kind;
       Cntexmp     : JSON_Value;
+      Verdict     : Cntexmp_Verdict;
       Check_Tree  : JSON_Value;
       VC_File     : String;
       VC_Loc      : Node_Id;
@@ -647,8 +648,21 @@ package body Flow_Error_Messages is
       function Get_Severity
         (N         : Node_Id;
          Is_Proved : Boolean;
-         Tag       : VC_Kind) return Msg_Severity;
+         Tag       : VC_Kind;
+         Verdict   : Cntexmp_Verdict) return Msg_Severity;
       --  @result Severity of the proof message
+
+      function Confirmed_Cntexmp (Verdict : Cntexmp_Verdict) return Boolean is
+        (Verdict.Verdict_Category in
+           Non_Conformity | Subcontract_Weakness
+             | Non_Conformity_Or_Subcontract_Weakness);
+      --  Decide if the counterexample has been confirmed
+
+      function Show_Verdict (Verdict : Cntexmp_Verdict) return Boolean is
+        (Verdict.Verdict_Category in
+           Subcontract_Weakness | Non_Conformity_Or_Subcontract_Weakness);
+      --  Decide if the verdict from counterexample checking should be shown.
+      --  Non_Conformity is not shown because it's like the standard case
 
       ------------------
       -- Get_Severity --
@@ -657,7 +671,8 @@ package body Flow_Error_Messages is
       function Get_Severity
         (N         : Node_Id;
          Is_Proved : Boolean;
-         Tag       : VC_Kind) return Msg_Severity
+         Tag       : VC_Kind;
+         Verdict   : Cntexmp_Verdict) return Msg_Severity
       is
          Result : Msg_Severity;
 
@@ -695,6 +710,9 @@ package body Flow_Error_Messages is
          then
             Result := Low_Check_Kind;
 
+         elsif Confirmed_Cntexmp (Verdict) then
+            Result := High_Check_Kind;
+
          --  Default for unproved checks is to issue a medium severity message
 
          else
@@ -714,9 +732,13 @@ package body Flow_Error_Messages is
       VC_Slc  : constant Source_Ptr  := VC_Span.Ptr;
 
       Pretty_Cntexmp  : constant Cntexample_File_Maps.Map :=
-        Create_Pretty_Cntexmp (From_JSON (Cntexmp), Slc);
+        (if Confirmed_Cntexmp (Verdict) then
+            Create_Pretty_Cntexmp (From_JSON (Cntexmp), Slc)
+         else
+            Cntexample_File_Maps.Empty);
 
-      Severity  : constant Msg_Severity := Get_Severity (N, Is_Proved, Tag);
+      Severity  : constant Msg_Severity :=
+                    Get_Severity (N, Is_Proved, Tag, Verdict);
       Suppr     : String_Id := No_String;
       Msg_Id    : Message_Id := No_Message_Id;
       Is_Annot  : Boolean;
@@ -790,6 +812,10 @@ package body Flow_Error_Messages is
                         Append (Message, " (e.g. when " & One_Liner & ")");
                      end if;
 
+                     if Show_Verdict (Verdict) then
+                        Append (Message, " [" & To_String (Verdict) & "]");
+                     end if;
+
                      if Details /= "" then
                         Append
                           (Message, " [reason for check: " & Details & "]");
@@ -831,8 +857,11 @@ package body Flow_Error_Messages is
 
                      if One_Liner /= "" then
                         Ignore_Id := Print_Regular_Msg
-                          (SGR_Note & "e.g. when " & SGR_Reset
-                           & One_Liner,
+                          (SGR_Note & "e.g. when " & SGR_Reset & One_Liner &
+                           (if Show_Verdict (Verdict) then
+                                 ASCII.LF & SGR_Reset &
+                                 "(" & To_String (Verdict) & ")"
+                             else ""),
                            Span, Severity, Continuation => True);
                      end if;
 
