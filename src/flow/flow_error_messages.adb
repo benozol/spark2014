@@ -631,6 +631,7 @@ package body Flow_Error_Messages is
       Is_Proved   : Boolean;
       Tag         : VC_Kind;
       Cntexmp     : JSON_Value;
+      Verdict     : Cntexmp_Verdict;
       Check_Tree  : JSON_Value;
       VC_File     : String;
       VC_Loc      : Node_Id;
@@ -701,6 +702,22 @@ package body Flow_Error_Messages is
 
          return Result;
       end Get_Severity;
+
+      function Explain (V : Cntexmp_Verdict) return String is
+        (case V is
+            when Non_Conformity                         =>
+               "the code does not conform to the check",
+            when Subcontract_Weakness                   =>
+               "a loop invariant or post condition is too weak",
+            when Non_Conformity_Or_Subcontract_Weakness =>
+               "the code does not conform to the check, or " &
+               "some loop invariants or post conditions are too weak",
+            when Incomplete                             =>
+               "the example values could not be checked",
+            when Bad_Counterexample                      =>
+               "oh, that's really a BAD example!",
+            when Not_Checked                             =>
+               "the example values have not been checked");
 
       --  Local variables
 
@@ -829,8 +846,11 @@ package body Flow_Error_Messages is
 
                      if One_Liner /= "" then
                         Ignore_Id := Print_Regular_Msg
-                          (SGR_Note & "e.g. when " & SGR_Reset
-                           & One_Liner,
+                          (SGR_Note & "e.g. when " & SGR_Reset & One_Liner &
+                           (if Verdict = Not_Checked then ""
+                              else
+                                 ASCII.LF & SGR_Reset &
+                                 "(" & Explain (Verdict) & ")"),
                            Span, Severity, Continuation => True);
                      end if;
 

@@ -32,6 +32,7 @@ with Ada.Containers.Hashed_Sets;
 with Ada.Containers.Indefinite_Hashed_Sets;
 with Ada.Containers.Indefinite_Hashed_Maps;
 with Ada.Directories;           use Ada.Directories;
+with Ada.Environment_Variables;
 with Ada.Float_Text_IO;
 with Ada.Strings.Unbounded;     use Ada.Strings.Unbounded;
 with Ada.Text_IO;
@@ -46,6 +47,8 @@ with SA_Messages;               use SA_Messages;
 with Sinput;                    use Sinput;
 with SPARK_Util;                use SPARK_Util;
 with Uintp;                     use Uintp;
+with SPARK_RAC; use SPARK_RAC;
+with Output;
 
 package body Gnat2Why.Error_Messages is
 
@@ -313,6 +316,7 @@ package body Gnat2Why.Error_Messages is
       Extra_Msg   : String := "";
       Explanation : String := "";
       Cntexmp     : GNATCOLL.JSON.JSON_Value := GNATCOLL.JSON.Create_Object;
+      Verdict     : Cntexmp_Verdict := Incomplete;
       Check_Tree  : GNATCOLL.JSON.JSON_Value := GNATCOLL.JSON.Create_Object;
       VC_File     : String := "";
       VC_Loc      : Node_Id := Empty;
@@ -426,6 +430,7 @@ package body Gnat2Why.Error_Messages is
             Kind,
             Place_First => Locate_On_First_Token (Kind),
             Cntexmp     => Cntexmp,
+            Verdict     => Verdict,
             Check_Tree  => Check_Tree,
             VC_File     => VC_File,
             VC_Loc      => VC_Loc,
@@ -854,20 +859,34 @@ package body Gnat2Why.Error_Messages is
       end record;
 
       type Why3_Prove_Result is record
-         Id         : VC_Id;
-         Kind       : VC_Kind;
-         Result     : Boolean;
-         EI         : Extra_Info;
-         VC_File    : Unbounded_String;
-         Editor_Cmd : Unbounded_String;
-         Stats      : Prover_Stat_Maps.Map;
-         Cntexmp    : JSON_Value;
-         Check_Tree : JSON_Value;
+         Id             : VC_Id;
+         Kind           : VC_Kind;
+         Result         : Boolean;
+         EI             : Extra_Info;
+         VC_File        : Unbounded_String;
+         Editor_Cmd     : Unbounded_String;
+         Stats          : Prover_Stat_Maps.Map;
+         Cntexmp        : JSON_Value;
+         Giant_Step_Res : SPARK_RAC.Result;
+         Check_Tree     : JSON_Value;
       end record;
 
       function Parse_Why3_Prove_Result (V : JSON_Value)
                                         return Why3_Prove_Result;
       --  Parse the JSON produced for Why3 for a single Why3 result record.
+
+      function Small_Step_Rac
+        (E : Entity_Id; Cntexmp : Cntexample_File_Maps.Map; VC : Node_Id)
+         return SPARK_RAC.Result;
+      --  Small-step (normal) RAC of
+
+      function Decide_Cntexmp_Verdict
+        (Small_Step : SPARK_RAC.Result;
+         Giant_Step : SPARK_RAC.Result;
+         VC         : VC_Id;
+         Kind       : VC_Kind;
+         Reason     : out Unbounded_String)
+         return Cntexmp_Verdict;
 
       procedure Handle_Result (V : JSON_Value; SD_Id : Session_Dir_Base_ID);
       --  Parse a single result entry. The entry comes from the session dir
@@ -900,12 +919,149 @@ package body Gnat2Why.Error_Messages is
          end if;
       end Handle_Error;
 
+      --------------------
+      -- Small_Step_Rac --
+      --------------------
+
+      function Small_Step_Rac
+        (E : Entity_Id; Cntexmp : Cntexample_File_Maps.Map; VC : Node_Id)
+        return SPARK_RAC.Result
+      is
+         Res : Result := (others => <>);
+         Do_Print_Info : constant Boolean := Ada.Environment_Variables.Value
+           ("GNATPROVE_RAC_INFO", "no") = "yes";
+      begin
+         if Do_Print_Info then
+            Output.Write_Line ("---");
+            Output.Write_Str ("VC at ");
+            Write_Location (Sloc (VC));
+         end if;
+
+         if Cntexample_File_Maps.Is_Empty (Cntexmp) then
+            if Do_Print_Info then
+               Output.Write_Line (" (no counterexample)");
+            end if;
+         else
+            if Do_Print_Info then
+               Output.Write_Eol;
+            end if;
+
+            Res := SPARK_RAC.RAC (E, Cntexmp);
+         end if;
+         return Res;
+      end Small_Step_Rac;
+
+      --------------------
+      -- Decide_Cntexmp_Verdict --
+      --------------------
+
+      function Decide_Cntexmp_Verdict
+        (Small_Step : SPARK_RAC.Result;
+         Giant_Step : SPARK_RAC.Result;
+         VC         : VC_Id;
+         Kind    : VC_Kind;
+         Reason     : out Unbounded_String)
+         return Cntexmp_Verdict
+      is
+      begin
+         case Small_Step.Res_Kind is
+
+            when Res_Failure =>
+               if
+                 Small_Step.Res_VC = VC and then
+                 Small_Step.Res_VC_Kind = Kind
+               then
+                  Reason := Small_Step.Res_Reason;
+                  return Non_Conformity;
+               else
+                  Reason := To_Unbounded_String ("failure not at check");
+                  return Bad_Counterexample;
+               end if;
+
+            when Res_Stuck   =>
+               Reason := Small_Step.Res_Reason;
+               return Bad_Counterexample;
+
+            when Res_Normal  =>
+
+               case Giant_Step.Res_Kind is
+                  when Res_Failure =>
+                     Reason := Giant_Step.Res_Reason;
+                     return Subcontract_Weakness;
+
+                  when Res_Normal  =>
+                     Reason := To_Unbounded_String ("no failure");
+                     return Bad_Counterexample;
+
+                  when Res_Stuck   =>
+                     Reason := Giant_Step.Res_Reason;
+                     return Bad_Counterexample;
+
+                  when Res_Incomplete =>
+                     Reason := Giant_Step.Res_Reason;
+                     return Incomplete;
+
+                  when Res_Not_Executed =>
+                     Reason :=
+                       To_Unbounded_String ("giant-step RAC not executed");
+                     return Not_Checked;
+               end case;
+
+            when Res_Incomplete =>
+
+               case Giant_Step.Res_Kind is
+
+                  when Res_Failure =>
+                     Reason := Giant_Step.Res_Reason;
+                     return Non_Conformity_Or_Subcontract_Weakness;
+
+                  when Res_Normal  =>
+                     Reason := Small_Step.Res_Reason;
+                     return Incomplete;
+
+                  when Res_Stuck   =>
+                     Reason := Giant_Step.Res_Reason;
+                     return Bad_Counterexample;
+
+                  when Res_Incomplete =>
+                     Reason := Giant_Step.Res_Reason;
+                     return Incomplete;
+
+                  when Res_Not_Executed =>
+                     Reason :=
+                       To_Unbounded_String ("giant-step RAC not executed");
+                     return Not_Checked;
+               end case;
+
+            when Res_Not_Executed =>
+               Reason := To_Unbounded_String ("small-step RAC not executed");
+               return Not_Checked;
+         end case;
+      end Decide_Cntexmp_Verdict;
+
       -------------------
       -- Handle_Result --
       -------------------
 
       procedure Handle_Result (V : JSON_Value; SD_Id : Session_Dir_Base_ID) is
-         Rec        : constant Why3_Prove_Result :=
+
+         -------------
+         -- Find_VC --
+         -------------
+
+         function Find_VC (N : Node_Id) return VC_Id;
+
+         function Find_VC (N : Node_Id) return VC_Id is
+         begin
+            for C in VC_Table.Iterate loop
+               if VC_Table (C).Node = N then
+                  return VC_Id (Id_Tables.To_Index (C));
+               end if;
+            end loop;
+            raise Program_Error with ("No VC for node " & Node_Id'Image (N));
+         end Find_VC;
+
+         Rec                            : constant Why3_Prove_Result :=
            Parse_Why3_Prove_Result (V);
          VC         : VC_Info renames VC_Table (Rec.Id);
          Extra_Text : constant String :=
@@ -931,8 +1087,53 @@ package body Gnat2Why.Error_Messages is
          --  can happen for the pre (the node will be in the callee context
          --  instead of the caller context) and LSP VCs as well as predicate
          --  checks.
-         VC_Sloc    : constant Node_Id := VC.Node;
+         VC_Sloc        : constant Node_Id := VC.Node;
+         Small_Step_Res : SPARK_RAC.Result;
+         Verdict        : Cntexmp_Verdict;
+         Reason         : Unbounded_String;
+         Cntexmp        : constant Cntexample_File_Maps.Map :=
+                            From_JSON (Rec.Cntexmp);
+
+         --  Start of processing for Handle_Result
+
       begin
+
+         if
+           --  Poor man's command line option.
+           --  ??? replace with command line option
+           Ada.Environment_Variables.Value ("CHECK_CE", "no") = "yes"
+         then
+            Small_Step_Res :=
+              Small_Step_Rac (VC.Entity, Cntexmp, VC.Node);
+
+            if Small_Step_Res.Res_Kind = SPARK_RAC.Res_Failure then
+               Small_Step_Res.Res_VC := Find_VC (Small_Step_Res.Res_Node);
+            end if;
+
+            begin
+               Verdict := Decide_Cntexmp_Verdict
+                 (Small_Step_Res, Rec.Giant_Step_Res, Rec.Id, Rec.Kind,
+                  Reason);
+
+               if
+                 Ada.Environment_Variables.Value
+                   ("GNATPROVE_RAC_INFO", "no") = "yes"
+               then
+                  Output.Write_Line
+                    ("Small-step RAC: result is " &
+                       SPARK_RAC.To_String (Small_Step_Res) & ".");
+                  Output.Write_Line
+                    ("Giant-step RAC: result is " &
+                       SPARK_RAC.To_String (Rec.Giant_Step_Res) & ".");
+                  Output.Write_Line
+                    ("Verdict: " & Cntexmp_Verdict'Image (Verdict) &
+                       " (" & To_String (Reason) & ")");
+               end if;
+            end;
+         else
+            Verdict := Not_Checked;
+         end if;
+
          Emit_Proof_Result
            (Node        => Node,
             Id          => Rec.Id,
@@ -942,6 +1143,7 @@ package body Gnat2Why.Error_Messages is
             SD_Id       => SD_Id,
             How_Proved  => PC_Prover,
             Cntexmp     => Rec.Cntexmp,
+            Verdict     => Verdict,
             Check_Tree  => Rec.Check_Tree,
             VC_File     => To_String (Rec.VC_File),
             VC_Loc      => VC_Sloc,
@@ -979,7 +1181,57 @@ package body Gnat2Why.Error_Messages is
 
       function Parse_Why3_Prove_Result (V : JSON_Value)
                                         return Why3_Prove_Result is
+
+         function Parse_Giant_Step_RAC_Result
+           (V : JSON_Value) return SPARK_RAC.Result;
+
+         ---------------------------------
+         -- Parse_Giant_Step_RAC_Result --
+         ---------------------------------
+
+         function Parse_Giant_Step_RAC_Result
+           (V : JSON_Value) return SPARK_RAC.Result is
+         begin
+            if V = JSON_Null then
+               return (Res_Kind   => Res_Incomplete,
+                       Res_Reason => To_Unbounded_String ("no result"));
+            else
+               declare
+                  State : constant String := Get (V, "state");
+                  Reason : constant Unbounded_String :=
+                             To_Unbounded_String (String'(Get (V, "reason")));
+               begin
+                  return
+                    (if State = "NORMAL" then
+                       (Res_Kind   => Res_Normal,
+                        Res_Value  => (Present => False),
+                        Res_Reason => Reason)
+                     elsif State = "FAILURE" then
+                       (Res_Kind   => Res_Failure,
+                        Res_Node   => Empty,
+                        Res_VC     =>
+                          VC_Id (Natural (Integer'
+                                (Get (Get (V, "check"), "id")))),
+                        Res_VC_Kind => VC_Kind'Value
+                          (Get (Get (V, "check"), "reason")),
+                        Res_Reason => Reason)
+                     elsif State = "STUCK" then
+                       (Res_Kind   => Res_Stuck,
+                        Res_Reason => Reason)
+                     elsif State = "UNKNOWN" then
+                       (Res_Kind   => Res_Incomplete,
+                        Res_Reason => Reason)
+                     else
+                        raise Program_Error with
+                           ("unexpected state " & State));
+               end;
+            end if;
+         end Parse_Giant_Step_RAC_Result;
+
          E : Extra_Info := (0, False);
+
+         --  Start of processing for Parse_Why3_Prove_Result
+
       begin
          if Has_Field (V, "extra_info") then
             E.Node := Node_Id (Integer'(Get (Get (V, "extra_info"), "node")));
@@ -1002,6 +1254,9 @@ package body Gnat2Why.Error_Messages is
             Cntexmp    =>
               (if Has_Field (V, "cntexmp") then Get (V, "cntexmp")
                else Create_Object),
+            Giant_Step_Res =>
+              Parse_Giant_Step_RAC_Result
+                (Get (V, "giant_step_rac_result")),
             Check_Tree =>
               (if Has_Field (V, "check_tree") then Get (V, "check_tree")
                else Create_Object));

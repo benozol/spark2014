@@ -601,6 +601,27 @@ package VC_Kinds is
                                              "<"          => "<",
                                              "="          => "=");
 
+   type Cntexmp_Verdict is
+     (Non_Conformity,
+      --  The counterexample shows how the code contracts the check
+      Subcontract_Weakness,
+      --  The counterexample shows how some sub-contracts are too weak to
+      --  prove the check
+      Non_Conformity_Or_Subcontract_Weakness,
+      --  Either of the above
+      Bad_Counterexample,
+      --  The counterexample is bad, e.g. it contains values that contradict
+      --  the preconditions, or the RAC based on the counterexample doesn't
+      --  fail or it fails at a different check
+      Incomplete,
+      --  The counterexample could not be checked (e.g., RAC implementation is
+      --  incomplete, check could not be validated, RAC took too much time)
+      Not_Checked
+      --  Counterexample checking was not requested
+      );
+   --  The result when checking the counterexample for a check, based on Why3
+   --  giant-step RAC and SPARK small-step RAC.
+
    function To_String (P : Prover_Category) return String;
    --  Return a user-visible string to describe the category of prover
 
