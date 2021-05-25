@@ -1,3 +1,2013 @@
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "343": [
+        {
+          "name": "856",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        }
+      ],
+      "364": [
+        {
+          "name": "857",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2147483647"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "6": [
+        {
+          "name": "856",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        },
+        {
+          "name": "857",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2147483647"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__minus_i
+RAC: call minus_i
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:10:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:10:7
+RAC: expr N_OP_SUBTRACT at arithmetic.adb:10:16
+RAC: expr N_IDENTIFIER at arithmetic.adb:10:14
+RAC: expr N_IDENTIFIER at arithmetic.adb:10:18
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "315": [
+        {
+          "name": "884",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2147483648"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "13": [
+        {
+          "name": "884",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2147483648"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__negation_i
+RAC: call negation_i
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:17:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:17:7
+RAC: expr N_OP_MINUS at arithmetic.adb:17:14
+RAC: expr N_IDENTIFIER at arithmetic.adb:17:15
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "343": [
+        {
+          "name": "908",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        }
+      ],
+      "364": [
+        {
+          "name": "909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "20": [
+        {
+          "name": "908",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        },
+        {
+          "name": "909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__multiply_a
+RAC: call multiply_a
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:24:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:24:7
+RAC: expr N_OP_MULTIPLY at arithmetic.adb:24:16
+RAC: expr N_IDENTIFIER at arithmetic.adb:24:14
+RAC: expr N_IDENTIFIER at arithmetic.adb:24:18
+RAC: call return
+RAC: check node N_OP_EQ
+RAC: expr N_OP_EQ at arithmetic.adb:21:37
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:21:29
+RAC: expr N_OP_MULTIPLY at arithmetic.adb:21:41
+RAC: expr N_IDENTIFIER at arithmetic.adb:21:39
+RAC: expr N_IDENTIFIER at arithmetic.adb:21:43
+RAC: cntexmp: {
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "52": [
+        {
+          "name": "1034",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        },
+        {
+          "name": "1035",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "56": [
+        {
+          "name": "1062",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "58": [
+        {
+          "name": "1062",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "323"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__rsa_small
+RAC: call rsa_small
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:54:36
+RAC: expr N_OP_GE at arithmetic.adb:54:31
+RAC: expr N_IDENTIFIER at arithmetic.adb:54:22
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:54:34
+RAC: expr N_OP_GE at arithmetic.adb:54:49
+RAC: expr N_IDENTIFIER at arithmetic.adb:54:40
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:54:52
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:58:7
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:58:7
+RAC: node N_ASSIGNMENT_STATEMENT at arithmetic.adb:58:9
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:58:12
+RAC: node N_PRAGMA at arithmetic.adb:59:7
+RAC: check node N_OP_NE
+RAC: expr N_OP_NE at arithmetic.adb:59:42
+RAC: expr N_OP_MULTIPLY at arithmetic.adb:59:31
+RAC: expr N_IDENTIFIER at arithmetic.adb:59:22
+RAC: expr N_IDENTIFIER at arithmetic.adb:59:33
+RAC: expr N_IDENTIFIER at arithmetic.adb:59:45
+RAC: call terminated
+RAC: cntexmp: {
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "52": [
+        {
+          "name": "1034",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        },
+        {
+          "name": "1035",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "56": [
+        {
+          "name": "1062",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "58": [
+        {
+          "name": "1062",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "4"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__rsa_small
+RAC: call rsa_small
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:54:36
+RAC: expr N_OP_GE at arithmetic.adb:54:31
+RAC: expr N_IDENTIFIER at arithmetic.adb:54:22
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:54:34
+RAC: expr N_OP_GE at arithmetic.adb:54:49
+RAC: expr N_IDENTIFIER at arithmetic.adb:54:40
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:54:52
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:58:7
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:58:7
+RAC: node N_ASSIGNMENT_STATEMENT at arithmetic.adb:58:9
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:58:12
+RAC: node N_PRAGMA at arithmetic.adb:59:7
+RAC: check node N_OP_NE
+RAC: expr N_OP_NE at arithmetic.adb:59:42
+RAC: expr N_OP_MULTIPLY at arithmetic.adb:59:31
+RAC: expr N_IDENTIFIER at arithmetic.adb:59:22
+RAC: expr N_IDENTIFIER at arithmetic.adb:59:33
+RAC: expr N_IDENTIFIER at arithmetic.adb:59:45
+RAC: call terminated
+RAC: cntexmp: {
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "64": [
+        {
+          "name": "1092",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        },
+        {
+          "name": "1093",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "68": [
+        {
+          "name": "1120",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "70": [
+        {
+          "name": "1120",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "12166397"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__rsa
+RAC: call rsa
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:66:29
+RAC: expr N_OP_GE at arithmetic.adb:66:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:66:22
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:66:27
+RAC: expr N_OP_GE at arithmetic.adb:66:35
+RAC: expr N_IDENTIFIER at arithmetic.adb:66:33
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:66:38
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:70:7
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:70:7
+RAC: node N_ASSIGNMENT_STATEMENT at arithmetic.adb:70:9
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:70:12
+RAC: node N_PRAGMA at arithmetic.adb:71:7
+RAC: check node N_OP_NE
+RAC: expr N_OP_NE at arithmetic.adb:71:28
+RAC: expr N_OP_MULTIPLY at arithmetic.adb:71:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:71:22
+RAC: expr N_IDENTIFIER at arithmetic.adb:71:26
+RAC: expr N_IDENTIFIER at arithmetic.adb:71:31
+RAC: call terminated
+RAC: cntexmp: {
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "64": [
+        {
+          "name": "1092",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        },
+        {
+          "name": "1093",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "68": [
+        {
+          "name": "1120",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "70": [
+        {
+          "name": "1120",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "4"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__rsa
+RAC: call rsa
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:66:29
+RAC: expr N_OP_GE at arithmetic.adb:66:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:66:22
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:66:27
+RAC: expr N_OP_GE at arithmetic.adb:66:35
+RAC: expr N_IDENTIFIER at arithmetic.adb:66:33
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:66:38
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:70:7
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:70:7
+RAC: node N_ASSIGNMENT_STATEMENT at arithmetic.adb:70:9
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:70:12
+RAC: node N_PRAGMA at arithmetic.adb:71:7
+RAC: check node N_OP_NE
+RAC: expr N_OP_NE at arithmetic.adb:71:28
+RAC: expr N_OP_MULTIPLY at arithmetic.adb:71:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:71:22
+RAC: expr N_IDENTIFIER at arithmetic.adb:71:26
+RAC: expr N_IDENTIFIER at arithmetic.adb:71:31
+RAC: call terminated
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "750": [
+        {
+          "name": "1144",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "771": [
+        {
+          "name": "1145",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2147483648"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "75": [
+        {
+          "name": "1144",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        },
+        {
+          "name": "1145",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2147483648"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__plus
+RAC: call plus
+RAC: check node N_IN
+RAC: expr N_IN at arithmetic.adb:76:25
+RAC: expr N_OP_ADD at arithmetic.adb:76:21
+RAC: expr N_IDENTIFIER at arithmetic.adb:76:19
+RAC: expr N_IDENTIFIER at arithmetic.adb:76:23
+RAC: cntexmp: {
+  "'@Loop 1440@'arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "123": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        },
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ]
+    }
+  },
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "421": [
+        {
+          "name": "1387",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ],
+      "580": [
+        {
+          "name": "1356",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "793": [
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "841": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ],
+      "862": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ],
+      "870": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "112": [
+        {
+          "name": "1356",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "116": [
+        {
+          "name": "1387",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ],
+      "117": [
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "120": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "121": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        },
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "122": [
+        {
+          "name": "1356",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__halve_b
+RAC: call halve_b
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:116:65
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:119:7
+RAC: node N_PRAGMA at arithmetic.adb:119:7
+RAC: check node N_IDENTIFIER
+RAC: expr N_IDENTIFIER at arithmetic.adb:119:50
+RAC: node N_LOOP_STATEMENT at arithmetic.adb:120:52
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:120:36
+RAC: expr N_IDENTIFIER at arithmetic.adb:120:41
+RAC: Loop from  0 to  127 by  1
+RAC: Iterate:  0
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:121:10
+RAC: node N_ASSIGNMENT_STATEMENT at arithmetic.adb:121:12
+RAC: expr N_IDENTIFIER at arithmetic.adb:121:15
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:20
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:24
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:34
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:38
+RAC: node N_EXIT_STATEMENT at arithmetic.adb:122:10
+RAC: expr N_OP_OR at arithmetic.adb:122:30
+RAC: expr N_OP_EQ at arithmetic.adb:122:26
+RAC: expr N_OP_ADD at arithmetic.adb:122:22
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:20
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:28
+RAC: expr N_OP_EQ at arithmetic.adb:122:45
+RAC: expr N_OP_ADD at arithmetic.adb:122:41
+RAC: expr N_OP_ADD at arithmetic.adb:122:36
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:34
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:38
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:122:43
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:47
+RAC: node N_PRAGMA at arithmetic.adb:123:10
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:124:27
+RAC: expr N_OP_GT at arithmetic.adb:124:15
+RAC: expr N_IDENTIFIER at arithmetic.adb:124:13
+RAC: expr N_OP_ADD at arithmetic.adb:124:23
+RAC: expr N_OP_ADD at arithmetic.adb:124:19
+RAC: expr N_IDENTIFIER at arithmetic.adb:124:17
+RAC: expr N_IDENTIFIER at arithmetic.adb:124:21
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:124:25
+RAC: expr N_IN at arithmetic.adb:124:33
+RAC: expr N_IDENTIFIER at arithmetic.adb:124:31
+RAC: Iterate:  1
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:121:10
+RAC: node N_ASSIGNMENT_STATEMENT at arithmetic.adb:121:12
+RAC: expr N_IDENTIFIER at arithmetic.adb:121:15
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:20
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:24
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:34
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:38
+RAC: node N_EXIT_STATEMENT at arithmetic.adb:122:10
+RAC: expr N_OP_OR at arithmetic.adb:122:30
+RAC: expr N_OP_EQ at arithmetic.adb:122:26
+RAC: expr N_OP_ADD at arithmetic.adb:122:22
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:20
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:28
+RAC: expr N_OP_EQ at arithmetic.adb:122:45
+RAC: expr N_OP_ADD at arithmetic.adb:122:41
+RAC: expr N_OP_ADD at arithmetic.adb:122:36
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:34
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:38
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:122:43
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:47
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:126:14
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:126:7
+RAC: expr N_IDENTIFIER at arithmetic.adb:126:14
+RAC: call return
+RAC: check node N_OP_OR
+RAC: expr N_OP_OR at arithmetic.adb:114:21
+RAC: expr N_OP_EQ at arithmetic.adb:113:51
+RAC: expr N_OP_ADD at arithmetic.adb:113:34
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:113:26
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:113:43
+RAC: expr N_IDENTIFIER at arithmetic.adb:113:53
+RAC: expr N_OP_EQ at arithmetic.adb:114:60
+RAC: expr N_OP_ADD at arithmetic.adb:114:56
+RAC: expr N_OP_ADD at arithmetic.adb:114:39
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:114:31
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:114:48
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:114:58
+RAC: expr N_IDENTIFIER at arithmetic.adb:114:62
+RAC: cntexmp: {
+  "'@Loop 1440@'arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "123": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        },
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ]
+    }
+  },
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "421": [
+        {
+          "name": "1387",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ],
+      "580": [
+        {
+          "name": "1356",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "793": [
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "841": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ],
+      "862": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ],
+      "870": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "112": [
+        {
+          "name": "1356",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "116": [
+        {
+          "name": "1387",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ],
+      "117": [
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "120": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "121": [
+        {
+          "name": "1412",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        },
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "122": [
+        {
+          "name": "1356",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "124": [
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "126": [
+        {
+          "name": "1355",
+          "value": "",
+          "kind": "result",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        },
+        {
+          "name": "1396",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__halve_b
+RAC: call halve_b
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:116:65
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:119:7
+RAC: node N_PRAGMA at arithmetic.adb:119:7
+RAC: check node N_IDENTIFIER
+RAC: expr N_IDENTIFIER at arithmetic.adb:119:50
+RAC: node N_LOOP_STATEMENT at arithmetic.adb:120:52
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:120:36
+RAC: expr N_IDENTIFIER at arithmetic.adb:120:41
+RAC: Loop from  0 to  127 by  1
+RAC: Iterate:  0
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:121:10
+RAC: node N_ASSIGNMENT_STATEMENT at arithmetic.adb:121:12
+RAC: expr N_IDENTIFIER at arithmetic.adb:121:15
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:20
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:24
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:34
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:38
+RAC: node N_EXIT_STATEMENT at arithmetic.adb:122:10
+RAC: expr N_OP_OR at arithmetic.adb:122:30
+RAC: expr N_OP_EQ at arithmetic.adb:122:26
+RAC: expr N_OP_ADD at arithmetic.adb:122:22
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:20
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:28
+RAC: expr N_OP_EQ at arithmetic.adb:122:45
+RAC: expr N_OP_ADD at arithmetic.adb:122:41
+RAC: expr N_OP_ADD at arithmetic.adb:122:36
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:34
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:38
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:122:43
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:47
+RAC: node N_PRAGMA at arithmetic.adb:123:10
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:124:27
+RAC: expr N_OP_GT at arithmetic.adb:124:15
+RAC: expr N_IDENTIFIER at arithmetic.adb:124:13
+RAC: expr N_OP_ADD at arithmetic.adb:124:23
+RAC: expr N_OP_ADD at arithmetic.adb:124:19
+RAC: expr N_IDENTIFIER at arithmetic.adb:124:17
+RAC: expr N_IDENTIFIER at arithmetic.adb:124:21
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:124:25
+RAC: expr N_IN at arithmetic.adb:124:33
+RAC: expr N_IDENTIFIER at arithmetic.adb:124:31
+RAC: Iterate:  1
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:121:10
+RAC: node N_ASSIGNMENT_STATEMENT at arithmetic.adb:121:12
+RAC: expr N_IDENTIFIER at arithmetic.adb:121:15
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:20
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:24
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:34
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:122:38
+RAC: node N_EXIT_STATEMENT at arithmetic.adb:122:10
+RAC: expr N_OP_OR at arithmetic.adb:122:30
+RAC: expr N_OP_EQ at arithmetic.adb:122:26
+RAC: expr N_OP_ADD at arithmetic.adb:122:22
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:20
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:28
+RAC: expr N_OP_EQ at arithmetic.adb:122:45
+RAC: expr N_OP_ADD at arithmetic.adb:122:41
+RAC: expr N_OP_ADD at arithmetic.adb:122:36
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:34
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:38
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:122:43
+RAC: expr N_IDENTIFIER at arithmetic.adb:122:47
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:126:14
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:126:7
+RAC: expr N_IDENTIFIER at arithmetic.adb:126:14
+RAC: call return
+RAC: check node N_OP_OR
+RAC: expr N_OP_OR at arithmetic.adb:114:21
+RAC: expr N_OP_EQ at arithmetic.adb:113:51
+RAC: expr N_OP_ADD at arithmetic.adb:113:34
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:113:26
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:113:43
+RAC: expr N_IDENTIFIER at arithmetic.adb:113:53
+RAC: expr N_OP_EQ at arithmetic.adb:114:60
+RAC: expr N_OP_ADD at arithmetic.adb:114:56
+RAC: expr N_OP_ADD at arithmetic.adb:114:39
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:114:31
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:114:48
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:114:58
+RAC: expr N_IDENTIFIER at arithmetic.adb:114:62
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "584": [
+        {
+          "name": "1646",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2147483648"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "163": [
+        {
+          "name": "1646",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2147483648"
+        }
+      ],
+      "166": [
+        {
+          "name": "1662",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ],
+      "168": [
+        {
+          "name": "1646",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2147483648"
+        },
+        {
+          "name": "0000",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_BOOLEAN",
+          "full_value": false
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__abs_test_a
+RAC: call abs_test_a
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:168:7
+RAC: node N_IF_STATEMENT at arithmetic.adb:168:7
+RAC: expr N_OP_GT at arithmetic.adb:168:12
+RAC: expr N_IDENTIFIER at arithmetic.adb:168:10
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:168:14
+RAC: node N_VARIABLE_REFERENCE_MARKER at arithmetic.adb:171:10
+RAC: node N_ASSIGNMENT_STATEMENT at arithmetic.adb:171:12
+RAC: expr N_QUALIFIED_EXPRESSION at arithmetic.adb:171:22
+RAC: expr N_OP_MINUS at arithmetic.adb:171:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:171:25
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "317": [
+        {
+          "name": "1735",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2147483648"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "190": [
+        {
+          "name": "1735",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2147483648"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__abs_test_c
+RAC: call abs_test_c
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:194:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:194:7
+RAC: expr N_OP_ABS at arithmetic.adb:194:14
+RAC: expr N_IDENTIFIER at arithmetic.adb:194:19
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "310": [
+        {
+          "name": "1759",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "197": [
+        {
+          "name": "1759",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "201": [
+        {
+          "name": "1758",
+          "value": "",
+          "kind": "result",
+          "type": "CNT_INTEGER",
+          "full_value": "9"
+        },
+        {
+          "name": "1759",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_mod_a
+RAC: call test_mod_a
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:201:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:201:7
+RAC: expr N_OP_MOD at arithmetic.adb:201:16
+RAC: expr N_IDENTIFIER at arithmetic.adb:201:14
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:201:20
+RAC: call return
+RAC: check node N_OP_EQ
+RAC: expr N_OP_EQ at arithmetic.adb:198:37
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:198:29
+RAC: expr N_IDENTIFIER at arithmetic.adb:198:39
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "310": [
+        {
+          "name": "1783",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-11"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "204": [
+        {
+          "name": "1783",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-11"
+        }
+      ],
+      "208": [
+        {
+          "name": "1782",
+          "value": "",
+          "kind": "result",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        },
+        {
+          "name": "1783",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-11"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_mod_b
+RAC: call test_mod_b
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:208:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:208:7
+RAC: expr N_OP_MOD at arithmetic.adb:208:16
+RAC: expr N_IDENTIFIER at arithmetic.adb:208:14
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:208:21
+RAC: call return
+RAC: check node N_OP_EQ
+RAC: expr N_OP_EQ at arithmetic.adb:205:37
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:205:29
+RAC: expr N_IDENTIFIER at arithmetic.adb:205:39
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "339": [
+        {
+          "name": "1808",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "360": [
+        {
+          "name": "1811",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ],
+      "436": [
+        {
+          "name": "1811",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ],
+      "446": [
+        {
+          "name": "1811",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ],
+      "457": [
+        {
+          "name": "1811",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "211": [
+        {
+          "name": "1808",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "212": [
+        {
+          "name": "1811",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ],
+      "218": [
+        {
+          "name": "1807",
+          "value": "",
+          "kind": "result",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        },
+        {
+          "name": "1811",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_mod_c
+RAC: call test_mod_c
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:214:40
+RAC: expr N_OP_AND at arithmetic.adb:214:28
+RAC: expr N_OP_GE at arithmetic.adb:214:21
+RAC: expr N_IDENTIFIER at arithmetic.adb:214:19
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:214:24
+RAC: expr N_OP_LE at arithmetic.adb:214:34
+RAC: expr N_IDENTIFIER at arithmetic.adb:214:32
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:214:37
+RAC: expr N_OP_NE at arithmetic.adb:214:46
+RAC: expr N_IDENTIFIER at arithmetic.adb:214:44
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:214:49
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:218:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:218:7
+RAC: expr N_OP_MOD at arithmetic.adb:218:16
+RAC: expr N_IDENTIFIER at arithmetic.adb:218:14
+RAC: expr N_IDENTIFIER at arithmetic.adb:218:20
+RAC: call return
+RAC: check node N_OP_EQ
+RAC: expr N_OP_EQ at arithmetic.adb:215:37
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:215:29
+RAC: expr N_IDENTIFIER at arithmetic.adb:215:39
+RAC: cntexmp: {
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "223": [
+        {
+          "name": "3095",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_div_a
+RAC: call test_div_a
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:226:7
+RAC: node N_PRAGMA at arithmetic.adb:226:7
+RAC: check node N_IF_EXPRESSION
+RAC: expr N_IF_EXPRESSION at arithmetic.adb:226:22
+RAC: expr N_OP_LT at arithmetic.adb:226:27
+RAC: expr N_IDENTIFIER at arithmetic.adb:226:25
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:226:29
+RAC: expr N_OP_LT at arithmetic.adb:226:43
+RAC: expr N_OP_DIVIDE at arithmetic.adb:226:38
+RAC: expr N_IDENTIFIER at arithmetic.adb:226:36
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:226:40
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:226:45
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "335": [
+        {
+          "name": "1874",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "356": [
+        {
+          "name": "1877",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "404": [
+        {
+          "name": "1877",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "230": [
+        {
+          "name": "1874",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "231": [
+        {
+          "name": "1877",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "237": [
+        {
+          "name": "1873",
+          "value": "",
+          "kind": "result",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        },
+        {
+          "name": "1877",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_rem_a
+RAC: call test_rem_a
+RAC: check node N_OP_NE
+RAC: expr N_OP_NE at arithmetic.adb:233:21
+RAC: expr N_IDENTIFIER at arithmetic.adb:233:19
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:233:24
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:237:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:237:7
+RAC: expr N_OP_REM at arithmetic.adb:237:16
+RAC: expr N_IDENTIFIER at arithmetic.adb:237:14
+RAC: expr N_IDENTIFIER at arithmetic.adb:237:20
+RAC: call return
+RAC: check node N_OP_EQ
+RAC: expr N_OP_EQ at arithmetic.adb:234:37
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:234:29
+RAC: expr N_IDENTIFIER at arithmetic.adb:234:39
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "486": [
+        {
+          "name": "1906",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-128"
+        }
+      ],
+      "507": [
+        {
+          "name": "1909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "555": [
+        {
+          "name": "1909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "240": [
+        {
+          "name": "1906",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-128"
+        }
+      ],
+      "241": [
+        {
+          "name": "1909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "247": [
+        {
+          "name": "1905",
+          "value": "",
+          "kind": "result",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        },
+        {
+          "name": "1909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_rem_b
+RAC: call test_rem_b
+RAC: check node N_OP_NE
+RAC: expr N_OP_NE at arithmetic.adb:243:21
+RAC: expr N_IDENTIFIER at arithmetic.adb:243:19
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:243:24
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:247:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:247:7
+RAC: expr N_OP_REM at arithmetic.adb:247:16
+RAC: expr N_IDENTIFIER at arithmetic.adb:247:14
+RAC: expr N_IDENTIFIER at arithmetic.adb:247:20
+RAC: call return
+RAC: check node N_OP_EQ
+RAC: expr N_OP_EQ at arithmetic.adb:244:37
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:244:29
+RAC: expr N_OP_ADD at arithmetic.adb:244:55
+RAC: expr N_OP_MINUS at arithmetic.adb:244:39
+RAC: expr N_OP_MULTIPLY at arithmetic.adb:244:50
+RAC: expr N_OP_DIVIDE at arithmetic.adb:244:45
+RAC: expr N_IDENTIFIER at arithmetic.adb:244:43
+RAC: expr N_IDENTIFIER at arithmetic.adb:244:47
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "486": [
+        {
+          "name": "1906",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-128"
+        }
+      ],
+      "507": [
+        {
+          "name": "1909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        }
+      ],
+      "555": [
+        {
+          "name": "1909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "240": [
+        {
+          "name": "1906",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-128"
+        }
+      ],
+      "241": [
+        {
+          "name": "1909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        }
+      ],
+      "247": [
+        {
+          "name": "1905",
+          "value": "",
+          "kind": "result",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        },
+        {
+          "name": "1909",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_rem_b
+RAC: call test_rem_b
+RAC: check node N_OP_NE
+RAC: expr N_OP_NE at arithmetic.adb:243:21
+RAC: expr N_IDENTIFIER at arithmetic.adb:243:19
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:243:24
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:247:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:247:7
+RAC: expr N_OP_REM at arithmetic.adb:247:16
+RAC: expr N_IDENTIFIER at arithmetic.adb:247:14
+RAC: expr N_IDENTIFIER at arithmetic.adb:247:20
+RAC: call return
+RAC: check node N_OP_EQ
+RAC: expr N_OP_EQ at arithmetic.adb:244:37
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:244:29
+RAC: expr N_OP_ADD at arithmetic.adb:244:55
+RAC: expr N_OP_MINUS at arithmetic.adb:244:39
+RAC: expr N_OP_MULTIPLY at arithmetic.adb:244:50
+RAC: expr N_OP_DIVIDE at arithmetic.adb:244:45
+RAC: expr N_IDENTIFIER at arithmetic.adb:244:43
+RAC: expr N_IDENTIFIER at arithmetic.adb:244:47
+RAC: expr N_IDENTIFIER at arithmetic.adb:244:52
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "617": [
+        {
+          "name": "1948",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ],
+      "626": [
+        {
+          "name": "1951",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-3"
+        }
+      ],
+      "629": [
+        {
+          "name": "1945",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-126"
+        }
+      ],
+      "638": [
+        {
+          "name": "1945",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-126"
+        }
+      ],
+      "641": [
+        {
+          "name": "1948",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "250": [
+        {
+          "name": "1945",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-126"
+        }
+      ],
+      "251": [
+        {
+          "name": "1948",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "127"
+        }
+      ],
+      "252": [
+        {
+          "name": "1951",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-3"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_rem_c
+RAC: call test_rem_c
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:254:35
+RAC: expr N_OP_AND at arithmetic.adb:254:25
+RAC: expr N_OP_NE at arithmetic.adb:254:20
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:18
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:254:23
+RAC: expr N_OP_GT at arithmetic.adb:254:31
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:29
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:33
+RAC: expr N_IN at arithmetic.adb:254:45
+RAC: expr N_OP_ADD at arithmetic.adb:254:41
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:39
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:43
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:257:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:257:7
+RAC: expr N_OP_REM at arithmetic.adb:257:22
+RAC: expr N_OP_ADD at arithmetic.adb:257:17
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:15
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:19
+RAC: expr N_OP_ADD at arithmetic.adb:257:37
+RAC: expr N_OP_REM at arithmetic.adb:257:30
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:28
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:34
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:39
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "617": [
+        {
+          "name": "1948",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        }
+      ],
+      "626": [
+        {
+          "name": "1951",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ],
+      "629": [
+        {
+          "name": "1945",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "638": [
+        {
+          "name": "1945",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "641": [
+        {
+          "name": "1948",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "250": [
+        {
+          "name": "1945",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "251": [
+        {
+          "name": "1948",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-2"
+        }
+      ],
+      "252": [
+        {
+          "name": "1951",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_rem_c
+RAC: call test_rem_c
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:254:35
+RAC: expr N_OP_AND at arithmetic.adb:254:25
+RAC: expr N_OP_NE at arithmetic.adb:254:20
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:18
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:254:23
+RAC: expr N_OP_GT at arithmetic.adb:254:31
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:29
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:33
+RAC: expr N_IN at arithmetic.adb:254:45
+RAC: expr N_OP_ADD at arithmetic.adb:254:41
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:39
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:43
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:257:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:257:7
+RAC: expr N_OP_REM at arithmetic.adb:257:22
+RAC: expr N_OP_ADD at arithmetic.adb:257:17
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:15
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:19
+RAC: expr N_OP_ADD at arithmetic.adb:257:37
+RAC: expr N_OP_REM at arithmetic.adb:257:30
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:28
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:34
+RAC: expr N_IDENTIFIER at arithmetic.adb:257:39
+RAC: cntexmp: {
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "250": [
+        {
+          "name": "1945",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-1"
+        }
+      ],
+      "251": [
+        {
+          "name": "1948",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "-128"
+        }
+      ],
+      "252": [
+        {
+          "name": "1951",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "0"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_rem_c
+RAC: call test_rem_c
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:254:35
+RAC: expr N_OP_AND at arithmetic.adb:254:25
+RAC: expr N_OP_NE at arithmetic.adb:254:20
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:18
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:254:23
+RAC: expr N_OP_GT at arithmetic.adb:254:31
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:29
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:33
+RAC: expr N_IN at arithmetic.adb:254:45
+RAC: expr N_OP_ADD at arithmetic.adb:254:41
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:39
+RAC: expr N_IDENTIFIER at arithmetic.adb:254:43
+RAC: cntexmp: {
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "272": [
+        {
+          "name": "2043",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__test_rem_e
+RAC: call test_rem_e
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:274:28
+RAC: expr N_OP_GT at arithmetic.adb:274:24
+RAC: expr N_IDENTIFIER at arithmetic.adb:274:22
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:274:26
+RAC: expr N_OP_LT at arithmetic.adb:274:34
+RAC: expr N_IDENTIFIER at arithmetic.adb:274:32
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:274:36
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:277:7
+RAC: node N_PRAGMA at arithmetic.adb:277:7
+RAC: check node N_OP_NE
+RAC: expr N_OP_NE at arithmetic.adb:277:32
+RAC: expr N_OP_REM at arithmetic.adb:277:26
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:277:22
+RAC: expr N_IDENTIFIER at arithmetic.adb:277:30
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:277:35
+RAC: cntexmp: {
+  "<dummy>": {
+    "previous": {
+    },
+    "current": {
+      "354": [
+        {
+          "name": "2150",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ]
+    }
+  },
+  "arithmetic.adb": {
+    "previous": {
+    },
+    "current": {
+      "291": [
+        {
+          "name": "2150",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ],
+      "298": [
+        {
+          "name": "2149",
+          "value": "",
+          "kind": "result",
+          "type": "CNT_INTEGER",
+          "full_value": "1"
+        },
+        {
+          "name": "2150",
+          "value": "",
+          "kind": "other",
+          "type": "CNT_INTEGER",
+          "full_value": "2"
+        }
+      ]
+    }
+  }
+}
+RAC: entry: arithmetic__ispositive_wrong
+RAC: call ispositive_wrong
+RAC: node N_HANDLED_SEQUENCE_OF_STATEMENTS at arithmetic.adb:298:7
+RAC: node N_SIMPLE_RETURN_STATEMENT at arithmetic.adb:298:7
+RAC: expr N_TYPE_CONVERSION at arithmetic.adb:298:14
+RAC: expr N_OP_SUBTRACT at arithmetic.adb:298:29
+RAC: expr N_TYPE_CONVERSION at arithmetic.adb:298:23
+RAC: expr N_IDENTIFIER at arithmetic.adb:298:26
+RAC: expr N_OP_DIVIDE at arithmetic.adb:298:47
+RAC: expr N_OP_SUBTRACT at arithmetic.adb:298:42
+RAC: expr N_OP_MULTIPLY at arithmetic.adb:298:34
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:298:32
+RAC: expr N_TYPE_CONVERSION at arithmetic.adb:298:36
+RAC: expr N_IDENTIFIER at arithmetic.adb:298:39
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:298:44
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:298:49
+RAC: call return
+RAC: check node N_OP_AND
+RAC: expr N_OP_AND at arithmetic.adb:293:51
+RAC: expr N_IF_EXPRESSION at arithmetic.adb:293:7
+RAC: expr N_OP_GE at arithmetic.adb:293:12
+RAC: expr N_IDENTIFIER at arithmetic.adb:293:10
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:293:15
+RAC: expr N_OP_EQ at arithmetic.adb:293:46
+RAC: expr N_ATTRIBUTE_REFERENCE at arithmetic.adb:293:38
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:293:48
+RAC: expr N_IF_EXPRESSION at arithmetic.adb:294:10
+RAC: expr N_OP_LT at arithmetic.adb:294:15
+RAC: expr N_IDENTIFIER at arithmetic.adb:294:13
+RAC: expr N_INTEGER_LITERAL at arithmetic.adb:294:17
+RAC: expr N_IDENTIFIER at arithmetic.adb:294:10
 arithmetic.adb:7:19: info: postcondition proved (CVC4: 1 VC)
 arithmetic.adb:7:38: info: overflow check proved (CVC4: 1 VC)
 arithmetic.adb:10:16: medium: overflow check might fail (e.g. when A = -2 and B = Integer'Last) [reason for check: result of subtraction must fit in a 32-bits machine integer] [possible fix: subprogram at line 6 should mention A and B in a precondition]
@@ -30,8 +2040,8 @@ arithmetic.adb:77:35: info: overflow check proved (CVC4: 1 VC)
 arithmetic.adb:79:07: info: initialization of "R" proved
 arithmetic.adb:83:14: info: range check proved (CVC4: 2 VC)
 arithmetic.adb:84:32: info: overflow check proved (CVC4: 2 VC)
-arithmetic.adb:85:36: info: loop invariant initialization proved (CVC4: 2 VC)
 arithmetic.adb:85:36: info: loop invariant preservation proved (CVC4: 2 VC)
+arithmetic.adb:85:36: info: loop invariant initialization proved (CVC4: 2 VC)
 arithmetic.adb:85:42: info: overflow check proved (CVC4: 2 VC)
 arithmetic.adb:88:14: info: range check proved (CVC4: 2 VC)
 arithmetic.adb:89:32: info: overflow check proved (CVC4: 2 VC)
@@ -62,8 +2072,8 @@ arithmetic.adb:164:19: info: postcondition proved (CVC4: 1 VC)
 arithmetic.adb:164:39: info: overflow check proved (CVC4: 1 VC)
 arithmetic.adb:166:07: info: initialization of "R" proved
 arithmetic.adb:169:24: info: range check proved (CVC4: 1 VC)
-arithmetic.adb:171:24: info: range check proved (CVC4: 1 VC)
 arithmetic.adb:171:24: medium: overflow check might fail (e.g. when N = Integer'First) [reason for check: result of negation must fit in a 32-bits machine integer] [possible fix: subprogram at line 163 should mention N in a precondition]
+arithmetic.adb:171:24: info: range check proved (CVC4: 1 VC)
 arithmetic.adb:178:19: info: postcondition proved (CVC4: 1 VC)
 arithmetic.adb:178:39: info: overflow check proved (CVC4: 1 VC)
 arithmetic.adb:180:07: info: initialization of "R" proved
