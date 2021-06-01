@@ -1194,11 +1194,7 @@ package body Gnat2Why.Error_Messages is
 
       begin
 
-         if
-           --  Poor man's command line option.
-           --  ??? replace with command line option
-           Ada.Environment_Variables.Value ("CHECK_CE", "no") = "yes"
-         then
+         if Gnat2Why_Args.Check_Counterexamples then
             begin
                Small_Step_Res := Small_Step_Rac (VC.Entity, Cntexmp, VC.Node);
 

@@ -59,6 +59,8 @@ gnatprove basic switches:
 gnatprove advanced switches:
  --checks-as-errors   Treat unproved check messages as errors
  --counterexamples=c  Enable or disable counterexamples (c=on,off*)
+ --check-counterexamples=c
+                      Enable or disable counterexample checking (c=on,off*)
  -d, --debug          Debug mode
  --debug-save-vcs     Do not delete intermediate files for provers
  --flow-debug         Extra debugging for flow analysis (requires graphviz)
