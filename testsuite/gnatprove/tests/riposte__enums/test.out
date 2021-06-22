@@ -6,12 +6,14 @@ enums.adb:19:22: medium: postcondition might fail
       |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   e.g. when A = Elem_0
         and B = Elem_1
+  (the code does not conform to the check)
 
 enums.adb:27:19: medium: postcondition might fail
    27 |     with Post => Enum_Equals_Broken_B'Result = (A = B)  --  @POSTCONDITION:FAIL @COUNTEREXAMPLE
       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   e.g. when A = Elem_0
         and B = Elem_1
+  (the code does not conform to the check)
 enums.adb:36:19: info: postcondition proved (CVC4: 2 VC)
 enums.adb:43:19: info: postcondition proved (CVC4: 2 VC)
 enums.adb:45:07: info: initialization of "R" proved
@@ -20,6 +22,7 @@ enums.adb:67:19: medium: postcondition might fail
    67 |     with Post => Enum_LT_5_Broken_A'Result = (A < Elem_5)  --  @POSTCONDITION:FAIL @COUNTEREXAMPLE
       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   e.g. when A = Elem_7
+  (the code does not conform to the check)
 enums.adb:69:07: info: initialization of "R" proved
 enums.adb:89:19: info: postcondition proved (CVC4: 3 VC)
 enums.adb:91:07: info: initialization of "R" proved
@@ -47,6 +50,7 @@ enums.adb:194:29: medium: range check might fail
   194 |      return Big_Type'Succ (A);  --  @RANGE_CHECK:FAIL
       |                            ^ here
   e.g. when A = Elem_8
+  (the code does not conform to the check)
   reason for check: value cannot be maximum value of the type
   possible fix: subprogram at line 190 should mention A in a precondition
   190 |   function Succ_A (A : in Big_Type) return Big_Type

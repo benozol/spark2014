@@ -6,6 +6,7 @@ arithmetic.adb:10:16: medium: overflow check might fail, cannot prove lower boun
       |             ~~^~~
   e.g. when A = -2
         and B = Integer'Last
+  (the code does not conform to the check)
   reason for check: result of subtraction must fit in a 32-bits machine integer
   possible fix: subprogram at line 6 should mention A and B in a precondition
     6 |   function Minus_I (A, B: Integer) return Integer
@@ -17,6 +18,7 @@ arithmetic.adb:17:14: medium: overflow check might fail, cannot prove upper boun
    17 |      return -A;  --  @OVERFLOW_CHECK:FAIL @COUNTEREXAMPLE
       |             ^~
   e.g. when A = Integer'First
+  (the code does not conform to the check)
   reason for check: result of negation must fit in a 32-bits machine integer
   possible fix: subprogram at line 13 should mention A in a precondition
    13 |   function Negation_I (A: Integer) return Integer
@@ -29,6 +31,7 @@ arithmetic.adb:24:16: medium: overflow check might fail, cannot prove lower boun
       |             ~~^~~
   e.g. when A = -2
         and B = 2
+  (oh, that's really a BAD example! it doesn't trigger any failure during RAC)
   reason for check: result of multiplication must fit in a 32-bits machine integer
   possible fix: subprogram at line 20 should mention A and B in a precondition
    20 |   function Multiply_A (A, B: Integer) return Integer
@@ -55,12 +58,14 @@ arithmetic.adb:59:22: medium: assertion might fail
   e.g. when C = 4
         and Double_A = 2
         and Double_B = 2
+  (oh, that's really a BAD example! it doesn't trigger any failure during RAC)
 
 arithmetic.adb:59:31: medium: overflow check might fail, cannot prove upper bound for Double_A * Double_B
    59 |      pragma Assert (Double_A * Double_B /= C);
       |                     ~~~~~~~~~^~~~~~~~~~
   e.g. when Double_A = 2
         and Double_B = 2
+  (oh, that's really a BAD example! it doesn't trigger any failure during RAC)
   reason for check: result of multiplication must fit in a 32-bits machine integer
 arithmetic.adb:65:11: info: flow dependencies proved
 arithmetic.adb:68:07: info: initialization of "C" proved
@@ -71,12 +76,14 @@ arithmetic.adb:71:22: medium: assertion might fail
   e.g. when A = 2
         and B = 2
         and C = 4
+  (oh, that's really a BAD example! it doesn't trigger any failure during RAC)
 
 arithmetic.adb:71:24: medium: overflow check might fail, cannot prove upper bound for A * B
    71 |      pragma Assert (A * B /= C);
       |                     ~~^~~
   e.g. when A = 2
         and B = 2
+  (oh, that's really a BAD example! it doesn't trigger any failure during RAC)
   reason for check: result of multiplication must fit in a 32-bits machine integer
 
 arithmetic.adb:76:21: medium: overflow check might fail, cannot prove lower bound for A + B
@@ -84,6 +91,7 @@ arithmetic.adb:76:21: medium: overflow check might fail, cannot prove lower boun
       |                  ~~^~~
   e.g. when A = -1
         and B = Integer'First
+  (the code does not conform to the check)
   reason for check: result of addition must fit in a 32-bits machine integer
 arithmetic.adb:77:19: info: postcondition proved (CVC4: 1 VC)
 arithmetic.adb:77:35: info: overflow check proved (CVC4: 2 VC)
@@ -109,6 +117,7 @@ arithmetic.adb:113:19: medium: postcondition might fail
   114 |                    or Halve_B'Result + Halve_B'Result + 1 = N
   e.g. when Halve_B'Result = 0
         and N = 2
+  (the example values could not be checked, because the giant-step RAC terminated because missing value for variable `result` at "'@Loop 1433@'arithmetic.adb", line 123, characters 0-0)
 arithmetic.adb:117:07: info: initialization of "R" proved
 arithmetic.adb:119:22: info: assertion proved (Trivial)
 arithmetic.adb:124:13: info: loop invariant initialization proved (CVC4: 3 VC)
@@ -118,6 +127,7 @@ arithmetic.adb:124:13: medium: loop invariant might not be preserved by an arbit
       |            ^~~~~~~~~~~~~
   e.g. when N = 2
         and R = 2
+  (the example values could not be checked, because the giant-step RAC terminated because missing value for variable `result` at "'@Loop 1433@'arithmetic.adb", line 123, characters 0-0)
 arithmetic.adb:130:19: info: postcondition proved (CVC4: 1 VC)
 arithmetic.adb:134:07: info: initialization of "R" proved
 arithmetic.adb:136:22: info: assertion proved (Trivial)
@@ -137,6 +147,7 @@ arithmetic.adb:171:24: medium: overflow check might fail, cannot prove upper bou
   171 |         R := Natural'(-N);  --  @OVERFLOW_CHECK:FAIL @COUNTEREXAMPLE
       |                      ~^~~
   e.g. when N = Integer'First
+  (the code does not conform to the check)
   reason for check: result of negation must fit in a 32-bits machine integer
   possible fix: subprogram at line 163 should mention N in a precondition
   163 |   function Abs_Test_A (N: in Integer) return Natural
@@ -155,6 +166,7 @@ arithmetic.adb:194:14: medium: overflow check might fail, cannot prove upper bou
   194 |      return abs (N);  --  @OVERFLOW_CHECK:FAIL @COUNTEREXAMPLE
       |             ^~~~~~~
   e.g. when N = Integer'First
+  (the code does not conform to the check)
   reason for check: result of absolute value must fit in a 32-bits machine integer
   possible fix: subprogram at line 190 should mention N in a precondition
   190 |   function Abs_Test_C (N: in Integer) return Natural
@@ -165,6 +177,7 @@ arithmetic.adb:198:19: medium: postcondition might fail
       |                  ^~~~~~~~~~~~~~~~~~~~~
   e.g. when N = -1
         and Test_Mod_A'Result = 9
+  (the code does not conform to the check)
 arithmetic.adb:201:16: info: division check proved (CVC4: 1 VC)
 
 arithmetic.adb:205:19: medium: postcondition might fail
@@ -172,6 +185,7 @@ arithmetic.adb:205:19: medium: postcondition might fail
       |                  ^~~~~~~~~~~~~~~~~~~~~
   e.g. when N = -11
         and Test_Mod_B'Result = -1
+  (the code does not conform to the check)
 arithmetic.adb:208:16: info: division check proved (CVC4: 1 VC)
 
 arithmetic.adb:215:19: medium: postcondition might fail
@@ -179,6 +193,7 @@ arithmetic.adb:215:19: medium: postcondition might fail
       |                  ^~~~~~~~~~~~~~~~~~~~~
   e.g. when A = -1
         and Test_Mod_C'Result = 0
+  (the code does not conform to the check)
 arithmetic.adb:218:16: info: division check proved (CVC4: 1 VC)
 
 arithmetic.adb:223:04: warning: analyzing unreferenced function "Test_Div_A"
@@ -190,6 +205,7 @@ arithmetic.adb:226:36: medium: assertion might fail, cannot prove N / 10 < 0
   226 |      pragma Assert (if N < 0 then N / 10 < 0);  --  @ASSERT:FAIL @COUNTEREXAMPLE
       |                                   ^~~~~~~~~~
   e.g. when N = -1
+  (the code does not conform to the check)
   possible fix: subprogram at line 223 should mention N in a precondition
   223 |   function Test_Div_A (N: in Byte) return Byte
       |   ^ here
@@ -200,6 +216,7 @@ arithmetic.adb:234:19: medium: postcondition might fail
       |                  ^~~~~~~~~~~~~~~~~~~~~
   e.g. when A = -1
         and Test_Rem_A'Result = 0
+  (the code does not conform to the check)
 arithmetic.adb:237:16: info: division check proved (CVC4: 1 VC)
 arithmetic.adb:244:19: info: postcondition proved (CVC4: 1 VC)
 
@@ -208,6 +225,7 @@ arithmetic.adb:244:39: medium: overflow check might fail, cannot prove upper bou
       |                                      ^~~~~~~~~~~~~~~
   e.g. when A = Byte'First
         and B = -2
+  (the code does not conform to the check)
   reason for check: result of negation must fit in a 8-bits machine integer
   possible fix: precondition of subprogram at line 240 should mention A
   240 |   function Test_Rem_B (A: in Byte;
@@ -219,6 +237,7 @@ arithmetic.adb:244:45: medium: overflow check might fail, cannot prove upper bou
       |                                         ~~~^~~~
   e.g. when A = Byte'First
         and B = -1
+  (the code does not conform to the check)
   reason for check: result of division must fit in a 8-bits machine integer
   possible fix: precondition of subprogram at line 240 should mention A
   240 |   function Test_Rem_B (A: in Byte;
@@ -232,6 +251,7 @@ arithmetic.adb:254:41: medium: overflow check might fail, cannot prove lower bou
       |                                      ~~^~~
   e.g. when A = -1
         and B = Byte'First
+  (the code does not conform to the check)
   reason for check: result of addition must fit in a 8-bits machine integer
   possible fix: use "and then" instead of "and" in precondition
 arithmetic.adb:257:17: info: overflow check proved (CVC4: 2 VC)
@@ -242,6 +262,7 @@ arithmetic.adb:257:22: medium: divide by zero might fail
   e.g. when A = -1
         and B = -2
         and C = 1
+  (the code does not conform to the check)
 arithmetic.adb:257:30: info: division check proved (CVC4: 1 VC)
 
 arithmetic.adb:257:37: medium: overflow check might fail, cannot prove lower bound for (A rem B) + C
@@ -250,6 +271,7 @@ arithmetic.adb:257:37: medium: overflow check might fail, cannot prove lower bou
   e.g. when A = Byte'First+2
         and B = Byte'Last
         and C = -3
+  (the code does not conform to the check)
   reason for check: result of addition must fit in a 8-bits machine integer
 arithmetic.adb:262:11: info: flow dependencies proved
 arithmetic.adb:266:22: info: assertion proved (Z3: 1 VC)
@@ -260,6 +282,7 @@ arithmetic.adb:277:22: medium: assertion might fail
   277 |      pragma Assert (100 rem A /= 0);  --  @ASSERT:FAIL
       |                     ^~~~~~~~~~~~~~
   e.g. when A = 2
+  (the code does not conform to the check)
 arithmetic.adb:277:26: info: division check proved (CVC4: 1 VC)
 arithmetic.adb:283:19: info: postcondition proved (CVC4: 2 VC; Trivial: 2 VC)
 arithmetic.adb:288:29: info: range check proved (CVC4: 2 VC)
@@ -270,6 +293,7 @@ arithmetic.adb:293:22: medium: postcondition might fail, cannot prove IsPositive
       |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
   e.g. when IsPositive_Wrong'Result = 1
         and X = 2
+  (the code does not conform to the check)
 arithmetic.adb:298:29: info: range check proved (CVC4: 2 VC)
 arithmetic.adb:298:47: info: division check proved (CVC4: 1 VC)
 counterexample expected for check at arithmetic.adb:10
