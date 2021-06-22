@@ -122,4 +122,20 @@ is
       return X;
    end Equality_Rewrite_Loop_Test;
 
+   function Weak_Subcontract (X : in Integer) return Integer
+     with Pre => (X < Integer'Last),
+         Post => (Weak_Subcontract'Result > X)
+   is
+   begin
+      return X + 1;
+   end Weak_Subcontract;
+
+   procedure Weak_Subcontract_Test (X : in Integer)
+   with Pre => (X < Integer'Last)
+   is
+     Y : constant Integer := Weak_Subcontract (X);
+   begin
+      pragma Assert (Y = X + 1);
+   end Weak_Subcontract_Test;
+
 end Basic;
