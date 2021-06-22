@@ -1,4 +1,5 @@
+from os import environ
 from test_support import *
 
-prove_all ()
+prove_all(sort_output=False, output="pretty")
 check_counterexamples()

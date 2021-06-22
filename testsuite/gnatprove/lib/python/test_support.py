@@ -737,7 +737,7 @@ def gnatprove(opt=["-P", default_project], no_fail=False, no_output=False,
 
 
 def prove_all(opt=None, steps=None, procs=parallel_procs,
-              vc_timeout=None, memlimit=None,
+              vc_timeout=None, memlimit=None, output="oneline",
               mode="all", counterexample=True,
               prover=default_provers,
               cache_allowed=True,
@@ -759,7 +759,7 @@ def prove_all(opt=None, steps=None, procs=parallel_procs,
        no_fail and filter_output are passed directly to
        gnatprove().
     """
-    fullopt  = ["--warnings=continue", "--output=oneline"]
+    fullopt  = ["--warnings=continue", "--output="+output]
     fullopt += ["--report=%s" % (report)]
     fullopt += ["--assumptions"]
     fullopt += ["-P", project, "--quiet"]

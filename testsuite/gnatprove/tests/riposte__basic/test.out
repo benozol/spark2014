@@ -1,8 +1,26 @@
 basic.adb:6:19: info: postcondition proved (CVC4: 1 VC)
-basic.adb:9:16: medium: range check might fail, cannot prove upper bound for A + B (e.g. when A = 1 and B = Unsigned_Byte'Last) [reason for check: returned value must fit in the result type of the function] [possible fix: subprogram at line 5 should mention A and B in a precondition]
+
+basic.adb:9:16: medium: range check might fail, cannot prove upper bound for A + B
+    9 |      return A + B;  --  @RANGE_CHECK:FAIL @COUNTEREXAMPLE
+      |             ~~^~~
+  e.g. when A = 1
+        and B = Unsigned_Byte'Last
+  reason for check: returned value must fit in the result type of the function
+  possible fix: subprogram at line 5 should mention A and B in a precondition
+    5 |   function Add_UB (A, B: Unsigned_Byte) return Unsigned_Byte
+      |   ^ here
 basic.adb:13:19: info: postcondition proved (CVC4: 1 VC)
 basic.adb:13:36: info: overflow check proved (CVC4: 2 VC)
-basic.adb:16:16: medium: overflow check might fail, cannot prove lower bound for A + B (e.g. when A = -1 and B = Integer'First) [reason for check: result of addition must fit in a 32-bits machine integer] [possible fix: subprogram at line 12 should mention A and B in a precondition]
+
+basic.adb:16:16: medium: overflow check might fail, cannot prove lower bound for A + B
+   16 |      return A + B;  --  @OVERFLOW_CHECK:FAIL @COUNTEREXAMPLE
+      |             ~~^~~
+  e.g. when A = -1
+        and B = Integer'First
+  reason for check: result of addition must fit in a 32-bits machine integer
+  possible fix: subprogram at line 12 should mention A and B in a precondition
+   12 |   function Add_I (A, B: Integer) return Integer
+      |   ^ here
 basic.adb:20:19: info: postcondition proved (CVC4: 3 VC)
 basic.adb:24:07: info: initialization of "R" proved
 basic.adb:31:30: info: assertion proved (CVC4: 2 VC; Trivial: 2 VC)
@@ -23,7 +41,12 @@ basic.adb:58:41: info: overflow check proved (CVC4: 2 VC)
 basic.adb:58:60: info: overflow check proved (CVC4: 2 VC)
 basic.adb:59:14: info: overflow check proved (CVC4: 2 VC)
 basic.adb:63:11: info: flow dependencies proved
-basic.adb:65:22: medium: postcondition might fail (e.g. when X = 7 and X'Old = 1)
+
+basic.adb:65:22: medium: postcondition might fail
+   65 |          Post    => X = X'Old + 5  --  @POSTCONDITION:FAIL @COUNTEREXAMPLE
+      |                     ^~~~~~~~~~~~~
+  e.g. when X = 7
+        and X'Old = 1
 basic.adb:65:32: info: overflow check proved (CVC4: 2 VC)
 basic.adb:69:14: info: overflow check proved (CVC4: 2 VC)
 basic.adb:70:30: info: assertion proved (CVC4: 2 VC)
@@ -32,7 +55,13 @@ basic.adb:70:60: info: overflow check proved (CVC4: 2 VC)
 basic.adb:71:14: info: overflow check proved (CVC4: 2 VC)
 basic.adb:75:19: info: postcondition proved (CVC4: 1 VC)
 basic.adb:77:07: info: initialization of "R" proved
-basic.adb:88:19: medium: postcondition might fail (e.g. when A = -1 and B = -2 and Int_Min_B'Result = -1)
+
+basic.adb:88:19: medium: postcondition might fail
+   88 |     with Post => Int_Min_B'Result = Integer'Min (A, B) --  @POSTCONDITION:FAIL @COUNTEREXAMPLE
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  e.g. when A = -1
+        and B = -2
+        and Int_Min_B'Result = -1
 basic.adb:90:07: info: initialization of "R" proved
 basic.adb:101:19: info: postcondition proved (CVC4: 1 VC)
 basic.adb:103:07: info: initialization of "R" proved
