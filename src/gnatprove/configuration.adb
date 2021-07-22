@@ -799,6 +799,10 @@ package body Configuration is
             Long_Switch => "--check-counterexamples=");
          Define_Switch
            (Config,
+            CL_Switches.Debug_Exec_RAC'Access,
+            Long_Switch => "--debug-exec-rac");
+         Define_Switch
+           (Config,
             CL_Switches.No_Counterexample'Access,
             Long_Switch => "--no-counterexample");
          Define_Switch
@@ -1722,6 +1726,8 @@ package body Configuration is
 
          FS.Check_Counterexamples :=
            FS.Counterexamples and then FS.Check_Counterexamples;
+
+         FS.Debug_Exec_RAC := CL_Switches.Debug_Exec_RAC;
 
       end Set_Level_Timeout_Steps_Provers;
 

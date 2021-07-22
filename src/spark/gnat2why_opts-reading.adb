@@ -70,6 +70,7 @@ package body Gnat2Why_Opts.Reading is
          No_Inlining           := Get_Opt (R, No_Inlining_Name);
          Info_Messages         := Get_Opt (R, Info_Messages_Name);
          Check_Counterexamples := Get_Opt (R, Check_Counterexamples_Name);
+         Debug_Exec_RAC        := Get_Opt (R, Debug_Exec_RAC_Name);
 
          if not Global_Gen_Mode then
             Proof_Warnings := Get_Opt (R, Proof_Warnings_Name);

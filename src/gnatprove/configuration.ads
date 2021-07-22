@@ -90,6 +90,7 @@ package Configuration is
       D                     : aliased Boolean;
       Dbg_No_Sem            : aliased Boolean;
       --  disable use of semaphores for ease of debugging
+      Debug_Exec_RAC        : aliased Boolean;
       Debug_Save_VCs        : aliased Boolean;
       Debug_Trivial         : aliased Boolean;
       Debug_Prover_Errors   : aliased Boolean;
@@ -225,6 +226,7 @@ package Configuration is
       Proof_Warnings        : Boolean;
       Counterexamples       : Boolean;
       Check_Counterexamples : Boolean;
+      Debug_Exec_RAC        : Boolean;
    end record;
 
    package File_Specific_Maps is new Ada.Containers.Indefinite_Hashed_Maps
