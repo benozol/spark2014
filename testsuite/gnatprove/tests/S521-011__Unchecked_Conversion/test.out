@@ -2,4 +2,4 @@ uc.adb:5:13: info: types in unchecked conversion have the same size (Trivial)
 uc.adb:5:51: info: type is suitable as source for unchecked conversion (Trivial)
 uc.adb:5:54: info: type is suitable for unchecked conversion (Trivial)
 uc.adb:8:19: high: "X" is not initialized
-uc.adb:8:19: medium: assertion might fail
+uc.adb:8:19: high: assertion might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]

@@ -10,3 +10,5 @@ member.adb:27:19: info: assertion proved (CVC4: 1 VC)
 member.adb:28:19: info: assertion proved (CVC4: 1 VC)
 member.adb:29:19: info: assertion proved (CVC4: 1 VC)
 member.adb:32:07: info: assertion proved (CVC4: 1 VC)
+
+Model without location

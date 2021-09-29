@@ -1,18 +1,18 @@
-sum.adb:16:33: info: loop invariant initialization proved (CVC4: 1 VC)
-sum.adb:16:33: info: loop invariant preservation proved (CVC4: 1 VC)
-sum.adb:16:33: info: overflow check proved (CVC4: 4 VC)
-sum.adb:16:46: info: overflow check proved (CVC4: 4 VC)
-sum.adb:17:33: info: loop invariant initialization proved (CVC4: 1 VC)
+sum.adb:16:33: medium: loop invariant might fail in first iteration
+sum.adb:16:33: medium: loop invariant might not be preserved by an arbitrary iteration
+sum.adb:16:33: medium: overflow check might fail, cannot prove lower bound for abs (S) [reason for check: result of absolute value must fit in a 32-bits machine integer] [possible fix: use pragma Overflow_Mode or switch -gnato13 or unit Ada.Numerics.Big_Numerics.Big_Integers]
+sum.adb:16:46: medium: overflow check might fail, cannot prove lower bound for K * 2000 [reason for check: result of multiplication must fit in a 32-bits machine integer] [possible fix: use pragma Overflow_Mode or switch -gnato13 or unit Ada.Numerics.Big_Numerics.Big_Integers]
+sum.adb:17:33: medium: loop invariant might fail in first iteration
 sum.adb:17:33: medium: loop invariant might not be preserved by an arbitrary iteration
-sum.adb:17:37: info: precondition proved (CVC4: 2 VC)
-sum.adb:17:48: info: range check proved (CVC4: 4 VC)
-sum.adb:18:17: info: overflow check proved (CVC4: 2 VC)
+sum.adb:17:37: medium: precondition might fail
+sum.adb:17:48: medium: range check might fail, cannot prove lower bound for K [reason for check: input value must fit in parameter type]
+sum.adb:18:17: medium: overflow check might fail, cannot prove lower bound for S + A (K) [reason for check: result of addition must fit in a 32-bits machine integer]
 sum.ads:11:13: info: function contract might not be available on recursive calls
 sum.ads:12:08: medium: "Sum" is recursive, terminating annotation could be incorrect
-sum.ads:15:17: info: overflow check proved (CVC4: 2 VC)
-sum.ads:15:19: info: precondition proved (CVC4: 1 VC)
-sum.ads:15:29: info: range check proved (CVC4: 2 VC)
-sum.ads:18:12: info: overflow check proved (CVC4: 2 VC)
-sum.ads:18:12: info: postcondition proved (CVC4: 1 VC)
+sum.ads:15:17: medium: overflow check might fail, cannot prove lower bound for A (I) + Sum (A, I + 1, J) [reason for check: result of addition must fit in a 32-bits machine integer] [possible fix: add precondition (if Sum (A, I + 1, J) >= 0 then A (I) <= Integer'Last - Sum (A, I + 1, J) else A (I) >= Integer'First - Sum (A, I + 1, J)) to subprogram at line 11]
+sum.ads:15:19: medium: precondition might fail
+sum.ads:15:29: medium: range check might fail, cannot prove lower bound for I + 1 [reason for check: input value must fit in parameter type] [possible fix: add precondition (I <= Index'Last - 1) to subprogram at line 11]
+sum.ads:18:12: medium: overflow check might fail, cannot prove lower bound for abs (Sum'result) [reason for check: result of absolute value must fit in a 32-bits machine integer]
+sum.ads:18:12: medium: postcondition might fail
 sum.ads:36:14: medium: postcondition might fail
-sum.ads:36:34: info: precondition proved (CVC4: 1 VC)
+sum.ads:36:34: medium: precondition might fail

@@ -9,3 +9,72 @@ main.adb:30:25: info: data dependencies proved
 main.adb:31:07: medium: memory leak might occur at end of scope
 main.adb:32:22: info: pointer dereference check proved (CVC4: 1 VC)
 main.adb:33:19: info: initialization check proved (CVC4: 2 VC; Trivial: 5 VC)
+  "__attr__init": false,
+  "__attr__init": false,
+  "__attr__init": true,
+  "rec__value": "1"
+  "rec__value": "1"
+  "rec__value": "1"
+ Chars = "x" (Name_Id=-399999877)
+ Chars = "x" (Name_Id=-399999877)
+ Chars = "x" (Name_Id=-399999877)
+ Ekind = E_Variable
+ Ekind = E_Variable
+ Ekind = E_Variable
+ Esize = 0 (Uint = -2099967232)
+ Esize = 0 (Uint = -2099967232)
+ Esize = 0 (Uint = -2099967232)
+ Etype = N_Defining_Identifier "h" (Entity_Id=849)
+ Etype = N_Defining_Identifier "h" (Entity_Id=849)
+ Etype = N_Defining_Identifier "h" (Entity_Id=849)
+ Has_Xref_Entry = True
+ Has_Xref_Entry = True
+ Has_Xref_Entry = True
+ Is_Elaboration_Checks_OK_Id = True
+ Is_Elaboration_Checks_OK_Id = True
+ Is_Elaboration_Checks_OK_Id = True
+ Is_Elaboration_Warnings_OK_Id = True
+ Is_Elaboration_Warnings_OK_Id = True
+ Is_Elaboration_Warnings_OK_Id = True
+ Is_Frozen = True
+ Is_Frozen = True
+ Is_Frozen = True
+ Needs_Debug_Info = True
+ Needs_Debug_Info = True
+ Needs_Debug_Info = True
+ Never_Set_In_Source = True
+ Never_Set_In_Source = True
+ Never_Set_In_Source = True
+ Next_Entity = N_Defining_Identifier "rec" (Entity_Id=864)
+ Next_Entity = N_Defining_Identifier "rec" (Entity_Id=864)
+ Next_Entity = N_Defining_Identifier "rec" (Entity_Id=864)
+ Parent = N_Object_Declaration (Node_Id=860)
+ Parent = N_Object_Declaration (Node_Id=860)
+ Parent = N_Object_Declaration (Node_Id=860)
+ Prev_Entity = N_Defining_Identifier "h" (Entity_Id=849)
+ Prev_Entity = N_Defining_Identifier "h" (Entity_Id=849)
+ Prev_Entity = N_Defining_Identifier "h" (Entity_Id=849)
+ Referenced = True
+ Referenced = True
+ Referenced = True
+ SPARK_Pragma = N_Pragma (Node_Id=984)
+ SPARK_Pragma = N_Pragma (Node_Id=984)
+ SPARK_Pragma = N_Pragma (Node_Id=984)
+ SPARK_Pragma_Inherited = True
+ SPARK_Pragma_Inherited = True
+ SPARK_Pragma_Inherited = True
+ Scope = N_Defining_Identifier "main" (Entity_Id=841)
+ Scope = N_Defining_Identifier "main" (Entity_Id=841)
+ Scope = N_Defining_Identifier "main" (Entity_Id=841)
+ Sloc = 92  main.adb:6:4
+ Sloc = 92  main.adb:6:4
+ Sloc = 92  main.adb:6:4
+N_Defining_Identifier "x" (Entity_Id=858) (source)
+N_Defining_Identifier "x" (Entity_Id=858) (source)
+N_Defining_Identifier "x" (Entity_Id=858) (source)
+{
+{
+{
+}
+}
+}

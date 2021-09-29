@@ -16,10 +16,10 @@ weird.ads:5:06: error: procedure with aspect Annotate Might_Not_Return must not 
 weird.ads:10:06: error: procedure with aspect Annotate Terminating must not also be marked with Might_Not_Return
 weird.ads:14:06: error: procedure with aspect Annotate Terminating must not also be marked with No_Return
 gnatprove: error during generation of Global contracts
-pack.adb:5:07: medium: exception might be raised (e.g. when B = True)
+pack.adb:5:07: medium: exception might be raised
 pack.adb:11:10: medium: precondition might fail
 pack.adb:20:22: info: assertion proved (CVC4: 1 VC)
-pack.adb:29:10: medium: precondition might fail
+pack.adb:29:10: high: precondition might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
 pack.ads:7:06: info: data dependencies proved
 pack.ads:8:14: info: postcondition proved (CVC4: 1 VC)
 pack.ads:12:06: info: data dependencies proved

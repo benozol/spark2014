@@ -1,1 +1,19 @@
 test_codepeer_init.adb:8:14: medium: postcondition might fail
+  "__attr__init": false,
+  "rec__value": "0"
+ Chars = "x" (Name_Id=-399999877)
+ Ekind = E_Out_Parameter
+ Etype = N_Defining_Identifier "r" (Entity_Id=849)
+ Has_Xref_Entry = True
+ Is_Frozen = True
+ Is_Only_Out_Parameter = True
+ Needs_Debug_Info = True
+ Never_Set_In_Source = True
+ Next_Entity = N_Defining_Identifier "T1b" (Entity_Id=897)
+ Parent = N_Parameter_Specification (Node_Id=860)
+ Referenced = True
+ Scope = N_Defining_Identifier "bad" (Entity_Id=858)
+ Sloc = 121  test_codepeer_init.adb:6:19
+N_Defining_Identifier "x" (Entity_Id=859) (source)
+{
+}

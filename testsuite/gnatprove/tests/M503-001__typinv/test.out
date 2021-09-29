@@ -38,17 +38,17 @@ inside_out.adb:3:14: info: local subprogram "Body_Create" only analyzed in the c
 inside_out.adb:3:27: info: initialization of "X" proved
 inside_out.adb:5:14: info: add a contract to analyze it separately from calling contexts
 inside_out.adb:5:14: info: local subprogram "Body_Update" only analyzed in the context of calls
-inside_out.adb:16:07: medium: invariant check might fail, in call inlined at inside_out.adb:58 (e.g. when X = 0)
+inside_out.adb:16:07: high: invariant check might fail, in call inlined at inside_out.adb:58 (e.g. when X = 0) [the code does not conform to the check, or some loop invariant or post condition is too weak]
+inside_out.adb:20:08: high: invariant check might fail [the code does not conform to the check, or some loop invariant or post condition is too weak] [possible fix: subprogram at line 7 should mention X and Mode in a precondition]
 inside_out.adb:20:08: info: implicit function contract not available for proof ("Get" might not return)
-inside_out.adb:20:08: medium: invariant check might fail [possible fix: subprogram at line 7 should mention X and Mode in a precondition]
 inside_out.adb:30:15: info: overflow check proved (CVC4: 2 VC)
 inside_out.adb:45:13: info: analyzing call to "Body_Create" in context
-inside_out.adb:56:13: medium: invariant check might fail (e.g. when X = 0)
+inside_out.adb:56:13: high: invariant check might fail (e.g. when X = 0) [the code does not conform to the check, or some loop invariant or post condition is too weak]
 inside_out.adb:58:13: info: analyzing call to "Body_Update" in context
 inside_out.adb:68:20: info: invariant check proved (CVC4: 1 VC)
-inside_out.ads:5:14: medium: invariant check might fail
+inside_out.ads:5:14: high: invariant check might fail [some loop invariant or post condition is too weak]
 inside_out.ads:5:22: info: initialization of "X" proved
-inside_out.ads:7:14: medium: invariant check might fail (e.g. when X = 0)
+inside_out.ads:7:14: high: invariant check might fail (e.g. when X = -1) [the code does not conform to the check, or some loop invariant or post condition is too weak]
 inside_out.ads:7:22: warning: unused initial value of "X"
 inside_out.ads:13:09: info: invariant check proved on default value (CVC4: 1 VC)
 inside_out.ads:14:23: info: range check proved (CVC4: 2 VC)

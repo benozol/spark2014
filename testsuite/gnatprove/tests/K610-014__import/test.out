@@ -1,1 +1,1 @@
-p.ads:7:43: medium: postcondition might fail, cannot prove not (Left = Right) (e.g. when Left = 0 and Right = 0)
+p.ads:7:43: high: postcondition might fail, cannot prove not (Left = Right) (e.g. when Left = 0 and Right = 0) [the code does not conform to the check, or some loop invariant or post condition is too weak]

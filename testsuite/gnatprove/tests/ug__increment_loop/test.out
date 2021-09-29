@@ -2,17 +2,15 @@
 increment_loop.adb:4:11: medium: postcondition might fail
     4 |  Post => X = X'Old + N
       |          ^~~~~~~~~~~~~
-  e.g. when N = 1
-        and X = 1
-        and X'Old = 1
   possible fix: loop at line 7 should mention X in a loop invariant
     7 |   for I in 1 .. N loop
       |                   ^ here
 
-increment_loop.adb:8:14: medium: overflow check might fail, cannot prove upper bound for X + 1
+increment_loop.adb:8:14: high: overflow check might fail, cannot prove upper bound for X + 1
     8 |      X := X + 1;
       |           ~~^~~
   e.g. when X = Integer'Last
+  (the code does not conform to the check, or some loop invariant or post condition is too weak)
   reason for check: result of addition must fit in a 32-bits machine integer
   possible fix: loop at line 7 should mention X in a loop invariant
     7 |   for I in 1 .. N loop

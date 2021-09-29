@@ -1,1 +1,1 @@
-bug_align.adb:11:20: medium: assertion might fail
+bug_align.adb:11:20: high: assertion might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]

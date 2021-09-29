@@ -12,7 +12,7 @@ nonterminating.adb:4:14: info: add a contract to analyze it separately from call
 nonterminating.adb:4:14: info: local subprogram "Infinite_Loop" only analyzed in the context of calls
 nonterminating.adb:4:14: warning: subprogram "Infinite_Loop" has no effect
 nonterminating.adb:7:20: medium: loop might be nonterminating, terminating annotation on "Nonterminating" could be incorrect, in call inlined at nonterminating.adb:21
-nonterminating.adb:8:15: medium: overflow check might fail, cannot prove upper bound for -X, in call inlined at nonterminating.adb:21 (e.g. when X = Integer'First) [reason for check: result of negation must fit in a 32-bits machine integer]
+nonterminating.adb:8:15: high: overflow check might fail, cannot prove upper bound for -X, in call inlined at nonterminating.adb:21 (e.g. when X = Integer'First) [the code does not conform to the check, or some loop invariant or post condition is too weak] [reason for check: result of negation must fit in a 32-bits machine integer]
 nonterminating.adb:12:33: warning: unused variable "I"
 nonterminating.adb:18:33: medium: call to "Infinite_Recursion" might be nonterminating, terminating annotation on "Nonterminating" could be incorrect
 nonterminating.adb:18:33: medium: loop might be nonterminating, terminating annotation on "Nonterminating" could be incorrect

@@ -1,7 +1,76 @@
-twodim.adb:8:16: medium: divide by zero might fail (e.g. when I = 1 and K = 1) [possible fix: add precondition (M (I,K+1) + 1 /= 0) to subprogram at twodim.ads:10]
-twodim.adb:8:25: medium: array index check might fail (e.g. when K = One_Twenty'Last) [reason for check: result of addition must be a valid index into the array] [possible fix: add precondition (K <= 127 - 1) to subprogram at twodim.ads:10]
-twodim.adb:8:29: medium: overflow check might fail, cannot prove upper bound for M (I,K+1) + 1 (e.g. when I = 1 and K = 1) [reason for check: result of addition must fit in a 32-bits machine integer] [possible fix: add precondition (M (I,K+1) <= Integer'Last - 1) to subprogram at twodim.ads:10]
+twodim.adb:8:16: medium: divide by zero might fail [possible fix: add precondition (M (I,K+1) + 1 /= 0) to subprogram at twodim.ads:10]
+twodim.adb:8:25: medium: array index check might fail [reason for check: result of addition must be a valid index into the array] [possible fix: add precondition (K <= 127 - 1) to subprogram at twodim.ads:10]
+twodim.adb:8:29: medium: overflow check might fail, cannot prove upper bound for M (I,K+1) + 1 [reason for check: result of addition must fit in a 32-bits machine integer] [possible fix: add precondition (M (I,K+1) <= Integer'Last - 1) to subprogram at twodim.ads:10]
 twodim.adb:11:04: warning: analyzing unreferenced function "G"
-twodim.adb:13:15: medium: range check might fail, cannot prove upper bound for M'Length (e.g. when M'First(1) = -2147483647 and M'First(2) = 1 and M'Last(1) = 0 and M'Last(2) = 0)
-twodim.adb:13:27: medium: overflow check might fail, cannot prove upper bound for M'Length (1) + M'length (e.g. when M'First(1) = -2147483646 and M'First(2) = 0 and M'Last(1) = 0 and M'Last(2) = 0) [reason for check: result of addition must fit in a 32-bits machine integer]
-twodim.adb:13:30: medium: range check might fail, cannot prove upper bound for M'Length (e.g. when M'First(1) = 1 and M'First(2) = -2147483647 and M'Last(1) = 0 and M'Last(2) = 0)
+twodim.adb:13:15: medium: range check might fail, cannot prove upper bound for M'Length
+twodim.adb:13:27: medium: overflow check might fail, cannot prove upper bound for M'Length (1) + M'length [reason for check: result of addition must fit in a 32-bits machine integer]
+twodim.adb:13:30: medium: range check might fail, cannot prove upper bound for M'Length
+    "rec__first": "0",
+    "rec__first": "0",
+    "rec__first": "0",
+    "rec__first": "0",
+    "rec__first": "0",
+    "rec__first": "0",
+    "rec__last": "0"
+    "rec__last": "0"
+    "rec__last": "0"
+    "rec__last": "0"
+    "rec__last": "0"
+    "rec__last": "0"
+  "rt": {
+  "rt": {
+  "rt": {
+  "rt_2": {
+  "rt_2": {
+  "rt_2": {
+  }
+  }
+  }
+  },
+  },
+  },
+ Actual_Subtype = N_Defining_Identifier "S3b" (Entity_Id=1054)
+ Actual_Subtype = N_Defining_Identifier "S3b" (Entity_Id=1054)
+ Actual_Subtype = N_Defining_Identifier "S3b" (Entity_Id=1054)
+ Chars = "m" (Name_Id=-399999888)
+ Chars = "m" (Name_Id=-399999888)
+ Chars = "m" (Name_Id=-399999888)
+ Ekind = E_In_Parameter
+ Ekind = E_In_Parameter
+ Ekind = E_In_Parameter
+ Etype = N_Defining_Identifier "any_matrix" (Entity_Id=918)
+ Etype = N_Defining_Identifier "any_matrix" (Entity_Id=918)
+ Etype = N_Defining_Identifier "any_matrix" (Entity_Id=918)
+ Has_Xref_Entry = True
+ Has_Xref_Entry = True
+ Has_Xref_Entry = True
+ Is_Frozen = True
+ Is_Frozen = True
+ Is_Frozen = True
+ Needs_Debug_Info = True
+ Needs_Debug_Info = True
+ Needs_Debug_Info = True
+ Never_Set_In_Source = True
+ Never_Set_In_Source = True
+ Never_Set_In_Source = True
+ Parent = N_Parameter_Specification (Node_Id=979)
+ Parent = N_Parameter_Specification (Node_Id=979)
+ Parent = N_Parameter_Specification (Node_Id=979)
+ Referenced = True
+ Referenced = True
+ Referenced = True
+ Scope = N_Defining_Identifier "g" (Entity_Id=982)
+ Scope = N_Defining_Identifier "g" (Entity_Id=982)
+ Scope = N_Defining_Identifier "g" (Entity_Id=982)
+ Sloc = 235  twodim.adb:11:16
+ Sloc = 235  twodim.adb:11:16
+ Sloc = 235  twodim.adb:11:16
+N_Defining_Identifier "m" (Entity_Id=983) (source)
+N_Defining_Identifier "m" (Entity_Id=983) (source)
+N_Defining_Identifier "m" (Entity_Id=983) (source)
+{
+{
+{
+}
+}
+}

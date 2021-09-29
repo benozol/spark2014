@@ -28,11 +28,11 @@ test_constrained.adb:18:14: warning: subprogram "Test_2" has no effect
 test_constrained.adb:19:07: medium: memory leak might occur at end of scope
 test_constrained.adb:21:09: info: pointer dereference check proved (CVC4: 1 VC)
 test_constrained.adb:21:09: info: range check proved (CVC4: 1 VC)
-test_constrained.adb:21:16: medium: discriminant check might fail (e.g. when Y.all = (B => True, X => 0))
+test_constrained.adb:21:16: medium: discriminant check might fail
 test_constrained.adb:24:04: warning: analyzing unreferenced procedure "Test_3"
 test_constrained.adb:24:14: warning: subprogram "Test_3" has no effect
 test_constrained.adb:25:07: info: absence of memory leak at end of scope proved (CVC4: 1 VC)
-test_constrained.adb:27:22: medium: assertion might fail
+test_constrained.adb:27:22: high: assertion might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
 test_constrained.adb:27:28: info: pointer dereference check proved (CVC4: 1 VC)
 test_constrained.adb:30:04: warning: analyzing unreferenced procedure "Test_4"
 test_constrained.adb:30:14: warning: subprogram "Test_4" has no effect
@@ -121,3 +121,5 @@ test_tag.adb:76:07: info: initialization of "R" proved
 test_tag.adb:77:07: medium: memory leak might occur at end of scope
 test_tag.adb:79:09: info: pointer dereference check proved (CVC4: 1 VC)
 test_tag.adb:79:13: medium: tag check might fail
+
+Model without location

@@ -6,5 +6,5 @@ invalid_read_in_elab.adb:20:25: error: object was moved at line 11
 invalid_read_in_elab.adb:27:17: warning: subprogram "P" has no effect
 invalid_read_in_elab.adb:35:25: error: object was borrowed at line 30
 invalid_read_in_elab.adb:39:25: error: object was borrowed at line 30
-invalid_read_in_elab_2.ads:8:24: medium: pointer dereference check might fail (e.g. when X = null)
+invalid_read_in_elab_2.ads:8:24: high: pointer dereference check might fail (e.g. when X = null) [the code does not conform to the check, or some loop invariant or post condition is too weak]
 gnatprove: error during flow analysis and proof

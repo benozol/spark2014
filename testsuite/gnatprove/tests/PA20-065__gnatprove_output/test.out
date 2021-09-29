@@ -60,7 +60,7 @@ gnatprove advanced switches:
  --checks-as-errors   Treat unproved check messages as errors
  --counterexamples=c  Enable or disable counterexamples (c=on,off*)
  --check-counterexamples=c
-                      Enable or disable counterexample checking (c=on,off*)
+                      Enable or disable counterexample checking (c=on*,off)
  -d, --debug          Debug mode
  --debug-save-vcs     Do not delete intermediate files for provers
  --debug-exec-rac     Only execute runtime assertion checking (RAC) and exit

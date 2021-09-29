@@ -1,8 +1,8 @@
-p1.adb:5:18: medium: assertion might fail
+p1.adb:5:18: high: assertion might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
 p1.ads:1:17: info: initial condition proved (CVC4: 1 VC)
 p1.ads:2:03: info: initialization of "Body1_Elaborated" proved
 p1.ads:3:13: warning: subprogram "P" has no effect
-p2.adb:5:18: medium: assertion might fail
+p2.adb:5:18: high: assertion might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
 p2.ads:1:17: info: initial condition proved (CVC4: 1 VC)
 p2.ads:2:03: info: initialization of "Body2_Elaborated" proved
 p2.ads:3:13: warning: subprogram "P" has no effect

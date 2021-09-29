@@ -35,7 +35,7 @@ state_machine_with_discriminant.adb:35:13: info: precondition proved (CVC4: 3 VC
 state_machine_with_discriminant.ads:26:14: info: postcondition proved (CVC4: 1 VC)
 state_machine_with_discriminant.ads:30:14: info: postcondition proved (CVC4: 1 VC)
 state_machine_with_discriminant.ads:34:14: info: postcondition proved (CVC4: 1 VC)
-state_machine_with_discriminant.ads:40:14: info: postcondition proved (CVC4: 1 VC)
+state_machine_with_discriminant.ads:40:14: info: postcondition proved (Trivial: 1 VC)
 state_machine_with_oop.adb:4:07: info: raise statement or expression proved unreachable (CVC4: 1 VC)
 state_machine_with_oop.adb:5:07: warning: this statement is never reached
 state_machine_with_oop.adb:18:07: info: raise statement or expression proved unreachable (CVC4: 1 VC)
@@ -79,4 +79,4 @@ state_machine_with_oop.ads:65:28: warning: unused variable "Current"
 state_machine_with_oop.ads:66:28: warning: unused variable "Current"
 state_machine_with_oop.ads:69:13: high: all paths in "Move_To_B" raise exceptions or do not terminate normally
 state_machine_with_oop.ads:70:13: high: all paths in "Move_To_C" raise exceptions or do not terminate normally
-state_machine_with_oop.ads:78:49: medium: range check might fail, cannot prove upper bound for Root_State'Size [reason for check: default component value must fit in the type]
+state_machine_with_oop.ads:78:49: high: range check might fail, cannot prove upper bound for Root_State'Size [the code does not conform to the check, or some loop invariant or post condition is too weak] [reason for check: default component value must fit in the type]

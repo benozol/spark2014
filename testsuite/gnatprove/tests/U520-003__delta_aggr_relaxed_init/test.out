@@ -28,3 +28,26 @@ main.adb:72:26: info: data dependencies proved
 main.adb:73:28: info: index check proved (CVC4: 2 VC)
 main.adb:74:19: info: initialization check proved (CVC4: 2 VC; Trivial: 4 VC)
 main.adb:74:28: info: index check proved (CVC4: 2 VC)
+  "__attr__init": false,
+  "rec__value": "0"
+ Chars = "x" (Name_Id=-399999877)
+ Ekind = E_Variable
+ Esize = 0 (Uint = -2099967232)
+ Etype = N_Defining_Identifier "rec" (Entity_Id=849)
+ Has_Xref_Entry = True
+ Is_Elaboration_Checks_OK_Id = True
+ Is_Elaboration_Warnings_OK_Id = True
+ Is_Frozen = True
+ Needs_Debug_Info = True
+ Never_Set_In_Source = True
+ Next_Entity = N_Defining_Identifier "y" (Entity_Id=869)
+ Parent = N_Object_Declaration (Node_Id=864)
+ Prev_Entity = N_Defining_Identifier "rec" (Entity_Id=849)
+ Referenced = True
+ SPARK_Pragma = N_Pragma (Node_Id=1211)
+ SPARK_Pragma_Inherited = True
+ Scope = N_Defining_Identifier "main" (Entity_Id=841)
+ Sloc = 113  main.adb:7:4
+N_Defining_Identifier "x" (Entity_Id=862) (source)
+{
+}

@@ -1,1 +1,1 @@
-minimal.adb:12:19: medium: assertion might fail
+minimal.adb:12:19: high: assertion might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]

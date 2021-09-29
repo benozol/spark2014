@@ -5,10 +5,10 @@ test_init_by_proof.adb:28:26: info: overflow check proved (CVC4: 2 VC)
 test_init_by_proof.adb:29:22: info: initialization check proved (CVC4: 1 VC)
 test_init_by_proof.adb:29:25: info: overflow check proved (CVC4: 2 VC)
 test_init_by_proof.adb:34:14: warning: subprogram "Test_Discr_2" has no effect
+test_init_by_proof.adb:37:23: high: initialization check might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
 test_init_by_proof.adb:37:23: info: discriminant check proved (CVC4: 1 VC)
-test_init_by_proof.adb:37:23: medium: initialization check might fail
 test_init_by_proof.adb:37:26: info: overflow check proved (CVC4: 2 VC)
-test_init_by_proof.adb:38:22: medium: initialization check might fail
+test_init_by_proof.adb:38:22: high: initialization check might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
 test_init_by_proof.adb:38:25: info: overflow check proved (CVC4: 2 VC)
 test_init_by_proof.adb:43:14: warning: subprogram "Test_Init_Attr" has no effect
 test_init_by_proof.adb:47:22: info: assertion proved (CVC4: 6 VC; Trivial: 11 VC)
@@ -21,27 +21,27 @@ test_init_by_proof.adb:60:24: info: initialization check proved (CVC4: 1 VC)
 test_init_by_proof.adb:61:25: info: initialization check proved (CVC4: 1 VC)
 test_init_by_proof.adb:65:04: warning: analyzing unreferenced procedure "P2"
 test_init_by_proof.adb:65:14: warning: subprogram "P2" has no effect
-test_init_by_proof.adb:67:25: medium: initialization check might fail
-test_init_by_proof.adb:68:24: medium: initialization check might fail
-test_init_by_proof.adb:69:25: medium: initialization check might fail
+test_init_by_proof.adb:67:25: high: initialization check might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
+test_init_by_proof.adb:68:24: high: initialization check might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
+test_init_by_proof.adb:69:25: high: initialization check might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
 test_init_by_proof.adb:73:04: warning: analyzing unreferenced procedure "P3"
 test_init_by_proof.adb:73:14: warning: subprogram "P3" has no effect
 test_init_by_proof.adb:76:24: info: initialization check proved (CVC4: 1 VC)
 test_init_by_proof.adb:80:04: warning: analyzing unreferenced procedure "P4"
 test_init_by_proof.adb:80:14: warning: subprogram "P4" has no effect
 test_init_by_proof.adb:82:23: high: "X2.X" is not initialized
-test_init_by_proof.adb:83:24: medium: initialization check might fail
+test_init_by_proof.adb:83:24: high: initialization check might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
 test_init_by_proof.adb:87:04: warning: analyzing unreferenced procedure "P5"
 test_init_by_proof.adb:87:14: warning: subprogram "P5" has no effect
 test_init_by_proof.adb:93:15: info: initialization check proved (CVC4: 1 VC)
-test_init_by_proof.adb:94:15: medium: initialization check might fail
+test_init_by_proof.adb:94:15: high: initialization check might fail [some loop invariant or post condition is too weak]
 test_init_by_proof.adb:96:04: warning: analyzing unreferenced procedure "P6"
 test_init_by_proof.adb:96:14: warning: subprogram "P6" has no effect
 test_init_by_proof.adb:97:07: info: initialization of parts of "X2" without Relaxed_Initialization proved
-test_init_by_proof.adb:103:15: medium: initialization check might fail (e.g. when X2 = (X => 1, Y => ?, Z => False))
+test_init_by_proof.adb:103:15: high: initialization check might fail (e.g. when X2 = (X => 1, Y => ?, Z => False)) [some loop invariant or post condition is too weak]
 test_init_by_proof.adb:105:04: warning: analyzing unreferenced procedure "P7"
 test_init_by_proof.adb:105:14: warning: subprogram "P7" has no effect
-test_init_by_proof.adb:111:15: medium: initialization check might fail
+test_init_by_proof.adb:111:15: high: initialization check might fail [some loop invariant or post condition is too weak]
 test_init_by_proof.adb:112:15: info: initialization check proved (CVC4: 1 VC)
 test_init_by_proof.adb:114:04: warning: analyzing unreferenced procedure "P8"
 test_init_by_proof.adb:114:14: warning: subprogram "P8" has no effect
@@ -49,14 +49,14 @@ test_init_by_proof.adb:120:13: high: "X2.X" is not initialized
 test_init_by_proof.adb:121:15: info: initialization check proved (CVC4: 1 VC)
 test_init_by_proof.adb:123:04: warning: analyzing unreferenced procedure "P9"
 test_init_by_proof.adb:123:14: warning: subprogram "P9" has no effect
-test_init_by_proof.adb:125:19: medium: initialization check might fail
+test_init_by_proof.adb:125:19: high: initialization check might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]
 test_init_by_proof.adb:129:04: warning: analyzing unreferenced procedure "P10"
 test_init_by_proof.adb:129:14: warning: subprogram "P10" has no effect
 test_init_by_proof.adb:135:13: info: initialization check proved (CVC4: 2 VC; Trivial: 3 VC)
 test_init_by_proof.adb:137:04: warning: analyzing unreferenced procedure "Q"
 test_init_by_proof.adb:137:14: warning: subprogram "Q" has no effect
 test_init_by_proof.adb:138:07: info: initialization of parts of "X" without Relaxed_Initialization proved
-test_init_by_proof.adb:142:14: medium: initialization check might fail (e.g. when X = (F => (X => 0, Y => ?, Z => True), G => ?))
+test_init_by_proof.adb:142:14: high: initialization check might fail (e.g. when X = (F => (X => 0, Y => ?, Z => True), G => ?)) [the code does not conform to the check, or some loop invariant or post condition is too weak]
 test_init_by_proof.adb:144:04: warning: analyzing unreferenced procedure "Q1"
 test_init_by_proof.adb:144:14: warning: subprogram "Q1" has no effect
 test_init_by_proof.adb:145:07: info: initialization of parts of "X" without Relaxed_Initialization proved
@@ -72,7 +72,7 @@ test_init_by_proof_mem.adb:22:16: info: range check proved (CVC4: 2 VC)
 test_init_by_proof_mem.adb:22:23: info: discriminant check proved (CVC4: 1 VC)
 test_init_by_proof_mem.adb:29:22: info: assertion proved (CVC4: 1 VC)
 test_init_by_proof_mem.adb:30:22: info: assertion proved (Trivial)
-test_init_by_proof_mem.adb:31:22: medium: assertion might fail, cannot prove lower bound for Y1 in My_Nat (e.g. when Y1 = -1)
+test_init_by_proof_mem.adb:31:22: medium: assertion might fail, cannot prove lower bound for Y1 in My_Nat
 test_init_by_proof_mem.adb:31:22: medium: initialization check might fail
 test_init_by_proof_mem.adb:33:22: info: assertion proved (CVC4: 1 VC)
 test_init_by_proof_mem.adb:34:22: info: assertion proved (Trivial)
@@ -117,7 +117,7 @@ test_init_by_proof_out_params.adb:146:17: high: "X.C.X" is not initialized in "P
 test_init_by_proof_out_params.adb:146:17: high: "X.C.Z" is not initialized in "P"
 test_init_by_proof_out_params.adb:153:17: warning: "X" is not modified, could be IN
 test_init_by_proof_out_params.adb:167:17: warning: "X" is not modified, could be IN
-test_init_by_proof_out_params.adb:187:07: medium: precondition might fail (e.g. when R1 = (X => 10, Y => ?, Z => True))
+test_init_by_proof_out_params.adb:187:07: medium: precondition might fail
 test_init_by_proof_out_params.adb:189:07: info: precondition proved (CVC4: 1 VC)
 test_init_by_proof_out_params.adb:192:07: medium: precondition might fail
 test_init_by_proof_out_params.adb:194:07: info: precondition proved (CVC4: 1 VC)
@@ -129,13 +129,32 @@ test_init_by_proof_out_params.adb:207:07: medium: precondition might fail
 test_init_by_proof_out_params.adb:209:07: info: precondition proved (CVC4: 1 VC)
 test_init_by_proof_out_params.adb:212:07: medium: precondition might fail
 test_init_by_proof_out_params.adb:214:07: info: precondition proved (CVC4: 1 VC)
-test_init_by_proof_out_params.adb:217:07: medium: precondition might fail, cannot prove X (X'First).Y'Initialized (e.g. when A5 = (others => (X => 10, Y => ?, Z => True)))
+test_init_by_proof_out_params.adb:217:07: medium: precondition might fail, cannot prove X (X'First).Y'Initialized
 test_init_by_proof_out_params.adb:219:07: info: precondition proved (CVC4: 2 VC)
-test_init_by_proof_out_params.adb:222:07: medium: precondition might fail, cannot prove X (X'First).Y'Initialized (e.g. when H1 = (D => ?, C => (others => (X => 10, Y => ?, Z => True))))
+test_init_by_proof_out_params.adb:222:07: medium: precondition might fail, cannot prove X (X'First).Y'Initialized
 test_init_by_proof_out_params.adb:224:07: info: precondition proved (CVC4: 2 VC)
-test_init_by_proof_out_params.adb:227:07: medium: precondition might fail, cannot prove X.C (1).Y'Initialized (e.g. when H2.C'First = 10 and H2.C'Last = 1)
+test_init_by_proof_out_params.adb:227:07: medium: precondition might fail, cannot prove X.C (1).Y'Initialized
 test_init_by_proof_out_params.adb:229:07: info: precondition proved (CVC4: 2 VC)
-test_init_by_proof_out_params.adb:232:07: medium: precondition might fail (e.g. when R3 = (C => (X => 10, Y => ?, Z => True)))
+test_init_by_proof_out_params.adb:232:07: medium: precondition might fail
 test_init_by_proof_out_params.adb:234:07: info: precondition proved (CVC4: 1 VC)
 test_init_by_proof_out_params.adb:237:07: medium: precondition might fail
 test_init_by_proof_out_params.adb:239:07: info: precondition proved (CVC4: 1 VC)
+
+  "__attr__init": false,
+  "rec__value": "0"
+ Chars = "x" (Name_Id=-399999877)
+ Ekind = E_In_Parameter
+ Etype = N_Defining_Identifier "rec" (Entity_Id=857)
+ Has_Xref_Entry = True
+ Is_Frozen = True
+ Needs_Debug_Info = True
+ Never_Set_In_Source = True
+ Next_Entity = N_Defining_Identifier "y" (Entity_Id=1049)
+ Parent = N_Parameter_Specification (Node_Id=1048)
+ Referenced = True
+ Scope = N_Defining_Identifier "test_init_attr_2" (Entity_Id=1045)
+ Sloc = 1247  test_init_by_proof.adb:50:32
+Model without location
+N_Defining_Identifier "x" (Entity_Id=1046) (source)
+{
+}

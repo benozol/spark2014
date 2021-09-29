@@ -1,1 +1,1 @@
-bad.ads:4:12: medium: range check might fail, cannot prove lower bound for (Too_Small)
+bad.ads:4:12: high: range check might fail, cannot prove lower bound for (Too_Small) [the code does not conform to the check, or some loop invariant or post condition is too weak]

@@ -1,4 +1,4 @@
-bindo.adb:24:32: medium: pointer dereference check might fail (e.g. when G = null)
-bindo.adb:27:07: medium: pointer dereference check might fail (e.g. when G = null) [possible fix: subprogram at line 20 should mention G in a precondition]
-bindo.adb:27:16: medium: pointer dereference check might fail (e.g. when G = null) [possible fix: subprogram at line 20 should mention G in a precondition]
+bindo.adb:24:32: high: pointer dereference check might fail (e.g. when G = null) [the code does not conform to the check, or some loop invariant or post condition is too weak]
+bindo.adb:27:07: high: pointer dereference check might fail (e.g. when G = null) [the code does not conform to the check, or some loop invariant or post condition is too weak] [possible fix: subprogram at line 20 should mention G in a precondition]
+bindo.adb:27:16: high: pointer dereference check might fail (e.g. when G = null) [the code does not conform to the check, or some loop invariant or post condition is too weak] [possible fix: subprogram at line 20 should mention G in a precondition]
 bindo.adb:27:22: medium: range check might fail, cannot prove lower bound for Count - 1 [reason for check: result of subtraction must fit in the target type of the assignment] [possible fix: subprogram at line 20 should mention G and Kind in a precondition]

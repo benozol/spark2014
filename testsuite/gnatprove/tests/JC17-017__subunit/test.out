@@ -9,5 +9,5 @@ main.adb:20:23: info: initialization of "X" proved
 main.adb:21:22: info: postcondition proved (CVC4: 1 VC)
 main.adb:27:19: info: assertion proved (CVC4: 1 VC)
 main.adb:29:19: info: assertion proved (CVC4: 1 VC)
-main.adb:31:19: medium: assertion might fail (e.g. when B = True) [possible fix: call at line 30 should mention X (for argument B) in a postcondition]
+main.adb:31:19: high: assertion might fail (e.g. when B = True) [the code does not conform to the check, or some loop invariant or post condition is too weak] [possible fix: call at line 30 should mention X (for argument B) in a postcondition]
 main.adb:33:19: info: assertion proved (CVC4: 1 VC)

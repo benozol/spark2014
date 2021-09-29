@@ -1,9 +1,7 @@
-relaxed.adb:6:21: warning: unused variable "V"
 relaxed.adb:6:33: info: data dependencies proved
 relaxed.adb:13:07: medium: memory leak might occur at end of scope
 relaxed.adb:15:22: medium: assertion might fail
 relaxed.adb:15:23: info: pointer dereference check proved (CVC4: 1 VC)
-relaxed.adb:20:21: warning: unused variable "V"
 relaxed.adb:20:33: info: data dependencies proved
 relaxed.adb:27:07: medium: memory leak might occur at end of scope
 relaxed.adb:29:22: info: assertion proved (CVC4: 1 VC)
@@ -15,3 +13,71 @@ relaxed.adb:48:36: info: data dependencies proved
 relaxed.adb:50:19: medium: initialization check might fail [possible fix: subprogram at line 48 should mention V'Initialized in a precondition]
 relaxed.adb:58:35: info: data dependencies proved
 relaxed.adb:65:22: info: assertion proved (CVC4: 1 VC; Trivial: 4 VC)
+  "__attr__init": false,
+  "__attr__init": false,
+  "__attr__init": false,
+  "__attr__init": true,
+  "rec__value": "0"
+  "rec__value": "0"
+  "rec__value": "0"
+  "rec__value": "0"
+ Chars = "v" (Name_Id=-399999879)
+ Chars = "v" (Name_Id=-399999879)
+ Chars = "v" (Name_Id=-399999879)
+ Chars = "v" (Name_Id=-399999879)
+ Ekind = E_In_Parameter
+ Ekind = E_In_Parameter
+ Ekind = E_In_Parameter
+ Ekind = E_In_Parameter
+ Etype = N_Defining_Identifier "k" (Entity_Id=960)
+ Etype = N_Defining_Identifier "k" (Entity_Id=960)
+ Etype = N_Defining_Identifier "u" (Entity_Id=849)
+ Etype = N_Defining_Identifier "u" (Entity_Id=849)
+ Has_Xref_Entry = True
+ Has_Xref_Entry = True
+ Has_Xref_Entry = True
+ Has_Xref_Entry = True
+ Is_Frozen = True
+ Is_Frozen = True
+ Is_Frozen = True
+ Is_Frozen = True
+ Needs_Debug_Info = True
+ Needs_Debug_Info = True
+ Needs_Debug_Info = True
+ Needs_Debug_Info = True
+ Never_Set_In_Source = True
+ Never_Set_In_Source = True
+ Never_Set_In_Source = True
+ Never_Set_In_Source = True
+ Next_Entity = N_Defining_Identifier "r" (Entity_Id=1026)
+ Next_Entity = N_Defining_Identifier "r" (Entity_Id=874)
+ Next_Entity = N_Defining_Identifier "r" (Entity_Id=874)
+ Next_Entity = N_Defining_Identifier "r" (Entity_Id=985)
+ Parent = N_Parameter_Specification (Node_Id=1014)
+ Parent = N_Parameter_Specification (Node_Id=865)
+ Parent = N_Parameter_Specification (Node_Id=865)
+ Parent = N_Parameter_Specification (Node_Id=973)
+ Referenced = True
+ Referenced = True
+ Referenced = True
+ Referenced = True
+ Scope = N_Defining_Identifier "inner" (Entity_Id=862)
+ Scope = N_Defining_Identifier "inner" (Entity_Id=862)
+ Scope = N_Defining_Identifier "inner_1" (Entity_Id=970)
+ Scope = N_Defining_Identifier "inner_2" (Entity_Id=1011)
+ Sloc = 1292  relaxed.adb:48:23
+ Sloc = 145  relaxed.adb:6:21
+ Sloc = 145  relaxed.adb:6:21
+ Sloc = 870  relaxed.adb:36:23
+N_Defining_Identifier "v" (Entity_Id=1012) (source)
+N_Defining_Identifier "v" (Entity_Id=863) (source)
+N_Defining_Identifier "v" (Entity_Id=863) (source)
+N_Defining_Identifier "v" (Entity_Id=971) (source)
+{
+{
+{
+{
+}
+}
+}
+}

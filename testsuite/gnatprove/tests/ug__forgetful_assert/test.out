@@ -3,7 +3,8 @@ forgetful_assert.adb:7:19: info: assertion proved
 forgetful_assert.adb:9:27: info: assertion proved
 forgetful_assert.adb:11:19: info: assertion proved
 
-forgetful_assert.adb:12:19: medium: assertion might fail
+forgetful_assert.adb:12:19: high: assertion might fail
    12 |   pragma Assert (X = 1);
       |                  ^~~~~
   e.g. when X = 2
+  (some loop invariant or post condition is too weak)

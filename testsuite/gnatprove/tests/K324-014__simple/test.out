@@ -1,1 +1,1 @@
-qack.ads:6:19: medium: postcondition might fail (e.g. when X = False) [possible fix: call at qack.adb:11 should mention X in a postcondition]
+qack.ads:6:19: high: postcondition might fail (e.g. when X = False) [the code does not conform to the check, or some loop invariant or post condition is too weak] [possible fix: call at qack.adb:11 should mention X in a postcondition]

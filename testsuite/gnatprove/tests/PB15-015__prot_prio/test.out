@@ -1,1 +1,1 @@
-p.ads:8:24: medium: range check might fail
+p.ads:8:24: high: range check might fail [the code does not conform to the check, or some loop invariant or post condition is too weak]

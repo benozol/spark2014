@@ -1,141 +1,141 @@
-a-cofuse.ads:243:22: info: overflow check proved (CVC4: 2 VC), in instantiation at binary_search.adb:116
-a-cofuse.ads:244:26: info: overflow check proved (CVC4: 2 VC), in instantiation at binary_search.adb:116
+a-cofuse.ads:243:22: medium: overflow check might fail, in instantiation at binary_search.adb:116 [reason for check: result of subtraction must fit in a 32-bits machine integer] [possible fix: use pragma Overflow_Mode or switch -gnato13 or unit Ada.Numerics.Big_Numerics.Big_Integers]
+a-cofuse.ads:244:26: medium: overflow check might fail, in instantiation at binary_search.adb:116 [reason for check: result of subtraction must fit in a 32-bits machine integer] [possible fix: use pragma Overflow_Mode or switch -gnato13 or unit Ada.Numerics.Big_Numerics.Big_Integers]
 binary_search.adb:16:07: info: dynamic accessibility check proved (Trivial)
 binary_search.adb:20:13: info: function contract might not be available on recursive calls
 binary_search.adb:21:08: medium: "M_Contains" is recursive, terminating annotation could be incorrect
-binary_search.adb:22:18: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:22:45: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:22:76: info: pointer dereference check proved (CVC4: 1 VC)
+binary_search.adb:22:18: medium: pointer dereference check might fail [possible fix: subprogram at line 20 should mention T in a precondition]
+binary_search.adb:22:45: medium: pointer dereference check might fail [possible fix: subprogram at line 20 should mention T in a precondition]
+binary_search.adb:22:76: medium: pointer dereference check might fail [possible fix: subprogram at line 20 should mention T in a precondition]
 binary_search.adb:24:06: warning: postcondition does not mention function result [-gnatw.t]
 binary_search.adb:24:14: info: postcondition proved (Trivial: 1 VC)
 binary_search.adb:26:13: info: function contract might not be available on recursive calls
-binary_search.adb:29:14: info: postcondition proved (CVC4: 3 VC; Trivial: 1 VC; altergo: 1 VC)
+binary_search.adb:29:14: medium: postcondition might fail, cannot prove "<"'Result = (for all I in Integer => (if (M_Contains (T, I)) then V < I else True))
 binary_search.adb:31:06: medium: overriding operator "<" is recursive, terminating annotation could be incorrect
-binary_search.adb:32:32: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:32:47: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:32:62: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:38:25: info: assertion proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:39:44: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:40:25: info: assertion proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:41:44: info: pointer dereference check proved (CVC4: 1 VC)
+binary_search.adb:32:32: medium: pointer dereference check might fail
+binary_search.adb:32:47: medium: pointer dereference check might fail
+binary_search.adb:32:62: medium: pointer dereference check might fail
+binary_search.adb:39:44: medium: pointer dereference check might fail [possible fix: subprogram at line 26 should mention T in a precondition]
+binary_search.adb:39:59: medium: assertion might fail, cannot prove M_Contains (T, I) [possible fix: subprogram at line 26 should mention T in a precondition]
+binary_search.adb:41:44: medium: pointer dereference check might fail [possible fix: subprogram at line 26 should mention T in a precondition]
+binary_search.adb:41:60: medium: assertion might fail, cannot prove M_Contains (T, I) [possible fix: subprogram at line 26 should mention T in a precondition]
 binary_search.adb:42:10: medium: overriding operator "<" is recursive, terminating annotation could be incorrect
-binary_search.adb:42:22: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:42:37: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:42:52: info: pointer dereference check proved (CVC4: 1 VC)
+binary_search.adb:42:22: medium: pointer dereference check might fail [possible fix: subprogram at line 26 should mention T in a precondition]
+binary_search.adb:42:37: medium: pointer dereference check might fail [possible fix: subprogram at line 26 should mention T in a precondition]
+binary_search.adb:42:52: medium: pointer dereference check might fail [possible fix: subprogram at line 26 should mention T in a precondition]
 binary_search.adb:46:13: info: function contract might not be available on recursive calls
-binary_search.adb:49:14: info: postcondition proved (CVC4: 3 VC; Trivial: 1 VC; altergo: 1 VC)
+binary_search.adb:49:14: medium: postcondition might fail, cannot prove "<"'Result = (for all I in Integer => (if (M_Contains (T, I)) then I < V else True))
 binary_search.adb:51:06: medium: overriding operator "<" is recursive, terminating annotation could be incorrect
-binary_search.adb:52:28: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:52:43: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:52:58: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:58:25: info: assertion proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:59:44: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:60:25: info: assertion proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:61:44: info: pointer dereference check proved (CVC4: 1 VC)
+binary_search.adb:52:28: medium: pointer dereference check might fail
+binary_search.adb:52:43: medium: pointer dereference check might fail
+binary_search.adb:52:58: medium: pointer dereference check might fail
+binary_search.adb:59:44: medium: pointer dereference check might fail [possible fix: subprogram at line 46 should mention T in a precondition]
+binary_search.adb:59:59: medium: assertion might fail, cannot prove M_Contains (T, I) [possible fix: subprogram at line 46 should mention T in a precondition]
+binary_search.adb:61:44: medium: pointer dereference check might fail [possible fix: subprogram at line 46 should mention T in a precondition]
+binary_search.adb:61:60: medium: assertion might fail, cannot prove M_Contains (T, I) [possible fix: subprogram at line 46 should mention T in a precondition]
 binary_search.adb:62:10: medium: overriding operator "<" is recursive, terminating annotation could be incorrect
-binary_search.adb:62:18: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:62:33: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:62:48: info: pointer dereference check proved (CVC4: 1 VC)
+binary_search.adb:62:18: medium: pointer dereference check might fail [possible fix: subprogram at line 46 should mention T in a precondition]
+binary_search.adb:62:33: medium: pointer dereference check might fail [possible fix: subprogram at line 46 should mention T in a precondition]
+binary_search.adb:62:48: medium: pointer dereference check might fail [possible fix: subprogram at line 46 should mention T in a precondition]
 binary_search.adb:67:07: medium: "Sorted" is recursive, terminating annotation could be incorrect
-binary_search.adb:68:13: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:68:22: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:68:38: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:68:47: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:69:27: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:69:52: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:75:14: info: postcondition proved (CVC4: 2 VC)
-binary_search.adb:80:33: info: loop invariant initialization proved (CVC4: 4 VC; Trivial: 1 VC)
-binary_search.adb:80:33: info: loop invariant preservation proved (CVC4: 4 VC; Trivial: 1 VC)
-binary_search.adb:81:33: info: loop invariant initialization proved (CVC4: 2 VC)
-binary_search.adb:81:33: info: loop invariant preservation proved (CVC4: 2 VC)
-binary_search.adb:82:14: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:84:21: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:85:19: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:87:19: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:101:26: info: discriminant check proved (CVC4: 1 VC)
-binary_search.adb:105:30: info: discriminant check proved (CVC4: 1 VC)
-binary_search.adb:109:26: info: discriminant check proved (CVC4: 1 VC)
-binary_search.adb:113:30: info: discriminant check proved (CVC4: 1 VC)
+binary_search.adb:68:13: medium: pointer dereference check might fail [possible fix: subprogram at line 66 should mention T in a precondition]
+binary_search.adb:68:22: medium: pointer dereference check might fail [possible fix: subprogram at line 66 should mention T in a precondition]
+binary_search.adb:68:38: medium: pointer dereference check might fail [possible fix: subprogram at line 66 should mention T in a precondition]
+binary_search.adb:68:47: medium: pointer dereference check might fail [possible fix: subprogram at line 66 should mention T in a precondition]
+binary_search.adb:69:27: medium: pointer dereference check might fail [possible fix: subprogram at line 66 should mention T in a precondition]
+binary_search.adb:69:52: medium: pointer dereference check might fail [possible fix: subprogram at line 66 should mention T in a precondition]
+binary_search.adb:75:14: medium: postcondition might fail
+binary_search.adb:80:33: medium: loop invariant might fail in first iteration, cannot prove T.Left < T.Data
+binary_search.adb:80:33: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove T.Left < T.Data
+binary_search.adb:81:33: medium: loop invariant might fail in first iteration
+binary_search.adb:81:33: medium: loop invariant might not be preserved by an arbitrary iteration
+binary_search.adb:82:14: medium: pointer dereference check might fail
+binary_search.adb:84:21: medium: pointer dereference check might fail
+binary_search.adb:85:19: medium: pointer dereference check might fail
+binary_search.adb:87:19: medium: pointer dereference check might fail
+binary_search.adb:101:26: medium: discriminant check might fail [possible fix: subprogram at line 100 should mention V in a precondition]
+binary_search.adb:105:30: medium: discriminant check might fail [possible fix: subprogram at line 104 should mention V in a precondition]
+binary_search.adb:109:26: medium: discriminant check might fail [possible fix: subprogram at line 108 should mention V in a precondition]
+binary_search.adb:113:30: medium: discriminant check might fail [possible fix: subprogram at line 112 should mention V in a precondition]
 binary_search.adb:119:13: info: implicit function contract might not be available on recursive calls
 binary_search.adb:120:07: medium: "Size" is recursive, terminating annotation could be incorrect
-binary_search.adb:121:20: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:121:42: info: overflow check proved (CVC4: 2 VC)
-binary_search.adb:121:51: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:122:19: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:122:26: info: overflow check proved (CVC4: 2 VC)
-binary_search.adb:122:35: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:122:43: info: overflow check proved (CVC4: 2 VC)
+binary_search.adb:121:20: medium: pointer dereference check might fail [possible fix: subprogram at line 119 should mention T in a precondition]
+binary_search.adb:121:42: medium: overflow check might fail [reason for check: result of subtraction must fit in a 32-bits machine integer] [possible fix: add precondition (16#7FFF_FFFF# >= Integer'First + Size (T.Right)) to subprogram at line 119]
+binary_search.adb:121:51: medium: pointer dereference check might fail [possible fix: subprogram at line 119 should mention T in a precondition]
+binary_search.adb:122:19: medium: pointer dereference check might fail [possible fix: subprogram at line 119 should mention T in a precondition]
+binary_search.adb:122:26: medium: overflow check might fail [reason for check: result of addition must fit in a 32-bits machine integer] [possible fix: add precondition (Size (T.Left) <= Integer'Last - Size (T.Right)) to subprogram at line 119]
+binary_search.adb:122:35: medium: pointer dereference check might fail [possible fix: subprogram at line 119 should mention T in a precondition]
+binary_search.adb:122:43: medium: overflow check might fail [reason for check: result of addition must fit in a 32-bits machine integer] [possible fix: add precondition (Size (T.Left) + Size (T.Right) <= Integer'Last - 1) to subprogram at line 119]
 binary_search.adb:127:13: info: function contract might not be available on recursive calls
-binary_search.adb:131:14: info: postcondition proved (CVC4: 3 VC)
+binary_search.adb:131:14: medium: postcondition might fail, cannot prove Length (All_V'Result) <= Count_Type (Size (T))
 binary_search.adb:135:14: info: initialization of "S" proved
 binary_search.adb:140:12: medium: "All_V" is recursive, terminating annotation could be incorrect
-binary_search.adb:140:15: info: precondition proved (CVC4: 1 VC)
-binary_search.adb:140:22: info: precondition proved (CVC4: 1 VC)
-binary_search.adb:140:30: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:140:38: info: precondition proved (CVC4: 1 VC)
-binary_search.adb:140:46: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:141:31: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:142:18: info: precondition proved (CVC4: 2 VC)
-binary_search.adb:142:27: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:149:14: info: postcondition proved (CVC4: 6 VC; Trivial: 1 VC; Z3: 1 VC)
-binary_search.adb:151:53: info: precondition proved (CVC4: 1 VC)
-binary_search.adb:156:25: info: assertion proved (CVC4: 4 VC; Trivial: 1 VC)
-binary_search.adb:157:12: info: absence of memory leak proved (CVC4: 1 VC)
-binary_search.adb:164:38: info: precondition proved (CVC4: 1 VC)
+binary_search.adb:140:15: medium: precondition might fail
+binary_search.adb:140:22: medium: precondition might fail
+binary_search.adb:140:30: medium: pointer dereference check might fail
+binary_search.adb:140:38: medium: precondition might fail
+binary_search.adb:140:46: medium: pointer dereference check might fail
+binary_search.adb:141:31: medium: pointer dereference check might fail
+binary_search.adb:142:18: medium: precondition might fail, cannot prove not Contains (Container, Item)
+binary_search.adb:142:27: medium: pointer dereference check might fail
+binary_search.adb:149:14: medium: postcondition might fail, cannot prove T.Left < T.Data
+binary_search.adb:151:53: medium: precondition might fail [possible explanation: enclosing 'Old attribute reference is unconditionally evaluated on subprogram entry]
+binary_search.adb:156:25: medium: assertion might fail, cannot prove T.Left < T.Data
+binary_search.adb:157:12: medium: memory leak might occur
+binary_search.adb:164:38: medium: precondition might fail
 binary_search.adb:166:10: info: initialization of "Seen" proved
-binary_search.adb:169:36: info: loop invariant initialization proved (CVC4: 1 VC)
-binary_search.adb:169:36: info: loop invariant preservation proved (CVC4: 1 VC)
-binary_search.adb:170:36: info: loop invariant initialization proved (CVC4: 4 VC; Trivial: 1 VC)
-binary_search.adb:170:36: info: loop invariant preservation proved (CVC4: 4 VC; Trivial: 1 VC)
-binary_search.adb:171:36: info: loop invariant initialization proved (CVC4: 2 VC; Trivial: 2 VC)
-binary_search.adb:171:36: info: loop invariant preservation proved (CVC4: 2 VC; Trivial: 2 VC)
-binary_search.adb:172:36: info: loop invariant initialization proved (CVC4: 2 VC; Trivial: 2 VC)
-binary_search.adb:172:36: info: loop invariant preservation proved (CVC4: 2 VC; Trivial: 2 VC)
-binary_search.adb:174:16: info: loop invariant initialization proved (CVC4: 1 VC)
-binary_search.adb:174:16: info: loop invariant preservation proved (CVC4: 1 VC)
-binary_search.adb:174:65: info: overflow check proved (CVC4: 4 VC)
-binary_search.adb:174:65: info: range check proved (CVC4: 4 VC)
-binary_search.adb:176:16: info: loop invariant initialization proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:176:16: info: loop invariant preservation proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:179:16: info: loop invariant initialization proved (CVC4: 1 VC)
-binary_search.adb:179:16: info: loop invariant preservation proved (CVC4: 1 VC)
+binary_search.adb:169:36: medium: loop invariant might fail in first iteration
+binary_search.adb:169:36: medium: loop invariant might not be preserved by an arbitrary iteration
+binary_search.adb:170:36: medium: loop invariant might fail in first iteration, cannot prove T.Left < T.Data
+binary_search.adb:170:36: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove T.Left < T.Data
+binary_search.adb:171:36: medium: loop invariant might fail in first iteration, cannot prove T < V.Value
+binary_search.adb:171:36: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove T < V.Value
+binary_search.adb:172:36: medium: loop invariant might fail in first iteration, cannot prove I < V.Value
+binary_search.adb:172:36: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove I < V.Value
+binary_search.adb:174:16: medium: loop invariant might fail in first iteration
+binary_search.adb:174:16: medium: loop invariant might not be preserved by an arbitrary iteration
+binary_search.adb:174:65: medium: overflow check might fail [reason for check: result of subtraction must fit in a 32-bits machine integer] [possible fix: use pragma Overflow_Mode or switch -gnato13 or unit Ada.Numerics.Big_Numerics.Big_Integers]
+binary_search.adb:174:65: medium: range check might fail [reason for check: result of subtraction must be convertible to the target type of the conversion]
+binary_search.adb:177:45: medium: loop invariant might fail in first iteration, cannot prove Contains (T_Old, I)
+binary_search.adb:177:45: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove Contains (T_Old, I)
 binary_search.adb:179:16: info: precondition proved (Trivial: 2 VC)
-binary_search.adb:181:16: info: loop invariant initialization proved (CVC4: 1 VC)
-binary_search.adb:181:16: info: loop invariant preservation proved (Z3: 1 VC)
+binary_search.adb:179:37: medium: loop invariant might fail in first iteration, cannot prove Contains (T_Old, I)
+binary_search.adb:179:37: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove Contains (T_Old, I)
 binary_search.adb:181:16: info: precondition proved (Trivial: 2 VC)
-binary_search.adb:183:16: info: loop invariant initialization proved (CVC4: 1 VC)
-binary_search.adb:183:16: info: loop invariant preservation proved (CVC4: 1 VC)
+binary_search.adb:181:38: medium: loop invariant might fail in first iteration, cannot prove Contains (Seen, I) or M_Contains (X, I)
+binary_search.adb:181:38: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove Contains (Seen, I) or M_Contains (X, I)
 binary_search.adb:183:16: info: precondition proved (Trivial: 2 VC)
-binary_search.adb:186:16: info: loop invariant initialization proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:186:16: info: loop invariant preservation proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:190:16: info: loop invariant initialization proved (CVC4: 1 VC)
-binary_search.adb:190:16: info: loop invariant preservation proved (CVC4: 1 VC)
+binary_search.adb:183:37: medium: loop invariant might fail in first iteration, cannot prove not M_Contains (X, I)
+binary_search.adb:183:37: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove not M_Contains (X, I)
+binary_search.adb:188:24: medium: loop invariant might fail in first iteration, cannot prove M_Contains (At_End_Borrow (T), I)
+binary_search.adb:188:24: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove M_Contains (At_End_Borrow (T), I)
 binary_search.adb:190:16: info: precondition proved (Trivial: 2 VC)
-binary_search.adb:192:16: info: loop invariant initialization proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:192:16: info: loop invariant preservation proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:196:16: info: loop invariant initialization proved (CVC4: 4 VC; Trivial: 2 VC)
-binary_search.adb:196:16: info: loop invariant preservation proved (CVC4: 4 VC; Trivial: 2 VC)
-binary_search.adb:200:17: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:202:24: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:203:20: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:204:20: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:204:26: info: absence of memory leak proved (CVC4: 1 VC)
-binary_search.adb:209:21: info: discriminant check proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:209:52: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:210:27: info: precondition proved (CVC4: 1 VC)
-binary_search.adb:210:40: info: precondition proved (CVC4: 2 VC)
-binary_search.adb:210:45: info: precondition proved (CVC4: 1 VC)
-binary_search.adb:210:53: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:210:63: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:211:25: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:214:20: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:215:20: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:215:27: info: absence of memory leak proved (CVC4: 1 VC)
-binary_search.adb:220:21: info: discriminant check proved (CVC4: 1 VC; Trivial: 1 VC)
-binary_search.adb:220:52: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:221:27: info: precondition proved (CVC4: 1 VC)
-binary_search.adb:221:40: info: precondition proved (CVC4: 2 VC)
-binary_search.adb:221:45: info: precondition proved (CVC4: 1 VC)
-binary_search.adb:221:53: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:221:62: info: pointer dereference check proved (CVC4: 1 VC)
-binary_search.adb:222:25: info: pointer dereference check proved (CVC4: 1 VC)
+binary_search.adb:190:37: medium: loop invariant might fail in first iteration, cannot prove M_Contains (At_End_Borrow (T), I)
+binary_search.adb:190:37: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove M_Contains (At_End_Borrow (T), I)
+binary_search.adb:194:24: medium: loop invariant might fail in first iteration, cannot prove Contains (Seen, I) or M_Contains (At_End_Borrow (X), I)
+binary_search.adb:194:24: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove Contains (Seen, I) or M_Contains (At_End_Borrow (X), I)
+binary_search.adb:198:21: medium: loop invariant might fail in first iteration, cannot prove T.Left < T.Data
+binary_search.adb:198:21: medium: loop invariant might not be preserved by an arbitrary iteration, cannot prove T.Left < T.Data
+binary_search.adb:200:17: medium: pointer dereference check might fail
+binary_search.adb:202:24: medium: pointer dereference check might fail
+binary_search.adb:203:20: medium: pointer dereference check might fail
+binary_search.adb:204:20: medium: pointer dereference check might fail
+binary_search.adb:204:26: medium: memory leak might occur
+binary_search.adb:209:21: medium: discriminant check might fail
+binary_search.adb:209:52: medium: pointer dereference check might fail
+binary_search.adb:210:27: medium: precondition might fail
+binary_search.adb:210:40: medium: precondition might fail, cannot prove not Contains (Container, Item)
+binary_search.adb:210:45: medium: precondition might fail
+binary_search.adb:210:53: medium: pointer dereference check might fail
+binary_search.adb:210:63: medium: pointer dereference check might fail
+binary_search.adb:211:25: medium: pointer dereference check might fail
+binary_search.adb:214:20: medium: pointer dereference check might fail
+binary_search.adb:215:20: medium: pointer dereference check might fail
+binary_search.adb:215:27: medium: memory leak might occur
+binary_search.adb:220:21: medium: discriminant check might fail
+binary_search.adb:220:52: medium: pointer dereference check might fail
+binary_search.adb:221:27: medium: precondition might fail
+binary_search.adb:221:40: medium: precondition might fail, cannot prove not Contains (Container, Item)
+binary_search.adb:221:45: medium: precondition might fail
+binary_search.adb:221:53: medium: pointer dereference check might fail
+binary_search.adb:221:62: medium: pointer dereference check might fail
+binary_search.adb:222:25: medium: pointer dereference check might fail

@@ -1,8 +1,9 @@
 
-assert_enabled.adb:6:11: medium: postcondition might fail
+assert_enabled.adb:6:11: high: postcondition might fail
     6 |  Post => X > 2   --  ignored at run time
       |          ^~~~~
   e.g. when X = 0
+  (the code does not conform to the check, or some loop invariant or post condition is too weak)
 assert_enabled.adb:9:19: info: assertion proved
 assert_enabled.adb:12:19: info: assertion proved
 assert_enabled.adb:14:11: info: overflow check proved
